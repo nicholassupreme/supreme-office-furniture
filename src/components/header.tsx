@@ -57,7 +57,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
       }`}
     >
       <div
-        className={`hidden overflow-hidden bg-[#0b6cad] text-[12.5px] font-medium text-white/90 transition-[height] duration-300 md:block ${
+        className={`hidden overflow-hidden bg-brand text-[12.5px] font-medium text-white/90 transition-[height] duration-300 md:block ${
           scrolled ? "h-0" : "h-9"
         }`}
       >

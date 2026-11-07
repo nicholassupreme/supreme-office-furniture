@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-paper: #f5f3ee;
+  --color-surface: #ffffff;
+  --color-ink: #16181d;
+  --color-ink-2: #3a3e47;
+  --color-muted: #6b6f78;
+  --color-line: #e3e0d8;
+  --color-brand: #2b2d86;
+  --color-brand-ink: #1d1f63;
+  --color-brand-soft: #e9e9f6;
+  --color-oak: #b8875a;
+  --color-wa: #1fa855;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-feature-settings: "ss01", "cv11";
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Product description content from the store */
+.prose-desc {
+  color: var(--color-ink-2);
+  font-size: 0.975rem;
+  line-height: 1.7;
+}
+.prose-desc > * + * {
+  margin-top: 0.85em;
+}
+.prose-desc h1,
+.prose-desc h2,
+.prose-desc h3,
+.prose-desc h4 {
+  color: var(--color-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-top: 1.6em;
+}
+.prose-desc h1,
+.prose-desc h2 {
+  font-size: 1.15rem;
+}
+.prose-desc h3,
+.prose-desc h4 {
+  font-size: 1rem;
+}
+.prose-desc ul {
+  list-style: disc;
+  padding-left: 1.2em;
+}
+.prose-desc ol {
+  list-style: decimal;
+  padding-left: 1.2em;
+}
+.prose-desc li + li {
+  margin-top: 0.3em;
+}
+.prose-desc strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.prose-desc a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-desc hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 1.6em 0;
+}
+.prose-desc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose-desc td,
+.prose-desc th {
+  border: 1px solid var(--color-line);
+  padding: 0.45em 0.7em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-desc iframe,
+.prose-desc video {
+  max-width: 100%;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
 }

@@ -1,0 +1,297 @@
+[
+ {
+  "slug": "office-work-chairs-malaysia",
+  "name": "Office Chairs",
+  "short": "Chairs",
+  "blurb": "Ergonomic, executive, task and visitor seating for every desk in the office.",
+  "subs": [
+   [
+    "ergonomic-office-chairs",
+    "Ergonomic Chairs"
+   ],
+   [
+    "director-high-back-office-chairs-malaysia",
+    "Director & High Back"
+   ],
+   [
+    "medium-low-back-office-chairs-malaysia",
+    "Medium & Low Back"
+   ],
+   [
+    "secretary-task-office-chairs-malaysia",
+    "Secretary & Task"
+   ],
+   [
+    "classic-retro-office-chairs-malaysia",
+    "Classic & Wooden"
+   ],
+   [
+    "visitor-office-chairs-malaysia",
+    "Visitor Chairs"
+   ],
+   [
+    "training-classroom-chairs-malaysia",
+    "Training & Classroom"
+   ],
+   [
+    "cafe-banquet-chairs",
+    "Cafe & Banquet Chairs"
+   ],
+   [
+    "bar-stools-malaysia",
+    "Bar Stools"
+   ],
+   [
+    "auditorium-chairs",
+    "Auditorium Chairs"
+   ]
+  ]
+ },
+ {
+  "slug": "office-desks-tables",
+  "name": "Desks & Tables",
+  "short": "Desks",
+  "blurb": "Standard, L-shape, director and standing desks, plus reception, training and cafe tables.",
+  "subs": [
+   [
+    "standard-office-desk",
+    "Standard Desks"
+   ],
+   [
+    "l-shape-office-table",
+    "L-Shape Desks"
+   ],
+   [
+    "director-s-desk",
+    "Director's Desks"
+   ],
+   [
+    "office-table-combo-sets",
+    "Desk Combo Sets"
+   ],
+   [
+    "height-adjustable-desk-standing-desk",
+    "Standing Desks"
+   ],
+   [
+    "steel-pedestal-desk",
+    "Steel Pedestal Desks"
+   ],
+   [
+    "reception-counter-tables",
+    "Reception Counters"
+   ],
+   [
+    "foldable-office-training-tables",
+    "Foldable Training Tables"
+   ],
+   [
+    "office-classroom-training-table",
+    "Classroom Tables"
+   ],
+   [
+    "cafe-banquet-tables",
+    "Cafe & Banquet Tables"
+   ]
+  ]
+ },
+ {
+  "slug": "office-workstations",
+  "name": "Workstations",
+  "short": "Workstations",
+  "blurb": "Open-plan clusters from 1 to 8+ seaters, made to order. Sizes, colours and layouts can be customised.",
+  "subs": [
+   [
+    "1-3-seater-workstation-prices-are-negotiable",
+    "1–3 Seaters"
+   ],
+   [
+    "4-5-seater-workstation-prices-are-negotiable",
+    "4–5 Seaters"
+   ],
+   [
+    "6-7-seater-workstation-prices-are-negotiable",
+    "6–7 Seaters"
+   ],
+   [
+    "8-seater-or-more-workstation-prices-are-negotiable",
+    "8+ Seaters"
+   ],
+   [
+    "office-workstation-accessories",
+    "Workstation Accessories"
+   ],
+   [
+    "office-partitions",
+    "Office Partitions"
+   ]
+  ]
+ },
+ {
+  "slug": "meeting-conference-table",
+  "name": "Meeting & Conference",
+  "short": "Meeting",
+  "blurb": "Meeting tables from 2-seaters to 20ft boardroom tables.",
+  "subs": [
+   [
+    "table-length-900mm-to-2900mm",
+    "2–10 Seaters (900–2900mm)"
+   ],
+   [
+    "table-length-3000mm-to-4500mm",
+    "10–16 Seaters (3000–4500mm)"
+   ],
+   [
+    "length-20ft-6000mm-above",
+    "16+ Seaters (4600mm+)"
+   ]
+  ]
+ },
+ {
+  "slug": "office-sofas-bench-seating-malaysia",
+  "name": "Sofas & Lounge",
+  "short": "Sofas",
+  "blurb": "Reception sofas, lounge chairs, coffee tables and waiting-area benches.",
+  "subs": [
+   [
+    "1-seater-office-sofa",
+    "1-Seater Sofas"
+   ],
+   [
+    "2-seater-office-sofa",
+    "2-Seater Sofas"
+   ],
+   [
+    "3-seater-or-more-office-sofa",
+    "3-Seater & Up"
+   ],
+   [
+    "lounge-chairs-benches",
+    "Lounge Chairs & Benches"
+   ],
+   [
+    "coffee-table",
+    "Coffee Tables"
+   ],
+   [
+    "link-chairs-waiting-benches-malaysia",
+    "Link Chairs & Waiting Benches"
+   ]
+  ]
+ },
+ {
+  "slug": "office-wooden-storage",
+  "name": "Wooden Storage",
+  "short": "Wooden Storage",
+  "blurb": "Low, medium and full-height cabinets and pedestals in wood laminate.",
+  "subs": [
+   [
+    "low-height-office-cabinets",
+    "Low Height Cabinets"
+   ],
+   [
+    "low-height-cabinet-combinations",
+    "Low Cabinet Combinations"
+   ],
+   [
+    "medium-height-office-cabinets",
+    "Medium Height Cabinets"
+   ],
+   [
+    "full-high-height-office-cabinets",
+    "Full Height Cabinets"
+   ],
+   [
+    "mobile-fixed-pedestals",
+    "Mobile & Fixed Pedestals"
+   ]
+  ]
+ },
+ {
+  "slug": "steel-storage",
+  "name": "Steel Storage",
+  "short": "Steel Storage",
+  "blurb": "Steel cupboards, lockers and mobile compactors built for heavy daily use.",
+  "subs": [
+   [
+    "steel-cabinets-cupboards-mobile-compactors",
+    "Steel Cabinets & Cupboards"
+   ],
+   [
+    "steel-lockers",
+    "Steel Lockers"
+   ],
+   [
+    "mobile-compactors",
+    "Mobile Compactors"
+   ]
+  ]
+ },
+ {
+  "slug": "security-safe-box",
+  "name": "Safes",
+  "short": "Safes",
+  "blurb": "Fire-resistant safes from Richman, MOEM and Chubbsafes, with delivery and installation.",
+  "subs": [
+   [
+    "richman-safes-series",
+    "Richman Safes"
+   ],
+   [
+    "moem-safe-series",
+    "MOEM Safes"
+   ],
+   [
+    "chubbsafes-series",
+    "Chubbsafes"
+   ]
+  ]
+ },
+ {
+  "slug": "office-phone-booth-open-pods",
+  "name": "Phone Booths & Pods",
+  "short": "Pods",
+  "blurb": "Soundproof phone booths and meeting pods for focus work and private calls.",
+  "subs": []
+ },
+ {
+  "slug": "office-school-equipments",
+  "name": "Office & School Equipment",
+  "short": "Equipment",
+  "blurb": "Whiteboards, notice boards, shredders, projector screens, signage and trolleys.",
+  "subs": [
+   [
+    "writing-boards",
+    "Writing Boards"
+   ],
+   [
+    "notice-boards",
+    "Notice Boards"
+   ],
+   [
+    "flip-chart-furniture",
+    "Flip Charts"
+   ],
+   [
+    "paper-shredder-machines",
+    "Paper Shredders"
+   ],
+   [
+    "projector-screens-presentation-tools",
+    "Projector Screens"
+   ],
+   [
+    "signage-display-equipments",
+    "Signage & Queue Stands"
+   ],
+   [
+    "storage-equipments-trolleys",
+    "Trolleys & Storage"
+   ],
+   [
+    "architecture-tools-furniture",
+    "Architecture Tools"
+   ]
+  ]
+ }
+]

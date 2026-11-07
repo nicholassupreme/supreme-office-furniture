@@ -231,38 +231,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Showroom + partners */}
-      <section className="mx-auto mt-20 grid max-w-[1320px] gap-4 px-4 md:mt-28 md:px-6 lg:grid-cols-[1.4fr_1fr]">
-        <div className="rounded-[28px] border border-line bg-surface p-8 md:p-12">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">Showroom</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">See it, sit in it, then decide.</h2>
-          <p className="mt-4 max-w-lg leading-relaxed text-ink-2">
-            Spotted something you like? Visit our Klang showroom to try chairs, check finishes and talk through your layout
-            with our team.
-          </p>
-          <p className="mt-6 flex items-start gap-2 text-sm text-ink-2">
-            <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-oak" />
-            <span>
-              {site.address[0]}
-              <br />
-              {site.address[1]}
-            </span>
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href={site.waze} className="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white">Open in Waze</a>
-            <a href={site.maps} className="rounded-full border border-line px-5 py-3 text-sm font-semibold">Google Maps</a>
+      {/* Showroom */}
+      <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
+        <div className="grid overflow-hidden rounded-[28px] border border-line bg-surface lg:grid-cols-[1fr_1.2fr]">
+          <div className="flex flex-col justify-center p-8 md:p-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">Showroom</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">See it, sit in it, then decide.</h2>
+            <p className="mt-4 max-w-lg leading-relaxed text-ink-2">
+              Spotted something you like? Visit our Klang showroom to try chairs, check finishes and talk through your
+              layout with our team.
+            </p>
+            <p className="mt-6 flex items-start gap-2 text-sm text-ink-2">
+              <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-oak" />
+              <span>
+                {site.address[0]}
+                <br />
+                {site.address[1]}
+              </span>
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href={site.waze} className="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white">Open in Waze</a>
+              <a href={site.maps} className="rounded-full border border-line px-5 py-3 text-sm font-semibold">Google Maps</a>
+            </div>
+          </div>
+          <div className="relative min-h-[240px] lg:min-h-[420px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/showroom.jpg"
+              alt="Supreme Office Furniture System showroom on Jalan Gopeng, Klang"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-[50%_60%]"
+            />
           </div>
         </div>
-        <div className="relative flex flex-col justify-between overflow-hidden rounded-[28px] bg-brand-ink p-8 text-white md:p-12">
+
+        {/* Partner program */}
+        <div className="relative mt-4 flex flex-col gap-6 overflow-hidden rounded-[28px] bg-brand-ink p-8 text-white md:flex-row md:items-center md:justify-between md:p-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={TEAM_IMG} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left opacity-35" />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/70 to-brand-ink/20" />
+          <img src={TEAM_IMG} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left opacity-25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/85 to-brand-ink/40" />
           <div className="relative">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Partner program</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">For designers, contractors & dealers</h2>
-            <p className="mt-4 leading-relaxed text-white/75">Exclusive partner pricing and project support for trade buyers.</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">For designers, contractors and dealers</h2>
+            <p className="mt-2 text-white/75">Exclusive partner pricing and project support for trade buyers.</p>
           </div>
-          <Link href="/partners" className="relative mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
+          <Link href="/partners" className="relative inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink">
             Get partner pricing <IconArrow />
           </Link>
         </div>

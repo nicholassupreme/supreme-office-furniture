@@ -11,7 +11,7 @@ async function year() {
 export async function Footer() {
   const y = await year();
   return (
-    <footer className="mt-24 bg-ink text-white/70">
+    <footer className="mt-24 bg-[#1a1450] text-white/75">
       <div className="mx-auto grid max-w-[1320px] gap-12 px-4 py-16 md:px-6 lg:grid-cols-[1.2fr_2fr]">
         <div>
           <Wordmark invert className="h-6 md:h-7" />

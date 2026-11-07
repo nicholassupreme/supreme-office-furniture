@@ -215,22 +215,14 @@ export function Header() {
 
 export function Wordmark({ className = "", invert = false }: { className?: string; invert?: boolean }) {
   return (
-    <span className={`flex items-center gap-2.5 leading-none ${className}`}>
-      <span
-        className={`grid h-8 w-8 place-items-center rounded-[9px] text-[15px] font-bold md:h-9 md:w-9 md:text-[16px] ${
-          invert ? "bg-white text-brand" : "bg-brand text-white"
-        }`}
-        aria-hidden
-      >
-        S
-      </span>
-      <span className="flex flex-col">
-        <span className={`text-[15px] font-bold tracking-[0.16em] md:text-[16px] ${invert ? "text-white" : "text-ink"}`}>SUPREME</span>
-        <span className={`mt-1 text-[10px] font-medium uppercase tracking-[0.22em] ${invert ? "text-white/60" : "text-muted"}`}>
-          Office Furniture
-        </span>
-      </span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/logo.png"
+      alt="Supreme Office"
+      width={548}
+      height={57}
+      className={`h-5 w-auto md:h-[22px] ${invert ? "brightness-0 invert" : ""} ${className}`}
+    />
   );
 }
 

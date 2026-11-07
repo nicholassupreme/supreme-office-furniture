@@ -48,7 +48,7 @@ export function Header() {
 
       <div className="mx-auto flex h-16 max-w-[1320px] items-center gap-4 px-4 md:h-[72px] md:px-6">
         <button
-          className="-ml-2 rounded-full p-2 lg:hidden"
+          className="-ml-2 rounded-full p-2 xl:hidden"
           onClick={() => setMobile(true)}
           aria-label="Open menu"
         >
@@ -59,12 +59,12 @@ export function Header() {
           <Wordmark />
         </Link>
 
-        <nav className="ml-6 hidden h-full items-stretch lg:flex" onMouseLeave={leave}>
+        <nav className="ml-4 hidden h-full items-stretch xl:flex" onMouseLeave={leave}>
           {taxonomy.map((d) => (
             <div key={d.slug} className="flex items-stretch" onMouseEnter={() => enter(d.slug)}>
               <Link
                 href={`/collections/${d.slug}`}
-                className={`flex items-center px-2.5 text-[14px] font-medium transition-colors xl:px-3 ${
+                className={`flex items-center whitespace-nowrap px-2.5 text-[14px] font-medium transition-colors 2xl:px-3.5 ${
                   open === d.slug || pathname.startsWith(`/collections/${d.slug}`) ? "text-brand" : "text-ink-2 hover:text-ink"
                 }`}
               >
@@ -95,7 +95,7 @@ export function Header() {
       {/* Desktop mega-menu */}
       {dept && (
         <div
-          className="absolute inset-x-0 top-full hidden border-b border-line bg-surface shadow-[0_24px_48px_-24px_rgba(22,24,29,0.18)] lg:block"
+          className="absolute inset-x-0 top-full hidden border-b border-line bg-surface shadow-[0_24px_48px_-24px_rgba(22,24,29,0.18)] xl:block"
           onMouseEnter={() => enter(dept.slug)}
           onMouseLeave={leave}
         >
@@ -129,7 +129,7 @@ export function Header() {
 
       {/* Mobile drawer */}
       {mobile && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-50 xl:hidden">
           <div className="absolute inset-0 bg-ink/40" onClick={() => setMobile(false)} />
           <div className="absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col bg-surface">
             <div className="flex h-16 items-center justify-between border-b border-line px-4">
@@ -229,7 +229,7 @@ function SearchBox() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search 1,700+ products"
-            className="h-10 w-full rounded-full border border-line bg-surface pl-10 pr-4 text-sm outline-none placeholder:text-muted focus:border-brand md:w-56 xl:w-64"
+            className="h-10 w-full rounded-full border border-line bg-surface pl-10 pr-4 text-sm outline-none placeholder:text-muted focus:border-brand md:w-48 2xl:w-64"
             aria-label="Search products"
           />
         </div>

@@ -11,7 +11,7 @@ export default function Home() {
     products.filter((p) => p.dept === dept && p.images[0] && p.price).slice(0, n).map(toCard);
 
   const heroImgs = [
-    coverImage("4-5-seater-workstation-prices-are-negotiable"),
+    coverImage("1-3-seater-workstation-prices-are-negotiable"),
     coverImage("ergonomic-office-chairs"),
     coverImage("table-length-900mm-to-2900mm"),
   ];
@@ -143,7 +143,12 @@ export default function Home() {
             </a>
           </div>
           <div className="grid grid-cols-2 gap-px bg-white/10">
-            {pick("office-workstations", 4).map((p) => (
+            {[
+              "1-3-seater-workstation-prices-are-negotiable",
+              "4-5-seater-workstation-prices-are-negotiable",
+              "6-7-seater-workstation-prices-are-negotiable",
+              "8-seater-or-more-workstation-prices-are-negotiable",
+            ].map((s) => products.find((p) => p.subs.includes(s) && p.images[0])!).filter(Boolean).map(toCard).map((p) => (
               <Link key={p.slug} href={`/products/${p.slug}`} className="group bg-white p-4">
                 {p.image && (
                   // eslint-disable-next-line @next/next/no-img-element

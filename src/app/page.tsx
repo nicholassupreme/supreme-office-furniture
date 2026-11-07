@@ -65,16 +65,23 @@ export default function Home() {
         </div>
 
         {/* Proof strip */}
-        <dl className="mt-12 grid grid-cols-2 overflow-hidden rounded-3xl border border-line bg-surface md:mt-16 md:grid-cols-4">
-          {[
-            ["40+ years", "Supplying Malaysian offices since 1985"],
-            [`${site.projects} projects`, "Offices, schools and institutions"],
-            ["1,700+ products", "Every one with prices shown"],
-            ["Free planning", "Layout drawing and quotation at no cost"],
-          ].map(([k, v], i) => (
-            <div key={k} className={`p-5 md:p-7 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t md:border-t-0" : ""} ${i === 2 ? "md:border-l" : ""} border-line`}>
-              <dt className="text-xl font-semibold tracking-tight md:text-2xl">{k}</dt>
-              <dd className="mt-1 text-sm text-muted">{v}</dd>
+        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/10 md:mt-14 md:grid-cols-4">
+          {(
+            [
+              ["40+ years", "Supplying Malaysian offices since 1985", "award"],
+              [`${site.projects} projects`, "Offices, schools and institutions", "building"],
+              ["1,700+ products", "Every one with prices shown", "chair"],
+              ["Free planning", "Layout drawing and quotation at no cost", "plan"],
+            ] as const
+          ).map(([k, v, icon]) => (
+            <div key={k} className="flex flex-col gap-4 bg-brand-ink p-5 text-white md:flex-row md:items-start md:p-7">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-oak ring-1 ring-white/15">
+                <StatIcon name={icon} />
+              </span>
+              <div>
+                <dt className="text-xl font-semibold tracking-tight md:text-2xl">{k}</dt>
+                <dd className="mt-1 text-sm leading-snug text-white/65">{v}</dd>
+              </div>
             </div>
           ))}
         </dl>
@@ -268,5 +275,39 @@ function ProductRow({ title, href, items }: { title: string; href: string; items
         ))}
       </div>
     </section>
+  );
+}
+
+function StatIcon({ name }: { name: "award" | "building" | "chair" | "plan" }) {
+  const common = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, className: "h-[22px] w-[22px]", "aria-hidden": true };
+  if (name === "award")
+    return (
+      <svg {...common}>
+        <circle cx="12" cy="9" r="5.5" />
+        <path d="m9.2 13.8-1.4 7.2L12 19l4.2 2-1.4-7.2" />
+        <path d="m12 6.6.8 1.6 1.7.2-1.2 1.2.3 1.7-1.6-.8-1.6.8.3-1.7-1.2-1.2 1.7-.2Z" />
+      </svg>
+    );
+  if (name === "building")
+    return (
+      <svg {...common}>
+        <path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h7A1.5 1.5 0 0 1 14 5.5V21" />
+        <path d="M14 10h4.5A1.5 1.5 0 0 1 20 11.5V21" />
+        <path d="M3 21h18M7.5 8h3M7.5 11.5h3M7.5 15h3M17 14v.01M17 17.5v.01" />
+      </svg>
+    );
+  if (name === "chair")
+    return (
+      <svg {...common}>
+        <path d="M8 3.5h8a1 1 0 0 1 1 1V11H7V4.5a1 1 0 0 1 1-1Z" />
+        <path d="M5.5 11h13l-.8 3H6.3Z" />
+        <path d="M12 14v4M8 21l4-3 4 3M5 9.5v3M19 9.5v3" />
+      </svg>
+    );
+  return (
+    <svg {...common}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="1.5" />
+      <path d="M3.5 10h7v10.5M10.5 14H15M15 3.5V14M15 8h5.5" />
+    </svg>
   );
 }

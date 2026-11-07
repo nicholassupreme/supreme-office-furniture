@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getProject, projects } from "@/data/portfolio";
+import { coverOf, getProject, projects } from "@/data/portfolio";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectGallery } from "@/components/project-gallery";
 import { waLink } from "@/lib/site";
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps<"/portfolio/[slug]"
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) return {};
-  return { title: `${p.client} – ${p.type}`, description: p.summary, openGraph: { images: [p.cover] } };
+  return { title: `${p.client} – ${p.type}`, description: p.summary, openGraph: { images: [coverOf(p)] } };
 }
 
 export default async function ProjectPage({ params }: PageProps<"/portfolio/[slug]">) {

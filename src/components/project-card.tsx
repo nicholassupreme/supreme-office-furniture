@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Project } from "@/data/portfolio";
+import { coverOf, type Project } from "@/data/portfolio";
 
 export function ProjectCard({ p, priority = false, tall = false }: { p: Project; priority?: boolean; tall?: boolean }) {
   return (
@@ -7,7 +7,7 @@ export function ProjectCard({ p, priority = false, tall = false }: { p: Project;
       <div className={`relative overflow-hidden rounded-3xl bg-line ${tall ? "aspect-[4/5]" : "aspect-[4/3]"}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={p.cover}
+          src={coverOf(p)}
           alt={`${p.client} – ${p.type}`}
           loading={priority ? "eager" : "lazy"}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"

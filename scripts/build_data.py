@@ -9,6 +9,8 @@ import json, re, html, pathlib, collections
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 raw = json.load(open(ROOT / "data/supreme-catalogue.json"))
 leaf = json.load(open(ROOT / "data/collections-leaf.json"))
+# Full option names/values per product, from the store's embedded product JSON (more complete than JSON-LD)
+variants_src = json.load(open(ROOT / "data/supreme-variants.json"))
 tax = json.load(open(ROOT / "data/taxonomy.json"))
 
 sub_to_dept = {}
@@ -102,9 +104,19 @@ for i, p in enumerate(raw):
         stats["no_dept"] += 1
         dept = "office-school-equipments"
     variants = []
-    for v in p["variants"]:
-        variants.append({"opts": {opt_name(k): val for k, val in v["opts"].items()},
-                         "price": num(v["price"]), "image": v.get("image")})
+    src = variants_src.get(p["slug"].strip("/"))
+    if src and src["o"] and src["v"]:
+        names = [o.strip() for o in src["o"]]
+        for vals, price, img in src["v"]:
+            variants.append({"opts": {n: (vals[i] if i < len(vals) else "") for i, n in enumerate(names)},
+                             "price": num(price), "image": img})
+        option_names = names
+    else:
+        for v in p["variants"]:
+            variants.append({"opts": {opt_name(k): val for k, val in v["opts"].items()},
+                             "price": num(v["price"]), "image": v.get("image")})
+        option_names = [opt_name(k) for k in p["variesBy"]]
+    # Drop options with a single value everywhere? keep: they still describe the product
     prices = [v["price"] for v in variants if v["price"]] or ([num(p["price"])] if num(p["price"]) else [])
     images = list(dict.fromkeys(p["images"]))
     body = clean_html(p["descHtml"])
@@ -116,7 +128,7 @@ for i, p in enumerate(raw):
         "price": min(prices) if prices else None,
         "priceMax": max(prices) if prices else None,
         "images": images,
-        "options": [opt_name(k) for k in p["variesBy"]],
+        "options": option_names,
         "variants": variants,
         "html": body,
         "summary": plain(body),

@@ -49,7 +49,7 @@ export function Header() {
       }`}
     >
       <div
-        className={`hidden overflow-hidden bg-[#4a3fa3] text-[12.5px] text-white/85 transition-[height] duration-300 md:block ${
+        className={`hidden overflow-hidden bg-[#d7ecfb] text-[12.5px] font-medium text-brand-ink transition-[height] duration-300 md:block ${
           scrolled ? "h-0" : "h-9"
         }`}
       >
@@ -59,9 +59,9 @@ export function Header() {
             Free delivery in Klang Valley above RM1,500 · Free office layout planning
           </p>
           <div className="flex items-center gap-5">
-            <a href={`tel:+${site.whatsapp}`} className="tabular hover:text-white">{site.whatsappDisplay}</a>
-            <Link href="/portfolio" className="hover:text-white">Portfolio</Link>
-            <Link href="/contact" className="hover:text-white">Showroom in Klang →</Link>
+            <a href={`tel:+${site.whatsapp}`} className="tabular hover:text-brand">{site.whatsappDisplay}</a>
+            <Link href="/portfolio" className="hover:text-brand">Portfolio</Link>
+            <Link href="/contact" className="hover:text-brand">Showroom in Klang →</Link>
           </div>
         </div>
       </div>

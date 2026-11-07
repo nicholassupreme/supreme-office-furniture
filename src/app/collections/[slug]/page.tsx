@@ -7,7 +7,6 @@ import { CollectionBrowser } from "@/components/collection-browser";
 import { waLink } from "@/lib/site";
 import { IconWhatsApp } from "@/components/icons";
 
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   const slugs = ["all", ...taxonomy.flatMap((d) => [d.slug, ...d.subs.map(([s]) => s)])];

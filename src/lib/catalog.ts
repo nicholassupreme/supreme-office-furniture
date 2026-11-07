@@ -17,6 +17,7 @@ export type Product = {
   html: string;
   summary: string;
   made_to_order: boolean;
+  featured: boolean;
 };
 /** What listing pages send to the browser */
 export type Card = Pick<Product, "slug" | "name" | "dept" | "subs" | "price" | "priceMax"> & { image: string | null };
@@ -65,4 +66,29 @@ export function coverImage(slug: string): string | null {
   const c = getCollection(slug);
   if (!c) return null;
   return collectionProducts(c).find((p) => p.images[0])?.images[0] ?? null;
+}
+
+/**
+ * Star product for every department and sub-category, shown in the menu dropdowns.
+ * Prefers products the old store featured on its homepage, then the store's own order.
+ * Pin a specific product for a slot in STAR_OVERRIDES (slug of collection -> product slug).
+ */
+const STAR_OVERRIDES: Record<string, string> = {};
+
+export function menuStars(): Record<string, Card> {
+  const out: Record<string, Card> = {};
+  const pick = (list: Product[]) => {
+    const ok = list.filter((p) => p.images[0] && p.price);
+    return ok.find((p) => p.featured) ?? ok[0];
+  };
+  for (const d of taxonomy) {
+    const slots = [d.slug, ...d.subs.map(([s]) => s)];
+    for (const slug of slots) {
+      const c = getCollection(slug)!;
+      const pinned = STAR_OVERRIDES[slug] && getProduct(STAR_OVERRIDES[slug]);
+      const p = pinned || pick(collectionProducts(c));
+      if (p) out[slug] = toCard(p);
+    }
+  }
+  return out;
 }

@@ -109,3 +109,8 @@ body {
   scrollbar-width: none;
 }
 body { overflow-x: clip; }
+
+@keyframes starIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}

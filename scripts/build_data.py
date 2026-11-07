@@ -121,6 +121,7 @@ for i, p in enumerate(raw):
         "html": body,
         "summary": plain(body),
         "made_to_order": "workstation" in dept or "negotiable" in " ".join(subs),
+        "featured": p["category"] == "Feature on homepage",
     })
     stats["subs_" + ("yes" if subs else "no")] += 1
 

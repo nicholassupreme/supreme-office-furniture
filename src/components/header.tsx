@@ -4,12 +4,16 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { taxonomy } from "@/lib/taxonomy";
-import { site, waLink } from "@/lib/site";
+import { rm, site, waLink } from "@/lib/site";
+import { cleanName } from "./product-card";
 import { useQuote } from "./quote-store";
 import { IconBag, IconClose, IconMenu, IconSearch, IconWhatsApp } from "./icons";
 
-export function Header() {
+type StarCard = { slug: string; name: string; price: number | null; priceMax: number | null; image: string | null };
+
+export function Header({ stars }: { stars: Record<string, StarCard> }) {
   const [open, setOpen] = useState<string | null>(null); // desktop mega-menu dept
+  const [hoverSub, setHoverSub] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const pathname = usePathname();
   const { count, ready } = useQuote();
@@ -35,6 +39,7 @@ export function Header() {
 
   const enter = (slug: string) => {
     clearTimeout(closeTimer.current);
+    if (slug !== open) setHoverSub(null);
     setOpen(slug);
   };
   const leave = () => {
@@ -135,7 +140,7 @@ export function Header() {
           onMouseEnter={() => enter(dept.slug)}
           onMouseLeave={leave}
         >
-          <div className="mx-auto grid max-w-[1320px] grid-cols-[280px_1fr] gap-10 px-6 py-8">
+          <div className="mx-auto grid max-w-[1320px] grid-cols-[250px_minmax(0,1fr)_260px] gap-10 px-6 py-8">
             <div>
               <p className="text-xl font-semibold tracking-tight">{dept.name}</p>
               <p className="mt-2 text-sm leading-relaxed text-muted">{dept.blurb}</p>
@@ -147,18 +152,27 @@ export function Header() {
               </Link>
             </div>
             {dept.subs.length > 0 ? (
-              <ul className="grid grid-cols-3 gap-x-8 gap-y-1">
+              <ul className="grid content-start gap-x-8 gap-y-0.5 border-r border-line pr-8 sm:grid-cols-2" onMouseLeave={() => setHoverSub(null)}>
                 {dept.subs.map(([s, n]) => (
                   <li key={s}>
-                    <Link href={`/collections/${s}`} className="block rounded-md py-2 text-[15px] text-ink-2 hover:text-brand">
+                    <Link
+                      href={`/collections/${s}`}
+                      onMouseEnter={() => setHoverSub(s)}
+                      onFocus={() => setHoverSub(s)}
+                      className={`flex items-center justify-between rounded-lg px-3 py-2 text-[15px] transition-colors ${
+                        hoverSub === s ? "bg-paper text-brand" : "text-ink-2 hover:text-brand"
+                      }`}
+                    >
                       {n}
+                      <span className={`text-xs transition-opacity ${hoverSub === s ? "opacity-100" : "opacity-0"}`}>→</span>
                     </Link>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="self-center text-sm text-muted">Browse the full range of {dept.name.toLowerCase()}.</p>
+              <p className="self-center border-r border-line pr-8 text-sm text-muted">Browse the full range of {dept.name.toLowerCase()}.</p>
             )}
+            <StarProduct p={stars[hoverSub ?? dept.slug] ?? stars[dept.slug]} />
           </div>
         </div>
       )}
@@ -300,5 +314,38 @@ function SearchBox() {
         </div>
       )}
     </>
+  );
+}
+
+function StarProduct({ p }: { p?: StarCard }) {
+  if (!p) return <div />;
+  const from = p.priceMax != null && p.price != null && p.priceMax > p.price;
+  return (
+    <Link
+      key={p.slug}
+      href={`/products/${p.slug}`}
+      className="group block overflow-hidden rounded-2xl border border-line bg-white transition hover:border-ink/20 animate-[starIn_.35s_ease-out]"
+    >
+      <div className="relative aspect-[4/3] bg-white">
+        {p.image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={p.image} alt={p.name} className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105" />
+        )}
+        <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#faeeda] px-2.5 py-1 text-[11px] font-semibold text-[#633806]">
+          <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor" aria-hidden>
+            <path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z" />
+          </svg>
+          Star pick
+        </span>
+      </div>
+      <div className="border-t border-line/70 px-4 py-3">
+        <p className="line-clamp-1 text-sm font-semibold">{cleanName(p.name)}</p>
+        <p className="tabular mt-0.5 text-[13px] text-muted">
+          {from && "From "}
+          {rm(p.price)}
+        </p>
+        <p className="mt-2 text-[13px] font-semibold text-brand">View product →</p>
+      </div>
+    </Link>
   );
 }

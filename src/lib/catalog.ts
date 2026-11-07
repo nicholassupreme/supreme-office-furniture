@@ -92,3 +92,20 @@ export function menuStars(): Record<string, Card> {
   }
   return out;
 }
+
+/** Phone booths shown in the "Phone Booths" dropdown, in this order. */
+const MENU_BOOTHS: [string, string, string][] = [
+  ["ace-uno-modern-spacious-1-seater-acoustic-phone-pod-booth", "Ace Uno", "1 seater"],
+  ["ace-plus-office-pod-phone-booth-silent-acoustic-pod-for-1-seater-kindly-contact-us-before-ordering-", "Ace Plus", "1 seater"],
+  ["ace-flex-spacious-single-seater-kindly-contact-us-before-ordering", "Ace Flex", "Spacious 1 seater"],
+  ["ace-meet-office-pod-office-phone-booth-for-2-4-seater-kindly-contact-us-before-order-", "Ace Meet", "2–4 seater"],
+];
+
+export type MenuBooth = { slug: string; name: string; tag: string; price: number | null; image: string | null };
+
+export function menuBooths(): MenuBooth[] {
+  return MENU_BOOTHS.flatMap(([slug, name, tag]) => {
+    const p = getProduct(slug);
+    return p ? [{ slug, name, tag, price: p.price, image: p.images[0] ?? null }] : [];
+  });
+}

@@ -7,7 +7,7 @@ import { QuoteProvider } from "@/components/quote-store";
 import { AddedToast } from "@/components/added-toast";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { site } from "@/lib/site";
-import { menuStars } from "@/lib/catalog";
+import { deptCount, menuBooths, menuStars } from "@/lib/catalog";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col font-sans">
         <QuoteProvider>
-          <Header stars={menuStars()} />
+          <Header stars={menuStars()} booths={menuBooths()} boothCount={deptCount("office-phone-booth-open-pods")} />
           <main className="flex-1">{children}</main>
           <Footer />
           <AddedToast />

@@ -11,7 +11,10 @@ import { IconBag, IconClose, IconMenu, IconSearch, IconWhatsApp } from "./icons"
 
 type StarCard = { slug: string; name: string; price: number | null; priceMax: number | null; image: string | null };
 
-export function Header({ stars }: { stars: Record<string, StarCard> }) {
+type Booth = { slug: string; name: string; tag: string; price: number | null; image: string | null };
+const BOOTHS = "office-phone-booth-open-pods";
+
+export function Header({ stars, booths, boothCount }: { stars: Record<string, StarCard>; booths: Booth[]; boothCount: number }) {
   const [open, setOpen] = useState<string | null>(null); // desktop mega-menu dept
   const [hoverSub, setHoverSub] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
@@ -140,6 +143,44 @@ export function Header({ stars }: { stars: Record<string, StarCard> }) {
           onMouseEnter={() => enter(dept.slug)}
           onMouseLeave={leave}
         >
+          {dept.slug === BOOTHS ? (
+            <div className="mx-auto grid max-w-[1320px] grid-cols-[250px_minmax(0,1fr)] gap-10 px-6 py-8">
+              <div>
+                <p className="text-xl font-semibold tracking-tight">{dept.name}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{dept.blurb}</p>
+                <Link
+                  href={`/collections/${dept.slug}`}
+                  className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand hover:underline"
+                >
+                  See all {boothCount} pod products →
+                </Link>
+              </div>
+              <ul className="grid grid-cols-4 gap-4">
+                {booths.map((b) => (
+                  <li key={b.slug}>
+                    <Link
+                      href={`/products/${b.slug}`}
+                      className="group block overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-0.5 hover:border-ink/20 hover:shadow-[0_14px_30px_-18px_rgba(22,24,29,0.35)]"
+                    >
+                      <div className="aspect-square bg-white">
+                        {b.image && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={b.image} alt={b.name} className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105" />
+                        )}
+                      </div>
+                      <div className="border-t border-line/70 px-4 py-3">
+                        <p className="flex items-baseline justify-between gap-2">
+                          <span className="text-[15px] font-semibold group-hover:text-brand">{b.name}</span>
+                          <span className="text-xs text-muted">{b.tag}</span>
+                        </p>
+                        <p className="tabular mt-0.5 text-[13px] text-ink-2">{rm(b.price)}</p>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
           <div className="mx-auto grid max-w-[1320px] grid-cols-[250px_minmax(0,1fr)_260px] gap-10 px-6 py-8">
             <div>
               <p className="text-xl font-semibold tracking-tight">{dept.name}</p>
@@ -174,6 +215,7 @@ export function Header({ stars }: { stars: Record<string, StarCard> }) {
             )}
             <StarProduct p={stars[hoverSub ?? dept.slug] ?? stars[dept.slug]} />
           </div>
+          )}
         </div>
       )}
 
@@ -324,7 +366,7 @@ function StarProduct({ p }: { p?: StarCard }) {
     <Link
       key={p.slug}
       href={`/products/${p.slug}`}
-      className="group block overflow-hidden rounded-2xl border border-line bg-white transition hover:border-ink/20 animate-[starIn_.35s_ease-out]"
+      className="group block overflow-hidden rounded-2xl border border-line bg-white transition hover:border-ink/20"
     >
       <div className="relative aspect-[4/3] bg-white">
         {p.image && (

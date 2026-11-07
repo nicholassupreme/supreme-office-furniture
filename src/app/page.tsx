@@ -77,36 +77,31 @@ export default function Home() {
           ).map(([img, title, text]) => (
             <li
               key={img}
-              className="group relative isolate flex cursor-default flex-col overflow-hidden rounded-3xl bg-brand-ink p-3 text-white transition-shadow duration-500 hover:shadow-[0_24px_50px_-20px_rgba(184,138,70,0.65)] md:p-4"
+              className="group relative isolate flex cursor-default flex-col items-center overflow-hidden rounded-3xl border border-line bg-white px-4 pb-6 pt-6 text-center transition-[box-shadow,border-color,transform] duration-500 ease-out hover:-translate-y-1 hover:border-transparent hover:shadow-[0_24px_50px_-20px_rgba(184,138,70,0.7)] md:px-6 md:pb-7 md:pt-7"
             >
               {/* Gold layer fades in on hover */}
               <span
                 aria-hidden
-                className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#f3dfae_0%,#d9b26e_38%,#b88a46_72%,#e8cd8f_100%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#f6e6bd_0%,#e2c07f_40%,#c99a55_75%,#efd79e_100%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
               />
               {/* Light sweep */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-y-0 -left-1/2 -z-10 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 transition-[transform,opacity] duration-[900ms] ease-out group-hover:translate-x-[320%] group-hover:opacity-100"
+                className="pointer-events-none absolute inset-y-0 -left-1/2 -z-10 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 transition-[transform,opacity] duration-[900ms] ease-out group-hover:translate-x-[320%] group-hover:opacity-100"
               />
-              <div className="grid aspect-[16/11] place-items-center overflow-hidden rounded-2xl bg-white transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_16px_30px_-14px_rgba(22,24,29,0.55)]">
+              {/* White in the picture blends into the card, so it reads as cut out */}
+              <div className="flex h-24 w-full items-end justify-center md:h-32">
                 <Image
                   src={`https://cdn.store-assets.com/s/1022051/f/${img}.png`}
                   alt=""
                   width={360}
                   height={360}
-                  sizes="(min-width: 1024px) 280px, 45vw"
-                  className="h-[82%] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-110"
+                  sizes="(min-width: 1024px) 240px, 45vw"
+                  className="max-h-full w-auto max-w-[85%] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-110"
                 />
               </div>
-              <div className="px-2 pb-2 pt-4 md:px-3 md:pt-5">
-                <p className="text-[15px] font-semibold leading-tight tracking-tight transition-colors duration-500 group-hover:text-ink md:text-lg">
-                  {title}
-                </p>
-                <p className="mt-1.5 text-[13px] leading-snug text-white/65 transition-colors duration-500 group-hover:text-ink/75 md:text-sm">
-                  {text}
-                </p>
-              </div>
+              <p className="mt-5 text-[15px] font-semibold leading-tight tracking-tight text-brand-ink md:text-[17px]">{title}</p>
+              <p className="mt-1.5 max-w-[22ch] text-[13px] leading-snug text-ink-2 md:text-sm">{text}</p>
             </li>
           ))}
         </ul>

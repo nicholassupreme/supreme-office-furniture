@@ -4,6 +4,8 @@ import { allProducts, coverImage, deptCount, toCard } from "@/lib/catalog";
 import { ProductCard } from "@/components/product-card";
 import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
 import { site, waLink } from "@/lib/site";
+import { projects } from "@/data/portfolio";
+import { ProjectCard } from "@/components/project-card";
 
 export default function Home() {
   const products = allProducts();
@@ -151,6 +153,26 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Portfolio preview */}
+      <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
+        <SectionHead
+          title="Recent projects"
+          sub={`A few of the ${site.projects} offices, colleges and hostels we've furnished.`}
+          href="/portfolio"
+          cta="View portfolio"
+        />
+        <div className="mt-8 grid gap-x-5 gap-y-8 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
+          {projects.slice(0, 3).map((p, i) => (
+            <div key={p.slug} className={i === 0 ? "md:col-span-2 lg:col-span-1" : ""}>
+              <ProjectCard p={p} tall={i === 0} />
+            </div>
+          ))}
+        </div>
+        <Link href="/portfolio" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold sm:hidden">
+          View portfolio <IconArrow />
+        </Link>
       </section>
 
       {/* Popular chairs */}

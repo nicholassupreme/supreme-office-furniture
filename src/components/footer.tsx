@@ -54,6 +54,7 @@ export async function Footer() {
           </FooterCol>
           <FooterCol title="Company">
             <FooterLink href="/about">About us</FooterLink>
+            <FooterLink href="/portfolio">Portfolio</FooterLink>
             <FooterLink href="/contact">Showroom & contact</FooterLink>
             <FooterLink href="/partners">Partner program</FooterLink>
             <FooterLink href="/quote">Quote basket</FooterLink>

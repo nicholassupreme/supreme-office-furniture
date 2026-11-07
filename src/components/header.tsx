@@ -60,6 +60,7 @@ export function Header() {
           </p>
           <div className="flex items-center gap-5">
             <a href={`tel:+${site.whatsapp}`} className="tabular hover:text-white">{site.whatsappDisplay}</a>
+            <Link href="/portfolio" className="hover:text-white">Portfolio</Link>
             <Link href="/contact" className="hover:text-white">Showroom in Klang →</Link>
           </div>
         </div>
@@ -193,6 +194,7 @@ export function Header() {
                 </details>
               ))}
               <div className="mt-4 space-y-1 px-3 text-[15px]">
+                <Link href="/portfolio" className="block py-2">Portfolio</Link>
                 <Link href="/services" className="block py-2">Services</Link>
                 <Link href="/about" className="block py-2">About us</Link>
                 <Link href="/contact" className="block py-2">Showroom & contact</Link>

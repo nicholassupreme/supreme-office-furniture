@@ -74,13 +74,26 @@ export default function Home() {
               ["Free planning", "Layout drawing and quotation at no cost", "plan"],
             ] as const
           ).map(([k, v, icon]) => (
-            <div key={k} className="flex flex-col gap-4 bg-brand-ink p-5 text-white md:flex-row md:items-start md:p-7">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-oak ring-1 ring-white/15">
+            <div
+              key={k}
+              className="group relative isolate flex cursor-default flex-col gap-4 overflow-hidden bg-brand-ink p-5 text-white md:flex-row md:items-center md:gap-5 md:p-7"
+            >
+              {/* Gold layer fades in on hover */}
+              <span
+                aria-hidden
+                className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#f3dfae_0%,#d9b26e_38%,#b88a46_72%,#e8cd8f_100%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+              />
+              {/* Light sweep */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 -left-1/2 -z-10 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/55 to-transparent opacity-0 transition-[transform,opacity] duration-[900ms] ease-out group-hover:translate-x-[320%] group-hover:opacity-100"
+              />
+              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-oak ring-1 ring-white/20 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:rotate-[-6deg] group-hover:scale-110 group-hover:bg-ink group-hover:text-[#e8cd8f] group-hover:shadow-[0_12px_24px_-10px_rgba(22,24,29,0.6)] group-hover:ring-ink md:h-16 md:w-16">
                 <StatIcon name={icon} />
               </span>
               <div>
-                <dt className="text-xl font-semibold tracking-tight md:text-2xl">{k}</dt>
-                <dd className="mt-1 text-sm leading-snug text-white/65">{v}</dd>
+                <dt className="text-xl font-semibold tracking-tight transition-colors duration-500 group-hover:text-ink md:text-2xl">{k}</dt>
+                <dd className="mt-1 text-sm leading-snug text-white/65 transition-colors duration-500 group-hover:text-ink/75">{v}</dd>
               </div>
             </div>
           ))}
@@ -279,7 +292,7 @@ function ProductRow({ title, href, items }: { title: string; href: string; items
 }
 
 function StatIcon({ name }: { name: "award" | "building" | "chair" | "plan" }) {
-  const common = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, className: "h-[22px] w-[22px]", "aria-hidden": true };
+  const common = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, className: "h-7 w-7 md:h-8 md:w-8", "aria-hidden": true };
   if (name === "award")
     return (
       <svg {...common}>

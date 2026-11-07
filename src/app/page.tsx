@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/product-card";
 import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
 import { site, waLink } from "@/lib/site";
 import { projects } from "@/data/portfolio";
-import { ProjectCard } from "@/components/project-card";
+import { ProjectTile } from "@/components/project-card";
 
 export default function Home() {
   const products = allProducts();
@@ -194,10 +194,10 @@ export default function Home() {
           href="/portfolio"
           cta="View portfolio"
         />
-        <div className="mt-8 grid gap-x-5 gap-y-8 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
-          {projects.slice(0, 3).map((p, i) => (
-            <div key={p.slug} className={i === 0 ? "md:col-span-2 lg:col-span-1" : ""}>
-              <ProjectCard p={p} tall={i === 0} />
+        <div className="mt-8 grid auto-rows-[190px] grid-cols-2 gap-3 md:auto-rows-[240px] md:gap-4 lg:grid-cols-4 lg:auto-rows-[260px]">
+          {projects.slice(0, 5).map((p, i) => (
+            <div key={p.slug} className={i === 0 ? "col-span-2 row-span-2" : ""}>
+              <ProjectTile p={p} big={i === 0} />
             </div>
           ))}
         </div>

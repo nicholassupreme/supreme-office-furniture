@@ -35,7 +35,11 @@ export default function Home() {
 
           <div className="relative px-6 pb-9 pt-2 md:max-w-[52%] md:px-12 md:py-20 lg:px-16 lg:py-24">
             <p className="inline-flex items-center gap-2 rounded-full bg-paper px-3 py-1 text-xs font-medium text-ink-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-oak" /> Since {site.founded} · Klang, Selangor
+              <span className="relative flex h-2 w-2" aria-hidden>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              Since {site.founded} · Klang, Selangor
             </p>
             <h1 className="mt-5 text-[38px] font-semibold leading-[1.02] tracking-[-0.035em] text-ink sm:text-[52px] xl:text-[64px]">
               Office furniture,

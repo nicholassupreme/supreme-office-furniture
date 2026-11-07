@@ -49,7 +49,7 @@ export function Header() {
       }`}
     >
       <div
-        className={`hidden overflow-hidden bg-ink text-[12.5px] text-white/75 transition-[height] duration-300 md:block ${
+        className={`hidden overflow-hidden bg-[#4a3fa3] text-[12.5px] text-white/85 transition-[height] duration-300 md:block ${
           scrolled ? "h-0" : "h-9"
         }`}
       >

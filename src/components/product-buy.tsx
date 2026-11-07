@@ -62,13 +62,13 @@ export function ProductBuy({
   const optText = options.map((o) => `${o}: ${sel[o]}`).join(", ");
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
       {/* Gallery */}
-      <div className="lg:sticky lg:top-28 lg:self-start">
-        <div className="aspect-square overflow-hidden rounded-3xl bg-white ring-1 ring-line/70">
+      <div className="min-w-0 lg:sticky lg:top-32 lg:self-start">
+        <div className="relative mx-auto aspect-square w-full max-w-[640px] overflow-hidden rounded-3xl bg-white ring-1 ring-line/70">
           {gallery[active] && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={gallery[active]} alt={name} className="h-full w-full object-contain p-6 md:p-10" fetchPriority="high" />
+            <img src={gallery[active]} alt={name} className="absolute inset-0 m-auto h-[82%] w-[82%] object-contain" fetchPriority="high" />
           )}
         </div>
         {gallery.length > 1 && (

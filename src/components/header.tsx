@@ -14,6 +14,14 @@ export function Header() {
   const pathname = usePathname();
   const { count, ready } = useQuote();
   const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 8);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- close menus on navigation
@@ -35,60 +43,83 @@ export function Header() {
   const dept = taxonomy.find((d) => d.slug === open);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/80">
-      <div className="hidden bg-ink text-[13px] text-white/80 md:block">
+    <header
+      className={`sticky top-0 z-40 transition-shadow duration-300 ${
+        scrolled ? "shadow-[0_8px_30px_-12px_rgba(22,24,29,0.18)]" : ""
+      }`}
+    >
+      <div
+        className={`hidden overflow-hidden bg-ink text-[12.5px] text-white/75 transition-[height] duration-300 md:block ${
+          scrolled ? "h-0" : "h-9"
+        }`}
+      >
         <div className="mx-auto flex h-9 max-w-[1320px] items-center justify-between px-6">
-          <p>Free delivery in Klang Valley on orders above RM1,500 · Free office layout planning</p>
+          <p className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-oak" />
+            Free delivery in Klang Valley above RM1,500 · Free office layout planning
+          </p>
           <div className="flex items-center gap-5">
-            <a href={`tel:+${site.whatsapp}`} className="hover:text-white">{site.whatsappDisplay}</a>
-            <Link href="/contact" className="hover:text-white">Showroom in Klang</Link>
+            <a href={`tel:+${site.whatsapp}`} className="tabular hover:text-white">{site.whatsappDisplay}</a>
+            <Link href="/contact" className="hover:text-white">Showroom in Klang →</Link>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex h-16 max-w-[1320px] items-center gap-4 px-4 md:h-[72px] md:px-6">
-        <button
-          className="-ml-2 rounded-full p-2 xl:hidden"
-          onClick={() => setMobile(true)}
-          aria-label="Open menu"
+      <div className="border-b border-line bg-paper/85 backdrop-blur-xl">
+        <div
+          className={`mx-auto flex max-w-[1320px] items-center gap-3 px-4 transition-[height] duration-300 md:px-6 ${
+            scrolled ? "h-14 md:h-[60px]" : "h-16 md:h-[72px]"
+          }`}
         >
-          <IconMenu />
-        </button>
+          <button className="-ml-2 rounded-full p-2 xl:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
+            <IconMenu />
+          </button>
 
-        <Link href="/" className="shrink-0" aria-label="Supreme Office Furniture home">
-          <Wordmark />
-        </Link>
-
-        <nav className="ml-4 hidden h-full items-stretch xl:flex" onMouseLeave={leave}>
-          {taxonomy.map((d) => (
-            <div key={d.slug} className="flex items-stretch" onMouseEnter={() => enter(d.slug)}>
-              <Link
-                href={`/collections/${d.slug}`}
-                className={`flex items-center whitespace-nowrap px-2.5 text-[14px] font-medium transition-colors 2xl:px-3.5 ${
-                  open === d.slug || pathname.startsWith(`/collections/${d.slug}`) ? "text-brand" : "text-ink-2 hover:text-ink"
-                }`}
-              >
-                {d.short}
-              </Link>
-            </div>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex items-center gap-1 md:gap-2">
-          <SearchBox />
-          <Link
-            href="/quote"
-            className="relative flex items-center gap-2 rounded-full p-2 text-sm font-medium md:border md:border-line md:bg-surface md:px-4 md:py-2"
-            aria-label={`Quote basket, ${count} items`}
-          >
-            <IconBag />
-            <span className="hidden md:inline">Quote</span>
-            {ready && count > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand px-1 text-[11px] font-semibold text-white md:static md:h-5">
-                {count}
-              </span>
-            )}
+          <Link href="/" className="shrink-0" aria-label="Supreme Office Furniture home">
+            <Wordmark />
           </Link>
+
+          <nav className="mx-auto hidden h-full items-stretch xl:flex" onMouseLeave={leave}>
+            {taxonomy.map((d) => {
+              const on = open === d.slug || pathname.startsWith(`/collections/${d.slug}`);
+              return (
+                <div key={d.slug} className="flex items-stretch" onMouseEnter={() => enter(d.slug)}>
+                  <Link
+                    href={`/collections/${d.slug}`}
+                    className={`group relative flex items-center whitespace-nowrap px-3 text-[14px] font-medium transition-colors 2xl:px-3.5 ${
+                      on ? "text-ink" : "text-ink-2/80 hover:text-ink"
+                    }`}
+                  >
+                    {d.short}
+                    <span
+                      className={`absolute inset-x-3 bottom-0 h-[2px] origin-center rounded-full bg-brand transition-transform duration-300 2xl:inset-x-3.5 ${
+                        on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
+                    />
+                  </Link>
+                </div>
+              );
+            })}
+          </nav>
+
+          <div className="ml-auto flex items-center gap-1.5 xl:ml-0">
+            <SearchBox />
+            <Link
+              href="/quote"
+              className="relative flex items-center gap-2 rounded-full p-2 text-sm font-semibold transition md:bg-ink md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-brand"
+              aria-label={`Quote basket, ${count} items`}
+            >
+              <IconBag className="h-[18px] w-[18px]" />
+              <span className="hidden md:inline">Quote</span>
+              {ready && count > 0 ? (
+                <span className="tabular absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand px-1 text-[11px] font-semibold text-white md:static md:bg-white md:text-ink">
+                  {count}
+                </span>
+              ) : (
+                <span className="hidden md:block md:w-0.5" />
+              )}
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -182,11 +213,23 @@ export function Header() {
   );
 }
 
-export function Wordmark({ className = "" }: { className?: string }) {
+export function Wordmark({ className = "", invert = false }: { className?: string; invert?: boolean }) {
   return (
-    <span className={`flex items-baseline gap-1.5 leading-none ${className}`}>
-      <span className="text-[19px] font-bold tracking-[0.14em] text-brand md:text-[21px]">SUPREME</span>
-      <span className="text-[15px] font-medium tracking-tight text-ink-2 md:text-[16px]">Office</span>
+    <span className={`flex items-center gap-2.5 leading-none ${className}`}>
+      <span
+        className={`grid h-8 w-8 place-items-center rounded-[9px] text-[15px] font-bold md:h-9 md:w-9 md:text-[16px] ${
+          invert ? "bg-white text-brand" : "bg-brand text-white"
+        }`}
+        aria-hidden
+      >
+        S
+      </span>
+      <span className="flex flex-col">
+        <span className={`text-[15px] font-bold tracking-[0.16em] md:text-[16px] ${invert ? "text-white" : "text-ink"}`}>SUPREME</span>
+        <span className={`mt-1 text-[10px] font-medium uppercase tracking-[0.22em] ${invert ? "text-white/60" : "text-muted"}`}>
+          Office Furniture
+        </span>
+      </span>
     </span>
   );
 }
@@ -196,19 +239,38 @@ function SearchBox() {
   const [q, setQ] = useState("");
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && setExpanded(false);
+    window.addEventListener("keydown", esc);
+    return () => window.removeEventListener("keydown", esc);
+  }, [expanded]);
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (q.trim()) router.push(`/search?q=${encodeURIComponent(q.trim())}`);
+    setExpanded(false);
+  };
+
   return (
-    <form
-      role="search"
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (q.trim()) router.push(`/search?q=${encodeURIComponent(q.trim())}`);
-        setExpanded(false);
-      }}
-      className="relative"
-    >
+    <>
+      {/* Wide screens: inline field */}
+      <form role="search" onSubmit={submit} className="relative hidden 2xl:block">
+        <IconSearch className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Search products"
+          className="h-10 w-52 rounded-full border border-line bg-surface pl-10 pr-4 text-sm outline-none transition-[width,border-color] placeholder:text-muted focus:w-64 focus:border-brand"
+          aria-label="Search products"
+        />
+      </form>
+
+      {/* Everything else: icon that opens a search bar */}
       <button
         type="button"
-        className="rounded-full p-2 md:hidden"
+        className="grid h-10 w-10 place-items-center rounded-full transition hover:bg-ink/5 2xl:hidden"
         aria-label="Search"
         onClick={() => {
           setExpanded(true);
@@ -217,28 +279,28 @@ function SearchBox() {
       >
         <IconSearch />
       </button>
-      <div
-        className={`${
-          expanded ? "fixed inset-x-0 top-0 z-50 flex h-16 items-center gap-2 bg-surface px-4 shadow" : "hidden"
-        } md:static md:flex md:h-auto md:bg-transparent md:p-0 md:shadow-none`}
-      >
-        <div className="relative flex-1">
-          <IconSearch className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-          <input
-            ref={ref}
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search 1,700+ products"
-            className="h-10 w-full rounded-full border border-line bg-surface pl-10 pr-4 text-sm outline-none placeholder:text-muted focus:border-brand md:w-48 2xl:w-64"
-            aria-label="Search products"
-          />
+
+      {expanded && (
+        <div className="fixed inset-0 z-50 2xl:hidden">
+          <div className="absolute inset-0 bg-ink/30 backdrop-blur-sm" onClick={() => setExpanded(false)} />
+          <form role="search" onSubmit={submit} className="relative mx-auto mt-3 flex max-w-2xl items-center gap-2 px-3 md:mt-20">
+            <div className="relative flex-1">
+              <IconSearch className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
+              <input
+                ref={ref}
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search chairs, desks, cabinets, safes…"
+                className="h-14 w-full rounded-2xl bg-surface pl-14 pr-4 text-base shadow-2xl outline-none ring-1 ring-line focus:ring-brand"
+                aria-label="Search products"
+              />
+            </div>
+            <button type="button" className="rounded-full bg-surface px-4 py-3 text-sm font-medium shadow md:hidden" onClick={() => setExpanded(false)}>
+              Cancel
+            </button>
+          </form>
         </div>
-        {expanded && (
-          <button type="button" className="p-2 text-sm text-muted md:hidden" onClick={() => setExpanded(false)}>
-            Cancel
-          </button>
-        )}
-      </div>
-    </form>
+      )}
+    </>
   );
 }

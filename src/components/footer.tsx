@@ -14,7 +14,7 @@ export async function Footer() {
     <footer className="mt-24 bg-ink text-white/70">
       <div className="mx-auto grid max-w-[1320px] gap-12 px-4 py-16 md:px-6 lg:grid-cols-[1.2fr_2fr]">
         <div>
-          <Wordmark className="[&>span:first-child]:text-white [&>span:last-child]:text-white/70" />
+          <Wordmark invert />
           <p className="mt-5 max-w-sm text-sm leading-relaxed">
             One of Malaysia&apos;s longest-running office furniture suppliers. Serving offices, schools and institutions from
             our showroom in Klang since {site.founded}.

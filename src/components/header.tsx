@@ -67,44 +67,24 @@ export function Header() {
       </div>
 
       <div className="border-b border-line bg-paper/85 backdrop-blur-xl">
+        {/* Row 1: search · logo (centre) · quote */}
         <div
-          className={`mx-auto flex max-w-[1320px] items-center gap-3 px-4 transition-[height] duration-300 md:px-6 ${
-            scrolled ? "h-14 md:h-[60px]" : "h-16 md:h-[72px]"
+          className={`mx-auto grid max-w-[1320px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 transition-[height] duration-300 md:px-6 ${
+            scrolled ? "h-14 md:h-16" : "h-16 md:h-[84px]"
           }`}
         >
-          <button className="-ml-2 rounded-full p-2 xl:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
-            <IconMenu />
-          </button>
+          <div className="flex items-center">
+            <button className="-ml-2 rounded-full p-2 xl:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
+              <IconMenu />
+            </button>
+            <SearchBox />
+          </div>
 
-          <Link href="/" className="shrink-0" aria-label="Supreme Office Furniture home">
-            <Wordmark />
+          <Link href="/" className="justify-self-center" aria-label="Supreme Office Furniture home">
+            <Wordmark className={`h-5 transition-[height] duration-300 ${scrolled ? "md:h-6" : "md:h-[30px]"}`} />
           </Link>
 
-          <nav className="mx-auto hidden h-full items-stretch xl:flex" onMouseLeave={leave}>
-            {taxonomy.map((d) => {
-              const on = open === d.slug || pathname.startsWith(`/collections/${d.slug}`);
-              return (
-                <div key={d.slug} className="flex items-stretch" onMouseEnter={() => enter(d.slug)}>
-                  <Link
-                    href={`/collections/${d.slug}`}
-                    className={`group relative flex items-center whitespace-nowrap px-3 text-[14px] font-medium transition-colors 2xl:px-3.5 ${
-                      on ? "text-ink" : "text-ink-2/80 hover:text-ink"
-                    }`}
-                  >
-                    {d.short}
-                    <span
-                      className={`absolute inset-x-3 bottom-0 h-[2px] origin-center rounded-full bg-brand transition-transform duration-300 2xl:inset-x-3.5 ${
-                        on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                      }`}
-                    />
-                  </Link>
-                </div>
-              );
-            })}
-          </nav>
-
-          <div className="ml-auto flex items-center gap-1.5 xl:ml-0">
-            <SearchBox />
+          <div className="flex items-center justify-end">
             <Link
               href="/quote"
               className="relative flex items-center gap-2 rounded-full p-2 text-sm font-semibold transition md:bg-ink md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-brand"
@@ -122,6 +102,30 @@ export function Header() {
             </Link>
           </div>
         </div>
+
+        {/* Row 2: categories, centred */}
+        <nav className="hidden h-12 items-stretch justify-center border-t border-line/70 xl:flex" onMouseLeave={leave}>
+          {taxonomy.map((d) => {
+            const on = open === d.slug || pathname.startsWith(`/collections/${d.slug}`);
+            return (
+              <div key={d.slug} className="flex items-stretch" onMouseEnter={() => enter(d.slug)}>
+                <Link
+                  href={`/collections/${d.slug}`}
+                  className={`group relative flex items-center whitespace-nowrap px-4 text-[14px] font-medium transition-colors 2xl:px-5 ${
+                    on ? "text-ink" : "text-ink-2/80 hover:text-ink"
+                  }`}
+                >
+                  {d.short}
+                  <span
+                    className={`absolute inset-x-4 bottom-0 h-[2px] origin-center rounded-full bg-brand transition-transform duration-300 2xl:inset-x-5 ${
+                      on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
+                </Link>
+              </div>
+            );
+          })}
+        </nav>
       </div>
 
       {/* Desktop mega-menu */}
@@ -215,7 +219,7 @@ export function Header() {
   );
 }
 
-export function Wordmark({ className = "", invert = false }: { className?: string; invert?: boolean }) {
+export function Wordmark({ className = "h-5 md:h-[26px]", invert = false }: { className?: string; invert?: boolean }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
@@ -223,7 +227,7 @@ export function Wordmark({ className = "", invert = false }: { className?: strin
       alt="Supreme Office"
       width={548}
       height={57}
-      className={`h-5 w-auto md:h-[22px] ${invert ? "brightness-0 invert" : ""} ${className}`}
+      className={`w-auto ${invert ? "brightness-0 invert" : ""} ${className}`}
     />
   );
 }
@@ -250,13 +254,13 @@ function SearchBox() {
   return (
     <>
       {/* Wide screens: inline field */}
-      <form role="search" onSubmit={submit} className="relative hidden 2xl:block">
+      <form role="search" onSubmit={submit} className="relative hidden xl:block">
         <IconSearch className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search products"
-          className="h-10 w-52 rounded-full border border-line bg-surface pl-10 pr-4 text-sm outline-none transition-[width,border-color] placeholder:text-muted focus:w-64 focus:border-brand"
+          className="h-10 w-56 rounded-full border border-line bg-surface pl-10 pr-4 text-sm outline-none transition-[width,border-color] placeholder:text-muted focus:w-72 focus:border-brand"
           aria-label="Search products"
         />
       </form>
@@ -264,7 +268,7 @@ function SearchBox() {
       {/* Everything else: icon that opens a search bar */}
       <button
         type="button"
-        className="grid h-10 w-10 place-items-center rounded-full transition hover:bg-ink/5 2xl:hidden"
+        className="grid h-10 w-10 place-items-center rounded-full transition hover:bg-ink/5 xl:hidden"
         aria-label="Search"
         onClick={() => {
           setExpanded(true);
@@ -275,7 +279,7 @@ function SearchBox() {
       </button>
 
       {expanded && (
-        <div className="fixed inset-0 z-50 2xl:hidden">
+        <div className="fixed inset-0 z-50 xl:hidden">
           <div className="absolute inset-0 bg-ink/30 backdrop-blur-sm" onClick={() => setExpanded(false)} />
           <form role="search" onSubmit={submit} className="relative mx-auto mt-3 flex max-w-2xl items-center gap-2 px-3 md:mt-20">
             <div className="relative flex-1">

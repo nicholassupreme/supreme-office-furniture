@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { taxonomy } from "@/lib/taxonomy";
 import { allProducts, coverImage, deptCount, toCard } from "@/lib/catalog";
@@ -64,19 +65,19 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Proof strip */}
-        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/10 md:mt-14 md:grid-cols-4">
+        {/* Promises strip (illustrations from the old site) */}
+        <ul className="mt-10 grid grid-cols-2 gap-3 md:mt-14 lg:grid-cols-4 lg:gap-4">
           {(
             [
-              ["40+ years", "Supplying Malaysian offices since 1985", "award"],
-              [`${site.projects} projects`, "Offices, schools and institutions", "building"],
-              ["1,700+ products", "Every one with prices shown", "chair"],
-              ["Free planning", "Layout drawing and quotation at no cost", "plan"],
+              ["17641907", "Free delivery", "On orders above RM1,500 within Klang Valley."],
+              ["17641908", "Free layout planning", "Office layout drawing and quotation at no cost."],
+              ["17641910", "Relocation & disposal", "We move office furniture and safes, or clear out the old."],
+              ["17641911", "40+ years, 5,000+ projects", "Trusted by Malaysian offices since 1985."],
             ] as const
-          ).map(([k, v, icon]) => (
-            <div
-              key={k}
-              className="group relative isolate flex cursor-default flex-col gap-4 overflow-hidden bg-brand-ink p-5 text-white md:flex-row md:items-center md:gap-5 md:p-7"
+          ).map(([img, title, text]) => (
+            <li
+              key={img}
+              className="group relative isolate flex cursor-default flex-col overflow-hidden rounded-3xl bg-brand-ink p-3 text-white transition-shadow duration-500 hover:shadow-[0_24px_50px_-20px_rgba(184,138,70,0.65)] md:p-4"
             >
               {/* Gold layer fades in on hover */}
               <span
@@ -86,18 +87,29 @@ export default function Home() {
               {/* Light sweep */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-y-0 -left-1/2 -z-10 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/55 to-transparent opacity-0 transition-[transform,opacity] duration-[900ms] ease-out group-hover:translate-x-[320%] group-hover:opacity-100"
+                className="pointer-events-none absolute inset-y-0 -left-1/2 -z-10 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 transition-[transform,opacity] duration-[900ms] ease-out group-hover:translate-x-[320%] group-hover:opacity-100"
               />
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-oak ring-1 ring-white/20 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:rotate-[-6deg] group-hover:scale-110 group-hover:bg-ink group-hover:text-[#e8cd8f] group-hover:shadow-[0_12px_24px_-10px_rgba(22,24,29,0.6)] group-hover:ring-ink md:h-16 md:w-16">
-                <StatIcon name={icon} />
-              </span>
-              <div>
-                <dt className="text-xl font-semibold tracking-tight transition-colors duration-500 group-hover:text-ink md:text-2xl">{k}</dt>
-                <dd className="mt-1 text-sm leading-snug text-white/65 transition-colors duration-500 group-hover:text-ink/75">{v}</dd>
+              <div className="grid aspect-[16/11] place-items-center overflow-hidden rounded-2xl bg-white transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_16px_30px_-14px_rgba(22,24,29,0.55)]">
+                <Image
+                  src={`https://cdn.store-assets.com/s/1022051/f/${img}.png`}
+                  alt=""
+                  width={360}
+                  height={360}
+                  sizes="(min-width: 1024px) 280px, 45vw"
+                  className="h-[82%] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-110"
+                />
               </div>
-            </div>
+              <div className="px-2 pb-2 pt-4 md:px-3 md:pt-5">
+                <p className="text-[15px] font-semibold leading-tight tracking-tight transition-colors duration-500 group-hover:text-ink md:text-lg">
+                  {title}
+                </p>
+                <p className="mt-1.5 text-[13px] leading-snug text-white/65 transition-colors duration-500 group-hover:text-ink/75 md:text-sm">
+                  {text}
+                </p>
+              </div>
+            </li>
           ))}
-        </dl>
+        </ul>
       </section>
 
       {/* Departments */}
@@ -291,36 +303,3 @@ function ProductRow({ title, href, items }: { title: string; href: string; items
   );
 }
 
-function StatIcon({ name }: { name: "award" | "building" | "chair" | "plan" }) {
-  const common = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, className: "h-7 w-7 md:h-8 md:w-8", "aria-hidden": true };
-  if (name === "award")
-    return (
-      <svg {...common}>
-        <circle cx="12" cy="9" r="5.5" />
-        <path d="m9.2 13.8-1.4 7.2L12 19l4.2 2-1.4-7.2" />
-        <path d="m12 6.6.8 1.6 1.7.2-1.2 1.2.3 1.7-1.6-.8-1.6.8.3-1.7-1.2-1.2 1.7-.2Z" />
-      </svg>
-    );
-  if (name === "building")
-    return (
-      <svg {...common}>
-        <path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h7A1.5 1.5 0 0 1 14 5.5V21" />
-        <path d="M14 10h4.5A1.5 1.5 0 0 1 20 11.5V21" />
-        <path d="M3 21h18M7.5 8h3M7.5 11.5h3M7.5 15h3M17 14v.01M17 17.5v.01" />
-      </svg>
-    );
-  if (name === "chair")
-    return (
-      <svg {...common}>
-        <path d="M8 3.5h8a1 1 0 0 1 1 1V11H7V4.5a1 1 0 0 1 1-1Z" />
-        <path d="M5.5 11h13l-.8 3H6.3Z" />
-        <path d="M12 14v4M8 21l4-3 4 3M5 9.5v3M19 9.5v3" />
-      </svg>
-    );
-  return (
-    <svg {...common}>
-      <rect x="3.5" y="3.5" width="17" height="17" rx="1.5" />
-      <path d="M3.5 10h7v10.5M10.5 14H15M15 3.5V14M15 8h5.5" />
-    </svg>
-  );
-}

@@ -31,6 +31,9 @@ const moved: [string, string][] = [
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "cdn.store-assets.com", pathname: "/s/1022051/**" }],
+  },
   partialPrefetching: true,
   turbopack: {
     rules: {

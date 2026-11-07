@@ -10,31 +10,40 @@ export default function Home() {
   const pick = (dept: string, n: number) =>
     products.filter((p) => p.dept === dept && p.images[0] && p.price).slice(0, n).map(toCard);
 
-  const heroImgs = [
-    coverImage("1-3-seater-workstation-prices-are-negotiable"),
-    coverImage("ergonomic-office-chairs"),
-    coverImage("table-length-900mm-to-2900mm"),
-  ];
+  const HERO_IMG = "https://cdn.store-assets.com/s/1022051/f/17534165.png";
+  const TEAM_IMG = "https://cdn.store-assets.com/s/1022051/f/17545491.png";
 
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto max-w-[1320px] px-4 pt-8 md:px-6 md:pt-14">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-ink-2">
+      <section className="mx-auto max-w-[1320px] px-4 pt-5 md:px-6 md:pt-8">
+        <div className="relative overflow-hidden rounded-[28px] bg-white ring-1 ring-line/70 md:rounded-[36px]">
+          {/* Photo: fills the right side on desktop, sits on top on mobile */}
+          <div className="relative aspect-[4/3] md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[62%]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={HERO_IMG}
+              alt="Office with Supreme workstations and ergonomic chairs"
+              fetchPriority="high"
+              className="h-full w-full object-cover object-[70%_50%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/0 to-white/0 md:bg-gradient-to-r md:from-white md:via-white/10 md:to-transparent" />
+          </div>
+
+          <div className="relative px-6 pb-9 pt-2 md:max-w-[52%] md:px-12 md:py-20 lg:px-16 lg:py-24">
+            <p className="inline-flex items-center gap-2 rounded-full bg-paper px-3 py-1 text-xs font-medium text-ink-2">
               <span className="h-1.5 w-1.5 rounded-full bg-oak" /> Since {site.founded} · Klang, Selangor
             </p>
-            <h1 className="mt-5 text-[40px] font-semibold leading-[1.02] tracking-[-0.035em] text-ink sm:text-[56px] xl:text-[68px]">
+            <h1 className="mt-5 text-[38px] font-semibold leading-[1.02] tracking-[-0.035em] text-ink sm:text-[52px] xl:text-[64px]">
               Office furniture,
               <br />
               made to fit how
               <br />
               <span className="text-brand">you work.</span>
             </h1>
-            <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-ink-2">
-              Over 1,700 chairs, desks, workstations, storage and safes for offices, schools and institutions across
-              Malaysia. Free layout planning, delivery and installation in Klang Valley.
+            <p className="mt-6 max-w-md text-[16.5px] leading-relaxed text-ink-2">
+              Chairs, desks, workstations, storage and safes for offices, schools and institutions across Malaysia, with
+              free layout planning.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -45,27 +54,11 @@ export default function Home() {
               </Link>
               <a
                 href={waLink("Hi Supreme, I'd like a free office layout plan and quotation.")}
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-6 py-3.5 text-sm font-semibold"
+                className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-6 py-3.5 text-sm font-semibold"
               >
-                <IconWhatsApp className="h-4 w-4 text-wa" /> Get a free layout plan
+                <IconWhatsApp className="h-4 w-4 text-wa" /> Free layout plan
               </a>
             </div>
-          </div>
-
-          <div className="grid grid-cols-2 grid-rows-2 gap-3 md:gap-4">
-            {heroImgs.map((src, i) => (
-              <div
-                key={i}
-                className={`overflow-hidden rounded-3xl bg-white ring-1 ring-line/70 ${
-                  i === 0 ? "col-span-2 aspect-[2/1]" : "aspect-square"
-                }`}
-              >
-                {src && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={src} alt="" className="h-full w-full object-contain p-6" fetchPriority={i === 0 ? "high" : "auto"} />
-                )}
-              </div>
-            ))}
           </div>
         </div>
 
@@ -207,13 +200,16 @@ export default function Home() {
             <a href={site.maps} className="rounded-full border border-line px-5 py-3 text-sm font-semibold">Google Maps</a>
           </div>
         </div>
-        <div className="flex flex-col justify-between rounded-[28px] bg-oak/15 p-8 md:p-12">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">Partner program</p>
+        <div className="relative flex flex-col justify-between overflow-hidden rounded-[28px] bg-brand-ink p-8 text-white md:p-12">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={TEAM_IMG} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left opacity-35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/70 to-brand-ink/20" />
+          <div className="relative">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Partner program</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">For designers, contractors & dealers</h2>
-            <p className="mt-4 leading-relaxed text-ink-2">Exclusive partner pricing and project support for trade buyers.</p>
+            <p className="mt-4 leading-relaxed text-white/75">Exclusive partner pricing and project support for trade buyers.</p>
           </div>
-          <Link href="/partners" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-brand">
+          <Link href="/partners" className="relative mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
             Get partner pricing <IconArrow />
           </Link>
         </div>

@@ -32,7 +32,7 @@ export function CollectionBrowser({
 }) {
   const [facet, setFacet] = useState<string>("all");
   const [price, setPrice] = useState("all");
-  const [sort, setSort] = useState("featured");
+  const [sort, setSort] = useState("price-asc");
   const [shown, setShown] = useState(PAGE);
 
   const facetCounts = useMemo(() => {

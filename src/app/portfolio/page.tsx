@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { projects } from "@/data/portfolio";
-import { ProjectCard } from "@/components/project-card";
+import { projectsByYear } from "@/data/portfolio";
+import { ProjectHoverCard } from "@/components/project-hover-card";
 import { site, waLink } from "@/lib/site";
 import { IconWhatsApp } from "@/components/icons";
 
@@ -20,9 +20,21 @@ export default function PortfolioPage() {
         A selection from {site.projects} projects across Malaysia. Use them as inspiration for your new or renovated space.
       </p>
 
-      <div className="mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.slug} p={p} priority={i < 3} />
+      <div className="mt-10 space-y-12 pb-24">
+        {projectsByYear().map(([year, list], gi) => (
+          <section key={year}>
+            <div className="mb-5 flex items-baseline gap-3 border-b border-line pb-3">
+              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{year}</h2>
+              <span className="text-sm text-muted">
+                {list.length} project{list.length > 1 ? "s" : ""}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
+              {list.map((p, i) => (
+                <ProjectHoverCard key={p.slug} p={p} priority={gi === 0 && i < 5} />
+              ))}
+            </div>
+          </section>
         ))}
       </div>
 

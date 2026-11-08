@@ -203,7 +203,7 @@ export default function Home() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand via-brand to-brand-ink opacity-0 transition duration-300 group-hover:opacity-100" />
               <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#8b93ff] opacity-0 blur-3xl transition duration-500 group-hover:opacity-50" />
               {sv.img && (
-                <div className="relative aspect-[16/9] overflow-hidden bg-line">
+                <div className="relative aspect-[4/3] overflow-hidden bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={sv.img} alt={sv.title} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                 </div>
@@ -291,10 +291,10 @@ function SectionHead({ title, sub, href, cta }: { title: string; sub?: string; h
 
 /** Homepage service cards. Add a photo path/URL to `img` and it appears at the top of the card. */
 const services: { title: string; desc: string; anchor: string; img?: string }[] = [
-  { title: "Free layout planning", desc: "Site visit, floor plan and 2D layout before you commit.", anchor: "planning" },
-  { title: "Delivery & installation", desc: "Free in Klang Valley above RM1,500. Chairs arrive assembled.", anchor: "planning" },
-  { title: "One-stop renovation", desc: "Partitions, ceilings, flooring, electrical and furniture in one package.", anchor: "renovation" },
-  { title: "Relocation & disposal", desc: "Dismantle, move and reinstall, or clear out old furniture responsibly.", anchor: "relocation" },
-  { title: "Safe box relocation", desc: "Heavy safes moved and installed with the right equipment.", anchor: "safes" },
-  { title: "Rental & repair", desc: "Short-term furniture rental, and repairs for chairs and desks.", anchor: "rental" },
+  { title: "Free layout planning", desc: "Site visit, floor plan and 2D layout before you commit.", anchor: "planning", img: "/services/planning.webp" },
+  { title: "Delivery & installation", desc: "Free in Klang Valley above RM1,500. Chairs arrive assembled.", anchor: "planning", img: "/services/installation.webp" },
+  { title: "One-stop renovation", desc: "Partitions, ceilings, flooring, electrical and furniture in one package.", anchor: "renovation", img: "/services/renovation.webp" },
+  { title: "Relocation & disposal", desc: "Dismantle, move and reinstall, or clear out old furniture responsibly.", anchor: "relocation", img: "/services/relocation.webp" },
+  { title: "Safe box relocation", desc: "Heavy safes moved and installed with the right equipment.", anchor: "safes", img: "/services/safe-relocation.webp" },
+  { title: "Rental & repair", desc: "Short-term furniture rental, and repairs for chairs and desks.", anchor: "rental", img: "/services/repair.webp" },
 ];

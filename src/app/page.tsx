@@ -3,7 +3,6 @@ import Link from "next/link";
 import { taxonomy } from "@/lib/taxonomy";
 import { allProducts, coverImage, deptCount, subCount, toCard } from "@/lib/catalog";
 import { homeCategories } from "@/data/home-categories";
-import { ProductCard } from "@/components/product-card";
 import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
 import { site, waLink } from "@/lib/site";
 import { projects } from "@/data/portfolio";
@@ -11,8 +10,6 @@ import { ProjectTile } from "@/components/project-card";
 
 export default function Home() {
   const products = allProducts();
-  const pick = (dept: string, n: number) =>
-    products.filter((p) => p.dept === dept && p.images[0] && p.price).slice(0, n).map(toCard);
 
   const HERO_IMG = "https://cdn.store-assets.com/s/1022051/f/17534165.png";
   const TEAM_IMG = "https://cdn.store-assets.com/s/1022051/f/17545491.png";
@@ -191,26 +188,33 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* Popular chairs */}
-      <ProductRow title="Office chairs" href="/collections/office-work-chairs-malaysia" items={pick("office-work-chairs-malaysia", 10)} />
-      <ProductRow title="Desks & tables" href="/collections/office-desks-tables" items={pick("office-desks-tables", 10)} />
-      <ProductRow title="Storage & safes" href="/collections/office-wooden-storage" items={[...pick("office-wooden-storage", 5), ...pick("security-safe-box", 5)]} />
 
       {/* Services */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <SectionHead title="More than furniture" sub="Everything around the furniture, handled by one team." href="/services" cta="All services" />
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:gap-4">
-          {[
-            ["Free layout planning", "Site visit, floor plan and 2D layout before you commit.", "planning"],
-            ["Delivery & installation", "Free in Klang Valley above RM1,500. Chairs arrive assembled.", "planning"],
-            ["One-stop renovation", "Partitions, ceilings, flooring, electrical and furniture in one package.", "renovation"],
-            ["Relocation & disposal", "Dismantle, move and reinstall, or clear out old furniture responsibly.", "relocation"],
-            ["Safe box relocation", "Heavy safes moved and installed with the right equipment.", "safes"],
-            ["Rental & repair", "Short-term furniture rental, and repairs for chairs and desks.", "rental"],
-          ].map(([t, d, a]) => (
-            <Link key={t} href={`/services#${a}`} className="group rounded-2xl border border-line bg-surface p-6 transition hover:border-ink/20">
-              <p className="font-semibold tracking-tight">{t}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          {services.map((sv) => (
+            <Link
+              key={sv.title}
+              href={`/services#${sv.anchor}`}
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_20px_45px_-15px_rgba(49,39,131,0.55)]"
+            >
+              {/* Blue gradient layer that fades in on hover */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand via-brand to-brand-ink opacity-0 transition duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#8b93ff] opacity-0 blur-3xl transition duration-500 group-hover:opacity-50" />
+              {sv.img && (
+                <div className="relative aspect-[16/9] overflow-hidden bg-line">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={sv.img} alt={sv.title} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                </div>
+              )}
+              <div className="relative flex flex-1 flex-col p-6">
+                <p className="text-[17px] font-semibold tracking-tight transition-colors group-hover:text-white">{sv.title}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted transition-colors group-hover:text-white/85">{sv.desc}</p>
+                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors group-hover:text-[#c3c8ff]">
+                  Learn more <IconArrow className="h-4 w-4 transition group-hover:translate-x-1" />
+                </p>
+              </div>
             </Link>
           ))}
         </div>
@@ -285,18 +289,12 @@ function SectionHead({ title, sub, href, cta }: { title: string; sub?: string; h
   );
 }
 
-function ProductRow({ title, href, items }: { title: string; href: string; items: ReturnType<typeof toCard>[] }) {
-  return (
-    <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-24 md:px-6">
-      <SectionHead title={title} href={href} />
-      <div className="no-scrollbar -mx-4 mt-7 flex snap-x gap-4 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-5 md:gap-5 md:overflow-visible md:px-0">
-        {items.map((p) => (
-          <div key={p.slug} className="w-[44%] shrink-0 snap-start sm:w-[30%] md:w-auto">
-            <ProductCard p={p} />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
+/** Homepage service cards. Add a photo path/URL to `img` and it appears at the top of the card. */
+const services: { title: string; desc: string; anchor: string; img?: string }[] = [
+  { title: "Free layout planning", desc: "Site visit, floor plan and 2D layout before you commit.", anchor: "planning" },
+  { title: "Delivery & installation", desc: "Free in Klang Valley above RM1,500. Chairs arrive assembled.", anchor: "planning" },
+  { title: "One-stop renovation", desc: "Partitions, ceilings, flooring, electrical and furniture in one package.", anchor: "renovation" },
+  { title: "Relocation & disposal", desc: "Dismantle, move and reinstall, or clear out old furniture responsibly.", anchor: "relocation" },
+  { title: "Safe box relocation", desc: "Heavy safes moved and installed with the right equipment.", anchor: "safes" },
+  { title: "Rental & repair", desc: "Short-term furniture rental, and repairs for chairs and desks.", anchor: "rental" },
+];

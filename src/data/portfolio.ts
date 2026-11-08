@@ -42,7 +42,7 @@ export const projects: Project[] = [
     type: "Trainee nurse hostel",
     year: 2023,
     summary:
-      "New, easy-to-use hostel furniture for SJMC's trainee nurses, supplied in 2022.",
+      "New, easy-to-use hostel furniture for SJMC's trainee nurses, supplied in 2023.",
     supplied: ["Beds and bed frames", "Clothing cabinets and wardrobes", "Dining tables and chairs", "Mirrors", "Shoe racks"],
     photos: ["9620778", "9620785", "9620783", "9620784", "9620822", "9620823", "9620825"].map((i) => f(i + ".jpg")),
   },

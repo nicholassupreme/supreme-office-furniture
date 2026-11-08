@@ -11,19 +11,53 @@ export const metadata: Metadata = {
 
 export default function PortfolioPage() {
   return (
-    <div className="mx-auto max-w-[1320px] px-4 pt-10 md:px-6 md:pt-14">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">
-        Portfolio
-      </p>
-      <h1 className="mt-3 max-w-3xl text-[34px] font-semibold leading-tight tracking-[-0.03em] md:text-5xl">
-        Offices, colleges and hostels we&apos;ve furnished.
-      </h1>
-      <p className="mt-4 max-w-2xl text-ink-2">
-        A selection from {site.projects} projects across Malaysia. Use them as
-        inspiration for your new or renovated space.
-      </p>
+    <div className="mx-auto max-w-[1320px] px-4 pt-6 md:px-6 md:pt-10">
+      <section className="relative overflow-hidden rounded-[28px] bg-brand-ink px-6 py-12 text-white md:px-12 md:py-16">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand opacity-70 blur-3xl" />
+        <div className="relative">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#8b93ff]" /> Our
+            portfolio
+          </p>
+          <h1 className="mt-6 max-w-4xl text-[34px] font-semibold leading-[1.08] tracking-[-0.03em] md:text-[56px]">
+            <span className="text-[#8b93ff]">Offices</span>,{" "}
+            <span className="text-[#8b93ff]">colleges</span> and{" "}
+            <span className="text-[#8b93ff]">hostels</span> furnished across
+            Malaysia.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
+            Since {site.founded}, we&apos;ve planned, supplied and installed
+            furniture for more than {site.projects}{" "}
+            workplaces and institutions. Browse selected projects by year.
+          </p>
+          <dl className="mt-10 grid max-w-xl grid-cols-3 gap-6 border-t border-white/10 pt-6">
+            <div>
+              <dt className="text-xs uppercase tracking-[0.14em] text-white/50">
+                Projects
+              </dt>
+              <dd className="mt-1 text-2xl font-semibold md:text-3xl">
+                {site.projects}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-[0.14em] text-white/50">
+                Since
+              </dt>
+              <dd className="mt-1 text-2xl font-semibold md:text-3xl">
+                {site.founded}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-[0.14em] text-white/50">
+                Layout
+              </dt>
+              <dd className="mt-1 text-2xl font-semibold md:text-3xl">Free</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
 
-      <div className="mt-10 space-y-12 pb-24">
+      <div className="mt-14 space-y-12 pb-24">
         {projectsByYear().map(([year, list], gi) => (
           <section key={year}>
             <div className="mb-5 flex items-baseline gap-3 border-b border-line pb-3">

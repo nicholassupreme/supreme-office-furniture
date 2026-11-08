@@ -4,7 +4,7 @@ Inputs (data/): supreme-catalogue.json, collections-leaf.json, taxonomy.json
 Outputs: src/data/catalog.json (full product data, server-only)
          public/search-index.json (slim, loaded by the client for search/filter)
 """
-import json, re, html, pathlib, collections
+import json, re, html, pathlib, collections, base64, hashlib, io
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 raw = json.load(open(ROOT / "data/supreme-catalogue.json"))
@@ -75,6 +75,32 @@ def num(x):
     except (TypeError, ValueError):
         return None
 
+
+DESC_DIR = ROOT / "public/desc-images"
+DESC_DIR.mkdir(parents=True, exist_ok=True)
+
+def desc_images(h):
+    """Photos embedded in the EasyStore description. Base64 ones are saved as files; tiny icons are skipped."""
+    from PIL import Image
+    out = []
+    for src in re.findall(r'<img[^>]*src="([^"]+)"', h or ""):
+        src = html.unescape(src)
+        if src.startswith("blob:"):
+            continue  # broken admin-only link on the old store
+        if src.startswith("data:image"):
+            data = base64.b64decode(src.split(",", 1)[1])
+            im = Image.open(io.BytesIO(data))
+            if max(im.size) < 150:
+                continue
+            name = hashlib.sha1(data).hexdigest()[:16] + ".webp"
+            f = DESC_DIR / name
+            if not f.exists():
+                im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB").save(f, "WEBP", quality=85)
+            out.append("/desc-images/" + name)
+        elif src.startswith("http"):
+            out.append(src)
+    return out
+
 products, stats = [], collections.Counter()
 for i, p in enumerate(raw):
     if (p["name"] or "").startswith("Standard Table (MIX7)"):
@@ -118,7 +144,7 @@ for i, p in enumerate(raw):
         option_names = [opt_name(k) for k in p["variesBy"]]
     # Drop options with a single value everywhere? keep: they still describe the product
     prices = [v["price"] for v in variants if v["price"]] or ([num(p["price"])] if num(p["price"]) else [])
-    images = list(dict.fromkeys(p["images"]))
+    images = list(dict.fromkeys(p["images"] + desc_images(p["descHtml"])))
     body = clean_html(p["descHtml"])
     products.append({
         "slug": p["slug"].strip("/"),

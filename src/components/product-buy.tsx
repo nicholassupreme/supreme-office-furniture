@@ -65,20 +65,41 @@ export function ProductBuy({
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
       {/* Gallery */}
       <div className="min-w-0 lg:sticky lg:top-32 lg:self-start">
-        <div className="relative mx-auto aspect-square w-full max-w-[640px] overflow-hidden rounded-3xl bg-white ring-1 ring-line/70">
+        <div className="group/g relative mx-auto aspect-square w-full max-w-[640px] overflow-hidden rounded-3xl bg-white ring-1 ring-line/70">
           {gallery[active] && (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={gallery[active]} alt={name} className="absolute inset-0 m-auto h-[82%] w-[82%] object-contain" fetchPriority="high" />
           )}
+          {gallery.length > 1 && (
+            <>
+              <button
+                onClick={() => setActive((a) => (a - 1 + gallery.length) % gallery.length)}
+                aria-label="Previous image"
+                className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-lg shadow ring-1 ring-line transition hover:bg-brand hover:text-white"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() => setActive((a) => (a + 1) % gallery.length)}
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-lg shadow ring-1 ring-line transition hover:bg-brand hover:text-white"
+              >
+                ›
+              </button>
+              <span className="tabular absolute bottom-3 right-3 rounded-full bg-ink/70 px-2.5 py-1 text-xs font-medium text-white">
+                {active + 1} / {gallery.length}
+              </span>
+            </>
+          )}
         </div>
         {gallery.length > 1 && (
-          <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto">
+          <div className="mx-auto mt-3 grid max-w-[640px] grid-cols-5 gap-2 sm:grid-cols-6 lg:grid-cols-7">
             {gallery.map((src, i) => (
               <button
                 key={src}
                 onClick={() => setActive(i)}
-                className={`h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl bg-white ring-2 transition ${
-                  i === active ? "ring-ink" : "ring-transparent hover:ring-line"
+                className={`aspect-square overflow-hidden rounded-xl bg-white ring-2 transition ${
+                  i === active ? "ring-brand" : "ring-line/60 hover:ring-brand/40"
                 }`}
                 aria-label={`Image ${i + 1}`}
               >

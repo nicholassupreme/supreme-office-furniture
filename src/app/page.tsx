@@ -109,7 +109,7 @@ export default function Home() {
               <Link
                 key={c.slug}
                 href={`/collections/${c.slug}`}
-                className="group flex flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-line/70 transition hover:-translate-y-0.5 hover:ring-brand/40 hover:shadow-sm"
+                className="group relative flex flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-line/70 transition duration-200 ease-out hover:z-10 hover:scale-[1.08] hover:ring-brand/40 hover:shadow-[0_16px_40px_-12px_rgba(0,0,0,0.25)]"
               >
                 <div className="aspect-square bg-white">
                   {img && (

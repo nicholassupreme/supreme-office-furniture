@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { taxonomy } from "@/lib/taxonomy";
-import { allProducts, coverImage, deptCount, toCard } from "@/lib/catalog";
+import { allProducts, coverImage, deptCount, subCount, toCard } from "@/lib/catalog";
+import { homeCategories } from "@/data/home-categories";
 import { ProductCard } from "@/components/product-card";
 import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
 import { site, waLink } from "@/lib/site";
@@ -52,20 +53,6 @@ export default function Home() {
               Chairs, desks, workstations, storage and safes for offices, schools and institutions across Malaysia, with
               free layout planning.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/collections/all"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-brand"
-              >
-                Browse the catalogue <IconArrow />
-              </Link>
-              <a
-                href={waLink("Hi Supreme, I'd like a free office layout plan and quotation.")}
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-6 py-3.5 text-sm font-semibold"
-              >
-                <IconWhatsApp className="h-4 w-4 text-wa" /> Free layout plan
-              </a>
-            </div>
           </div>
         </div>
 
@@ -113,28 +100,26 @@ export default function Home() {
 
       {/* Departments */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
-        <SectionHead title="Shop by category" sub="Ten departments, from a single chair to a full office fit-out." />
-        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
-          {taxonomy.map((d) => {
-            const img = coverImage(d.subs[0]?.[0] ?? d.slug) ?? coverImage(d.slug);
+        <SectionHead title="Shop by category" sub="From a single chair to a full office fit-out." />
+        <div className="mt-8 grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 md:gap-3">
+          {homeCategories.map((c) => {
+            const img = coverImage(c.slug);
+            const n = deptCount(c.slug) || subCount(c.slug);
             return (
               <Link
-                key={d.slug}
-                href={`/collections/${d.slug}`}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-surface ring-1 ring-line/70 transition hover:ring-ink/15"
+                key={c.slug}
+                href={`/collections/${c.slug}`}
+                className="group flex flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-line/70 transition hover:-translate-y-0.5 hover:ring-brand/40 hover:shadow-sm"
               >
-                <div className="aspect-[4/3] bg-white">
+                <div className="aspect-square bg-white">
                   {img && (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={img} alt="" loading="lazy" className="h-full w-full object-contain p-5 transition duration-500 group-hover:scale-105" />
+                    <img src={img} alt="" loading="lazy" className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105" />
                   )}
                 </div>
-                <div className="flex items-end justify-between gap-2 border-t border-line/70 p-4">
-                  <div>
-                    <p className="text-[15px] font-semibold leading-tight tracking-tight">{d.name}</p>
-                    <p className="mt-1 text-xs text-muted">{deptCount(d.slug)} products</p>
-                  </div>
-                  <IconArrow className="h-4 w-4 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-brand" />
+                <div className="border-t border-line/70 px-2.5 py-2 text-center">
+                  <p className="truncate text-[13px] font-semibold leading-tight tracking-tight group-hover:text-brand">{c.label}</p>
+                  <p className="mt-0.5 text-[11px] text-muted">{n} items</p>
                 </div>
               </Link>
             );

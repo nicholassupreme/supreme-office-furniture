@@ -1,8 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { taxonomy } from "@/lib/taxonomy";
-import { allProducts, coverImage, deptCount, subCount, toCard } from "@/lib/catalog";
+import {
+  allProducts,
+  coverImage,
+  deptCount,
+  subCount,
+  toCard,
+} from "@/lib/catalog";
 import { homeCategories } from "@/data/home-categories";
+import {
+  ServiceHoverCard,
+  type Service,
+} from "@/components/service-hover-card";
 import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
 import { site, waLink } from "@/lib/site";
 import { projects } from "@/data/portfolio";
@@ -47,8 +57,9 @@ export default function Home() {
               <span className="text-brand">you work.</span>
             </h1>
             <p className="mt-6 max-w-md text-[16.5px] leading-relaxed text-ink-2">
-              Chairs, desks, workstations, storage and safes for offices, schools and institutions across Malaysia, with
-              free layout planning.
+              Chairs, desks, workstations, storage and safes for offices,
+              schools and institutions across Malaysia, with free layout
+              planning.
             </p>
           </div>
         </div>
@@ -57,10 +68,26 @@ export default function Home() {
         <ul className="mt-10 grid grid-cols-2 gap-3 md:mt-14 lg:grid-cols-4 lg:gap-4">
           {(
             [
-              ["17641907", "Free delivery", "On orders above RM1,500 within Klang Valley."],
-              ["17641908", "Free layout planning", "Office layout drawing and quotation at no cost."],
-              ["17641910", "Relocation & disposal", "We move office furniture and safes, or clear out the old."],
-              ["17641911", "40+ years, 5,000+ projects", "Trusted by Malaysian offices since 1985."],
+              [
+                "17641907",
+                "Free delivery",
+                "On orders above RM1,500 within Klang Valley.",
+              ],
+              [
+                "17641908",
+                "Free layout planning",
+                "Office layout drawing and quotation at no cost.",
+              ],
+              [
+                "17641910",
+                "Relocation & disposal",
+                "We move office furniture and safes, or clear out the old.",
+              ],
+              [
+                "17641911",
+                "40+ years, 5,000+ projects",
+                "Trusted by Malaysian offices since 1985.",
+              ],
             ] as const
           ).map(([img, title, text]) => (
             <li
@@ -88,8 +115,12 @@ export default function Home() {
                   className="max-h-full w-auto max-w-[85%] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-110"
                 />
               </div>
-              <p className="mt-5 text-[15px] font-semibold leading-tight tracking-tight text-brand-ink md:text-[17px]">{title}</p>
-              <p className="mt-1.5 max-w-[22ch] text-[13px] leading-snug text-ink-2 md:text-sm">{text}</p>
+              <p className="mt-5 text-[15px] font-semibold leading-tight tracking-tight text-brand-ink md:text-[17px]">
+                {title}
+              </p>
+              <p className="mt-1.5 max-w-[22ch] text-[13px] leading-snug text-ink-2 md:text-sm">
+                {text}
+              </p>
             </li>
           ))}
         </ul>
@@ -97,7 +128,10 @@ export default function Home() {
 
       {/* Departments */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
-        <SectionHead title="Shop by category" sub="From a single chair to a full office fit-out." />
+        <SectionHead
+          title="Shop by category"
+          sub="From a single chair to a full office fit-out."
+        />
         <div className="mt-8 grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 md:gap-3">
           {homeCategories.map((c) => {
             const img = coverImage(c.slug);
@@ -111,11 +145,18 @@ export default function Home() {
                 <div className="aspect-square bg-white">
                   {img && (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={img} alt="" loading="lazy" className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105" />
+                    <img
+                      src={img}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105"
+                    />
                   )}
                 </div>
                 <div className="border-t border-line/70 px-2.5 py-2 text-center">
-                  <p className="truncate text-[13px] font-semibold leading-tight tracking-tight group-hover:text-brand">{c.label}</p>
+                  <p className="truncate text-[13px] font-semibold leading-tight tracking-tight group-hover:text-brand">
+                    {c.label}
+                  </p>
                   <p className="mt-0.5 text-[11px] text-muted">{n} items</p>
                 </div>
               </Link>
@@ -128,23 +169,32 @@ export default function Home() {
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <div className="grid overflow-hidden rounded-[28px] bg-brand-ink text-white lg:grid-cols-2">
           <div className="p-8 md:p-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Made to order</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+              Made to order
+            </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-[42px]">
               Workstations built around your floor plan.
             </h2>
             <p className="mt-5 max-w-md leading-relaxed text-white/75">
-              Send us your layout and headcount. We&apos;ll plan the clusters, pick the partition height and finish, and
-              quote it at no cost. Seater counts, table sizes and fabric colours can all be changed.
+              Send us your layout and headcount. We&apos;ll plan the clusters,
+              pick the partition height and finish, and quote it at no cost.
+              Seater counts, table sizes and fabric colours can all be changed.
             </p>
             <div className="mt-8 grid max-w-md grid-cols-2 gap-2 text-sm">
               {taxonomy[2].subs.slice(0, 4).map(([s, n]) => (
-                <Link key={s} href={`/collections/${s}`} className="rounded-xl border border-white/15 px-4 py-3 transition hover:bg-white/10">
+                <Link
+                  key={s}
+                  href={`/collections/${s}`}
+                  className="rounded-xl border border-white/15 px-4 py-3 transition hover:bg-white/10"
+                >
                   {n}
                 </Link>
               ))}
             </div>
             <a
-              href={waLink("Hi Supreme, I'd like to customise a workstation layout.")}
+              href={waLink(
+                "Hi Supreme, I'd like to customise a workstation layout.",
+              )}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink"
             >
               <IconWhatsApp className="h-4 w-4 text-wa" /> Plan my workstations
@@ -156,14 +206,29 @@ export default function Home() {
               "4-5-seater-workstation-prices-are-negotiable",
               "6-7-seater-workstation-prices-are-negotiable",
               "8-seater-or-more-workstation-prices-are-negotiable",
-            ].map((s) => products.find((p) => p.subs.includes(s) && p.images[0])!).filter(Boolean).map(toCard).map((p) => (
-              <Link key={p.slug} href={`/products/${p.slug}`} className="group bg-white p-4">
-                {p.image && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.image} alt={p.name} loading="lazy" className="aspect-square w-full object-contain transition duration-500 group-hover:scale-105" />
-                )}
-              </Link>
-            ))}
+            ]
+              .map((s) =>
+                products.find((p) => p.subs.includes(s) && p.images[0])!,
+              )
+              .filter(Boolean)
+              .map(toCard)
+              .map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/products/${p.slug}`}
+                  className="group bg-white p-4"
+                >
+                  {p.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="aspect-square w-full object-contain transition duration-500 group-hover:scale-105"
+                    />
+                  )}
+                </Link>
+              ))}
           </div>
         </div>
       </section>
@@ -178,41 +243,33 @@ export default function Home() {
         />
         <div className="mt-8 grid auto-rows-[190px] grid-cols-2 gap-3 md:auto-rows-[240px] md:gap-4 lg:grid-cols-4 lg:auto-rows-[260px]">
           {projects.slice(0, 5).map((p, i) => (
-            <div key={p.slug} className={i === 0 ? "col-span-2 row-span-2" : ""}>
+            <div
+              key={p.slug}
+              className={i === 0 ? "col-span-2 row-span-2" : ""}
+            >
               <ProjectTile p={p} big={i === 0} />
             </div>
           ))}
         </div>
-        <Link href="/portfolio" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold sm:hidden">
+        <Link
+          href="/portfolio"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold sm:hidden"
+        >
           View portfolio <IconArrow />
         </Link>
       </section>
 
-
       {/* Services */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
-        <SectionHead title="More than furniture" sub="Everything around the furniture, handled by one team." href="/services" cta="All services" />
+        <SectionHead
+          title="More than furniture"
+          sub="Everything around the furniture, handled by one team."
+          href="/services"
+          cta="All services"
+        />
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((sv) => (
-            <Link
-              key={sv.title}
-              href={`/services#${sv.anchor}`}
-              className="group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-2.5 pr-5 transition duration-300 hover:-translate-y-0.5 hover:border-transparent hover:shadow-[0_14px_32px_-12px_rgba(49,39,131,0.55)]"
-            >
-              {/* Blue gradient layer that fades in on hover */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand to-brand-ink opacity-0 transition duration-300 group-hover:opacity-100" />
-              {sv.img && (
-                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={sv.img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                </div>
-              )}
-              <div className="relative min-w-0 flex-1">
-                <p className="text-[15px] font-semibold tracking-tight transition-colors group-hover:text-white">{sv.title}</p>
-                <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-muted transition-colors group-hover:text-white/80">{sv.desc}</p>
-              </div>
-              <IconArrow className="relative h-4 w-4 shrink-0 text-brand transition group-hover:translate-x-1 group-hover:text-white" />
-            </Link>
+            <ServiceHoverCard key={sv.title} sv={sv} />
           ))}
         </div>
       </section>
@@ -221,11 +278,15 @@ export default function Home() {
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <div className="grid overflow-hidden rounded-[28px] border border-line bg-surface lg:grid-cols-[1fr_1.2fr]">
           <div className="flex flex-col justify-center p-8 md:p-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">Showroom</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">See it, sit in it, then decide.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">
+              Showroom
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              See it, sit in it, then decide.
+            </h2>
             <p className="mt-4 max-w-lg leading-relaxed text-ink-2">
-              Spotted something you like? Visit our Klang showroom to try chairs, check finishes and talk through your
-              layout with our team.
+              Spotted something you like? Visit our Klang showroom to try
+              chairs, check finishes and talk through your layout with our team.
             </p>
             <p className="mt-6 flex items-start gap-2 text-sm text-ink-2">
               <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-oak" />
@@ -236,8 +297,18 @@ export default function Home() {
               </span>
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={site.waze} className="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white">Open in Waze</a>
-              <a href={site.maps} className="rounded-full border border-line px-5 py-3 text-sm font-semibold">Google Maps</a>
+              <a
+                href={site.waze}
+                className="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white"
+              >
+                Open in Waze
+              </a>
+              <a
+                href={site.maps}
+                className="rounded-full border border-line px-5 py-3 text-sm font-semibold"
+              >
+                Google Maps
+              </a>
             </div>
           </div>
           <div className="relative min-h-[240px] lg:min-h-[420px]">
@@ -254,14 +325,28 @@ export default function Home() {
         {/* Partner program */}
         <div className="relative mt-4 flex flex-col gap-6 overflow-hidden rounded-[28px] bg-brand-ink p-8 text-white md:flex-row md:items-center md:justify-between md:p-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={TEAM_IMG} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left opacity-25" />
+          <img
+            src={TEAM_IMG}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover object-left opacity-25"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/85 to-brand-ink/40" />
           <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Partner program</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">For designers, contractors and dealers</h2>
-            <p className="mt-2 text-white/75">Exclusive partner pricing and project support for trade buyers.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+              Partner program
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
+              For designers, contractors and dealers
+            </h2>
+            <p className="mt-2 text-white/75">
+              Exclusive partner pricing and project support for trade buyers.
+            </p>
           </div>
-          <Link href="/partners" className="relative inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink">
+          <Link
+            href="/partners"
+            className="relative inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink"
+          >
             Get partner pricing <IconArrow />
           </Link>
         </div>
@@ -270,15 +355,30 @@ export default function Home() {
   );
 }
 
-function SectionHead({ title, sub, href, cta }: { title: string; sub?: string; href?: string; cta?: string }) {
+function SectionHead({
+  title,
+  sub,
+  href,
+  cta,
+}: {
+  title: string;
+  sub?: string;
+  href?: string;
+  cta?: string;
+}) {
   return (
     <div className="flex items-end justify-between gap-6">
       <div>
-        <h2 className="text-[28px] font-semibold tracking-[-0.025em] md:text-4xl">{title}</h2>
+        <h2 className="text-[28px] font-semibold tracking-[-0.025em] md:text-4xl">
+          {title}
+        </h2>
         {sub && <p className="mt-2 text-muted">{sub}</p>}
       </div>
       {href && (
-        <Link href={href} className="hidden shrink-0 items-center gap-1.5 text-sm font-semibold text-ink hover:text-brand sm:inline-flex">
+        <Link
+          href={href}
+          className="hidden shrink-0 items-center gap-1.5 text-sm font-semibold text-ink hover:text-brand sm:inline-flex"
+        >
           {cta ?? "View all"} <IconArrow />
         </Link>
       )}
@@ -287,11 +387,71 @@ function SectionHead({ title, sub, href, cta }: { title: string; sub?: string; h
 }
 
 /** Homepage service cards. Add a photo path/URL to `img` and it appears at the top of the card. */
-const services: { title: string; desc: string; anchor: string; img?: string }[] = [
-  { title: "Free layout planning", desc: "Site visit, floor plan and 2D layout before you commit.", anchor: "planning", img: "/services/planning.webp" },
-  { title: "Delivery & installation", desc: "Free in Klang Valley above RM1,500. Chairs arrive assembled.", anchor: "planning", img: "/services/installation.webp" },
-  { title: "One-stop renovation", desc: "Partitions, ceilings, flooring, electrical and furniture in one package.", anchor: "renovation", img: "/services/renovation.webp" },
-  { title: "Relocation & disposal", desc: "Dismantle, move and reinstall, or clear out old furniture responsibly.", anchor: "relocation", img: "/services/relocation.webp" },
-  { title: "Safe box relocation", desc: "Heavy safes moved and installed with the right equipment.", anchor: "safes", img: "/services/safe-relocation.webp" },
-  { title: "Rental & repair", desc: "Short-term furniture rental, and repairs for chairs and desks.", anchor: "rental", img: "/services/repair.webp" },
+const services: Service[] = [
+  {
+    title: "Free layout planning",
+    desc: "Site visit, floor plan and 2D layout before you commit.",
+    anchor: "planning",
+    img: "/services/planning.webp",
+    points: [
+      "Complimentary site visit",
+      "2D floor plan with furniture placement",
+      "Itemised quotation",
+    ],
+  },
+  {
+    title: "Delivery & installation",
+    desc: "Free in Klang Valley above RM1,500. Chairs arrive assembled.",
+    anchor: "planning",
+    img: "/services/installation.webp",
+    points: [
+      "Free delivery in Klang Valley above RM1,500",
+      "Chairs arrive fully assembled",
+      "Installed and positioned on site",
+    ],
+  },
+  {
+    title: "One-stop renovation",
+    desc: "Partitions, ceilings, flooring, electrical and furniture in one package.",
+    anchor: "renovation",
+    img: "/services/renovation.webp",
+    points: [
+      "Design and space planning",
+      "Partitions, ceilings and flooring",
+      "Furniture supply and installation",
+    ],
+  },
+  {
+    title: "Relocation & disposal",
+    desc: "Dismantle, move and reinstall, or clear out old furniture responsibly.",
+    anchor: "relocation",
+    img: "/services/relocation.webp",
+    points: [
+      "Dismantling and reinstallation",
+      "Transport by our own team",
+      "Old furniture disposal",
+    ],
+  },
+  {
+    title: "Safe box relocation",
+    desc: "Heavy safes moved and installed with the right equipment.",
+    anchor: "safes",
+    img: "/services/safe-relocation.webp",
+    points: [
+      "Floor and access assessment",
+      "Specialised moving equipment",
+      "Installation at the new site",
+    ],
+  },
+  {
+    title: "Rental & repair",
+    desc: "Short-term furniture rental, and repairs for chairs and desks.",
+    anchor: "rental",
+    img: "/services/repair.webp",
+    points: [
+      "Flexible furniture rental periods",
+      "Chair mechanisms and gas lifts",
+      "Reupholstery and desk repairs",
+    ],
+  },
 ];

@@ -117,9 +117,9 @@ export function ProductBuy({
                     onClick={() => pick(o, val)}
                     className={`rounded-xl border px-3.5 py-2 text-[13.5px] transition ${
                       on
-                        ? "border-ink bg-ink text-white"
+                        ? "border-brand bg-brand text-white"
                         : ok
-                          ? "border-line bg-surface hover:border-ink/40"
+                          ? "border-line bg-surface hover:border-brand/50"
                           : "border-dashed border-line bg-transparent text-muted"
                     }`}
                   >
@@ -151,7 +151,7 @@ export function ProductBuy({
                 qty,
               )
             }
-            className="h-12 flex-1 rounded-full bg-ink text-sm font-semibold text-white transition hover:bg-brand disabled:opacity-40"
+            className="h-12 flex-1 rounded-full bg-accent text-sm font-semibold text-white transition hover:bg-accent-ink disabled:opacity-40"
           >
             Add to quote
           </button>
@@ -160,9 +160,9 @@ export function ProductBuy({
           href={waLink(
             `Hi Supreme, I'm interested in: ${cleanName(name)}${optText ? ` (${optText})` : ""}, qty ${qty}. https://www.supreme.com.my/products/${slug}`,
           )}
-          className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-surface text-sm font-semibold hover:border-ink/30"
+          className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-wa text-sm font-semibold text-white transition hover:bg-wa-ink"
         >
-          <IconWhatsApp className="h-4 w-4 text-wa" /> Ask on WhatsApp
+          <IconWhatsApp className="h-4 w-4 text-white" /> Ask on WhatsApp
         </a>
 
         <ul className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface text-sm">

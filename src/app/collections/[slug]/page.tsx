@@ -72,7 +72,7 @@ export default async function CollectionPage({ params }: PageProps<"/collections
               key={s}
               href={`/collections/${s}`}
               className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[13.5px] font-medium transition ${
-                s === slug ? "border-ink bg-ink text-white" : "border-line bg-surface text-ink-2 hover:border-ink/30"
+                s === slug ? "border-brand bg-brand text-white" : "border-line bg-surface text-ink-2 hover:border-ink/30"
               }`}
             >
               {n}

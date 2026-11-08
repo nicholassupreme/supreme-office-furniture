@@ -95,13 +95,13 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
           <div className="flex items-center justify-end">
             <Link
               href="/quote"
-              className="relative flex items-center gap-2 rounded-full p-2 text-sm font-semibold transition md:bg-ink md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-brand"
+              className="relative flex items-center gap-2 rounded-full p-2 text-sm font-semibold transition md:bg-accent md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-accent-ink"
               aria-label={`Quote basket, ${count} items`}
             >
               <IconBag className="h-[18px] w-[18px]" />
               <span className="hidden md:inline">Quote</span>
               {ready && count > 0 ? (
-                <span className="tabular absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand px-1 text-[11px] font-semibold text-white md:static md:bg-white md:text-ink">
+                <span className="tabular absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand px-1 text-[11px] font-semibold text-white md:static md:bg-white md:text-accent">
                   {count}
                 </span>
               ) : (

@@ -125,7 +125,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     <button
       onClick={onClick}
       className={`tabular shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[13.5px] font-medium transition ${
-        active ? "border-ink bg-ink text-white" : "border-line bg-surface text-ink-2 hover:border-ink/30"
+        active ? "border-brand bg-brand text-white" : "border-line bg-surface text-ink-2 hover:border-ink/30"
       }`}
     >
       {children}

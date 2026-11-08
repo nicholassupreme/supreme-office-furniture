@@ -91,9 +91,13 @@ export const coverOf = (p: Project) => p.photos[0];
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 
-/** Projects grouped by year, newest year first. */
+/** Years shown on the portfolio page, newest first. Empty years still get a section. */
+export const portfolioYears = [2026, 2025, 2024, 2023, 2022];
+
+/** Projects grouped by year, newest year first. Includes empty years from portfolioYears. */
 export const projectsByYear = () => {
-  const map = new Map<number, Project[]>();
-  for (const p of projects) map.set(p.year, [...(map.get(p.year) ?? []), p]);
-  return [...map.entries()].sort((a, b) => b[0] - a[0]);
+  const years = new Set([...portfolioYears, ...projects.map((p) => p.year)]);
+  return [...years]
+    .sort((a, b) => b - a)
+    .map((y) => [y, projects.filter((p) => p.year === y)] as const);
 };

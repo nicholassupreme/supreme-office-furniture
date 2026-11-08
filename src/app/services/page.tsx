@@ -92,34 +92,37 @@ export default function ServicesPage() {
           <section
             key={s.id}
             id={s.id}
-            className="flex scroll-mt-32 flex-col overflow-hidden rounded-3xl border border-line bg-surface sm:flex-row"
+            className="group relative flex scroll-mt-32 flex-col overflow-hidden rounded-3xl border border-line bg-surface transition duration-300 hover:-translate-y-0.5 hover:border-transparent hover:shadow-[0_24px_50px_-18px_rgba(49,39,131,0.6)] sm:flex-row"
           >
-            <div className="relative aspect-[16/10] shrink-0 bg-white sm:aspect-auto sm:w-[40%]">
+            <div className="relative aspect-[4/3] shrink-0 bg-white sm:aspect-auto sm:w-[40%]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={s.img}
                 alt={s.title}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain p-2"
               />
             </div>
-            <div className="flex flex-1 flex-col p-6 md:p-7">
-              <h2 className="text-lg font-semibold tracking-tight md:text-xl">
+            <div className="relative flex flex-1 flex-col p-6 md:p-7">
+              {/* Blue layer that fades in on hover */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand to-brand-ink opacity-0 transition duration-300 group-hover:opacity-100" />
+              <h2 className="relative text-lg font-semibold tracking-tight transition-colors group-hover:text-white md:text-xl">
                 {s.title}
               </h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
+              <p className="relative mt-2 text-[15px] leading-relaxed text-ink-2 transition-colors group-hover:text-white/85">
                 {s.body}
               </p>
-              <ul className="mt-4 space-y-1.5 text-sm">
+              <ul className="relative mt-4 space-y-1.5 text-sm transition-colors group-hover:text-white">
                 {s.points.map((p) => (
                   <li key={p} className="flex items-center gap-2.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-oak" /> {p}
+                    <span className="h-1.5 w-1.5 rounded-full bg-oak transition-colors group-hover:bg-[#8b93ff]" />{" "}
+                    {p}
                   </li>
                 ))}
               </ul>
               <a
                 href={waLink(`Hi Supreme, I'd like to ask about: ${s.title}.`)}
-                className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-line px-5 py-2.5 text-sm font-semibold hover:border-ink/30"
+                className="relative mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition group-hover:border-white"
               >
                 <IconWhatsApp className="h-4 w-4 text-wa" /> Enquire
               </a>

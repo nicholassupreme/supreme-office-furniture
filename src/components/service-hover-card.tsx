@@ -29,22 +29,23 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
     const vw = document.documentElement.clientWidth;
     const vh = window.innerHeight;
     const extraW = r.width * 0.06; // grow 6% on each side
-    const size = r.width + extraW * 2; // square: height = width
-    const extraH = size - r.height;
+    const width = r.width + extraW * 2;
+    const height = 200; // photo on the left, details on the right
+    const extraH = height - r.height;
 
     // horizontal: keep inside the viewport
     let left = -extraW;
     if (r.left + left < 12) left = 12 - r.left;
-    if (r.left + left + size > vw - 12) left = vw - 12 - size - r.left;
+    if (r.left + left + width > vw - 12) left = vw - 12 - width - r.left;
 
     // vertical: centre on the bar, then nudge to stay below the sticky header and above the fold
     let top = -extraH / 2;
     const headerH = 130;
     if (r.top + top < headerH) top = Math.min(0, headerH - r.top);
-    if (r.top + top + size > vh - 12)
-      top = Math.max(-extraH, vh - 12 - size - r.top);
+    if (r.top + top + height > vh - 12)
+      top = Math.max(-extraH, vh - 12 - height - r.top);
 
-    setBox({ left, top, width: size, height: size });
+    setBox({ left, top, width, height });
   };
 
   const isOpen = box !== null;
@@ -61,7 +62,7 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
         style={style}
         className={`absolute flex overflow-hidden rounded-2xl border transition-all duration-300 ease-out ${
           isOpen
-            ? "flex-col border-transparent bg-gradient-to-br from-brand to-brand-ink text-white shadow-[0_28px_60px_-16px_rgba(49,39,131,0.6)]"
+            ? "flex-row border-transparent bg-gradient-to-br from-brand to-brand-ink text-white shadow-[0_28px_60px_-16px_rgba(49,39,131,0.6)]"
             : "flex-row items-center gap-4 border-line bg-surface p-2.5 pr-5"
         }`}
       >
@@ -69,7 +70,7 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
         {sv.img && (
           <div
             className={`relative shrink-0 overflow-hidden bg-white transition-all duration-300 ${
-              isOpen ? "h-[52%] w-full rounded-none" : "h-20 w-20 rounded-xl"
+              isOpen ? "h-full w-[38%] rounded-none" : "h-20 w-20 rounded-xl"
             }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -83,17 +84,17 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
         )}
 
         <div
-          className={`relative flex min-w-0 flex-1 flex-col ${isOpen ? "p-5" : ""}`}
+          className={`relative flex min-w-0 flex-1 flex-col ${isOpen ? "px-5 py-4" : ""}`}
         >
           <p
-            className={`font-semibold tracking-tight ${isOpen ? "text-lg" : "text-[15px]"}`}
+            className={`font-semibold tracking-tight ${isOpen ? "text-base" : "text-[15px]"}`}
           >
             {sv.title}
           </p>
           <p
             className={`leading-snug ${
               isOpen
-                ? "mt-1.5 text-[14px] text-white/85"
+                ? "mt-1 text-[13px] text-white/85"
                 : "mt-0.5 line-clamp-2 text-[13px] text-muted"
             }`}
           >
@@ -102,7 +103,7 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
 
           {isOpen && (
             <>
-              <ul className="mt-3 space-y-1.5 text-[13px] text-white/90">
+              <ul className="mt-2.5 space-y-1 text-[12.5px] text-white/90">
                 {sv.points.map((p) => (
                   <li key={p} className="flex items-start gap-2">
                     <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#8b93ff]" />
@@ -110,7 +111,7 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
                   </li>
                 ))}
               </ul>
-              <p className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-semibold text-[#c3c8ff]">
+              <p className="mt-auto inline-flex items-center gap-1.5 pt-2 text-[13px] font-semibold text-[#c3c8ff]">
                 Learn more <IconArrow className="h-4 w-4" />
               </p>
             </>

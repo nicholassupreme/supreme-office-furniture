@@ -192,29 +192,26 @@ export default function Home() {
       {/* Services */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <SectionHead title="More than furniture" sub="Everything around the furniture, handled by one team." href="/services" cta="All services" />
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:gap-4">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((sv) => (
             <Link
               key={sv.title}
               href={`/services#${sv.anchor}`}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_20px_45px_-15px_rgba(49,39,131,0.55)]"
+              className="group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-2.5 pr-5 transition duration-300 hover:-translate-y-0.5 hover:border-transparent hover:shadow-[0_14px_32px_-12px_rgba(49,39,131,0.55)]"
             >
               {/* Blue gradient layer that fades in on hover */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand via-brand to-brand-ink opacity-0 transition duration-300 group-hover:opacity-100" />
-              <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#8b93ff] opacity-0 blur-3xl transition duration-500 group-hover:opacity-50" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand to-brand-ink opacity-0 transition duration-300 group-hover:opacity-100" />
               {sv.img && (
-                <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={sv.img} alt={sv.title} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                  <img src={sv.img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
                 </div>
               )}
-              <div className="relative flex flex-1 flex-col p-6">
-                <p className="text-[17px] font-semibold tracking-tight transition-colors group-hover:text-white">{sv.title}</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted transition-colors group-hover:text-white/85">{sv.desc}</p>
-                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors group-hover:text-[#c3c8ff]">
-                  Learn more <IconArrow className="h-4 w-4 transition group-hover:translate-x-1" />
-                </p>
+              <div className="relative min-w-0 flex-1">
+                <p className="text-[15px] font-semibold tracking-tight transition-colors group-hover:text-white">{sv.title}</p>
+                <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-muted transition-colors group-hover:text-white/80">{sv.desc}</p>
               </div>
+              <IconArrow className="relative h-4 w-4 shrink-0 text-brand transition group-hover:translate-x-1 group-hover:text-white" />
             </Link>
           ))}
         </div>

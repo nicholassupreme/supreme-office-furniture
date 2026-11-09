@@ -190,7 +190,6 @@ export function ProductBuy({
           {[
             ["Made to order", "Not ready stock. We confirm the lead time with your quote."],
             ["Free delivery", "Within Klang Valley on orders above RM1,500."],
-            ["Free layout planning", "Site visit and floor plan for office setups."],
           ].map(([t, d]) => (
             <li key={t} className="flex gap-3 p-4">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-oak" />

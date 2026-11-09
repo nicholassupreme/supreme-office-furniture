@@ -64,7 +64,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
         <div className="mx-auto flex h-9 max-w-[1320px] items-center justify-between px-6">
           <p className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-oak" />
-            Free delivery in Klang Valley above RM1,500 · Free office layout planning
+            Free delivery in Klang Valley above RM1,500
           </p>
           <div className="flex items-center gap-5">
             <a href={`tel:+${site.whatsapp}`} className="tabular hover:text-white">{site.whatsappDisplay}</a>

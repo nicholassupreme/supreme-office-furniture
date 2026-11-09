@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps<"/collections/[slug
   if (!c) return {};
   return {
     title: c.kind === "all" ? "All Office Furniture" : `${c.name} Malaysia`,
-    description: `${c.name} from Supreme Office Furniture, Klang. ${c.blurb} Prices shown, free layout planning and delivery in Klang Valley.`,
+    description: `${c.name} from Supreme Office Furniture, Klang. ${c.blurb} Prices shown, delivery in Klang Valley.`,
     alternates: { canonical: `/collections/${slug}` },
   };
 }

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | Supreme Office Furniture",
   },
   description:
-    "Office furniture supplier in Klang Valley since 1985. 1,700+ office chairs, desks, workstations, conference tables, storage and safes. Free layout planning and quotation.",
+    "Office furniture supplier in Klang Valley since 1985. 1,700+ office chairs, desks, workstations, conference tables, storage and safes. Quotations via WhatsApp.",
   openGraph: { siteName: site.name, locale: "en_MY", type: "website" },
 };
 

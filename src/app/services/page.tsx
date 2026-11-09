@@ -5,17 +5,17 @@ import { IconWhatsApp } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Office Furniture Services",
   description:
-    "Free office layout planning, one-stop office renovation, furniture relocation and disposal, safe box relocation, rental and repair in Klang Valley.",
+    "Office layout planning, one-stop office renovation, furniture relocation and disposal, safe box relocation, rental and repair in Klang Valley.",
 };
 
 const SERVICES = [
   {
     id: "planning",
     img: "/services/planning.webp",
-    title: "Free layout planning & quotation",
-    body: "We visit your office, measure up and draw a furniture layout that fits your headcount and workflow, then quote it. No charge, no commitment.",
+    title: "Layout planning & quotation",
+    body: "We visit your office, measure up and draw a furniture layout that fits your headcount and workflow, then quote it.",
     points: [
-      "Complimentary site visit",
+      "Site visit and measurement",
       "2D floor plan with furniture placement",
       "Itemised quotation",
     ],

@@ -61,7 +61,7 @@ export default function Home() {
             <p className="mt-6 max-w-md text-[16.5px] leading-relaxed text-ink-2">
               Chairs, desks, workstations, storage and safes for public listed
               companies, SMEs, government, schools, healthcare and
-              institutions across Malaysia, with free layout planning.
+              institutions across Malaysia.
             </p>
           </div>
         </div>
@@ -77,8 +77,8 @@ export default function Home() {
               ],
               [
                 "17641908",
-                "Free layout planning",
-                "Office layout drawing and quotation at no cost.",
+                "Layout planning",
+                "Office layout drawing to go with your quotation.",
               ],
               [
                 "17641910",
@@ -179,7 +179,7 @@ export default function Home() {
             </h2>
             <p className="mt-5 max-w-md leading-relaxed text-white/75">
               Send us your layout and headcount. We&apos;ll plan the clusters,
-              pick the partition height and finish, and quote it at no cost.
+              pick the partition height and finish, then quote it.
               Seater counts, table sizes and fabric colours can all be changed.
             </p>
             <div className="mt-8 grid max-w-md grid-cols-2 gap-2 text-sm">
@@ -404,12 +404,12 @@ function SectionHead({
 /** Homepage service cards. Add a photo path/URL to `img` and it appears at the top of the card. */
 const services: Service[] = [
   {
-    title: "Free layout planning",
-    desc: "Site visit, floor plan and 2D layout before you commit.",
+    title: "Layout planning",
+    desc: "Site visit, floor plan and 2D layout for your project.",
     anchor: "planning",
     img: "/services/planning.webp",
     points: [
-      "Complimentary site visit",
+      "Site visit and measurement",
       "2D floor plan with furniture placement",
       "Itemised quotation",
     ],

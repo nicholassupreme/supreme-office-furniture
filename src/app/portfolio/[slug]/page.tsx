@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: PageProps<"/portfolio/[slu
       </div>
 
       <div className="mt-14 flex flex-col items-start gap-4 rounded-[28px] border border-line bg-surface p-8 md:flex-row md:items-center md:justify-between">
-        <p className="text-lg font-semibold tracking-tight">Want a space like this? Layout and quotation are free.</p>
+        <p className="text-lg font-semibold tracking-tight">Want a space like this? Get a quotation.</p>
         <a
           href={waLink(`Hi Supreme, I saw the ${p.client} project and I'd like something similar for my office.`)}
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-wa px-6 py-3.5 text-sm font-semibold text-white"

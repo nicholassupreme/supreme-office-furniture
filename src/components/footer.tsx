@@ -50,12 +50,12 @@ export async function Footer() {
             ))}
           </FooterCol>
           <FooterCol title="Services">
-            <FooterLink href="/services#planning">Layout planning</FooterLink>
-            <FooterLink href="/services#renovation">Office renovation</FooterLink>
-            <FooterLink href="/services#relocation">Relocation & disposal</FooterLink>
-            <FooterLink href="/services#rental">Furniture rental</FooterLink>
-            <FooterLink href="/services#repair">Furniture repair</FooterLink>
-            <FooterLink href="/services#safes">Safe relocation</FooterLink>
+            <FooterLink href="/services/layout-planning">Layout planning</FooterLink>
+            <FooterLink href="/services/office-renovation">Office renovation</FooterLink>
+            <FooterLink href="/services/furniture-relocation">Relocation & disposal</FooterLink>
+            <FooterLink href="/services/furniture-rental">Furniture rental</FooterLink>
+            <FooterLink href="/services/furniture-repair">Furniture repair</FooterLink>
+            <FooterLink href="/services/safe-relocation">Safe relocation</FooterLink>
           </FooterCol>
           <FooterCol title="Company">
             <FooterLink href="/about">About us</FooterLink>

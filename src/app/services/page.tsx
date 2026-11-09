@@ -1,81 +1,13 @@
 import type { Metadata } from "next";
 import { waLink } from "@/lib/site";
-import { IconWhatsApp } from "@/components/icons";
+import { IconArrow, IconWhatsApp } from "@/components/icons";
+import { services } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Office Furniture Services",
   description:
     "Office layout planning, one-stop office renovation, furniture relocation and disposal, safe box relocation, rental and repair in Klang Valley.",
 };
-
-const SERVICES = [
-  {
-    id: "planning",
-    img: "/services/planning.webp",
-    title: "Layout planning & quotation",
-    body: "We visit your office, measure up and draw a furniture layout that fits your headcount and workflow, then quote it.",
-    points: [
-      "Site visit and measurement",
-      "2D floor plan with furniture placement",
-      "Itemised quotation",
-    ],
-  },
-  {
-    id: "renovation",
-    img: "/services/renovation.webp",
-    title: "One-stop office renovation",
-    body: "Partitions, ceilings, flooring, electrical and furniture handled as one project, with one point of contact from design to handover.",
-    points: [
-      "Design and space planning",
-      "Partitions, ceilings and flooring",
-      "Furniture supply and installation",
-    ],
-  },
-  {
-    id: "relocation",
-    img: "/services/relocation.webp",
-    title: "Furniture relocation & disposal",
-    body: "Moving office? We dismantle, transport and reinstall your furniture, or clear out old pieces you no longer need.",
-    points: [
-      "Dismantling and reinstallation",
-      "Transport by our own team",
-      "Old furniture disposal",
-    ],
-  },
-  {
-    id: "safes",
-    img: "/services/safe-relocation.webp",
-    title: "Safe box relocation",
-    body: "Heavy safes moved and installed safely, with the equipment and crew the job needs.",
-    points: [
-      "Floor and access assessment",
-      "Specialised moving equipment",
-      "Installation at the new site",
-    ],
-  },
-  {
-    id: "rental",
-    img: "/services/installation.webp",
-    title: "Office furniture rental",
-    body: "Short-term furniture for project offices, events and temporary setups, without the upfront cost of buying.",
-    points: [
-      "Chairs, desks and workstations",
-      "Flexible rental periods",
-      "Delivery and collection",
-    ],
-  },
-  {
-    id: "repair",
-    img: "/services/repair.webp",
-    title: "Office furniture repair",
-    body: "Extend the life of chairs, desks and cabinets: replacement parts, mechanisms, gas lifts and reupholstery.",
-    points: [
-      "Chair mechanisms and gas lifts",
-      "Reupholstery",
-      "Desk and cabinet repairs",
-    ],
-  },
-];
 
 export default function ServicesPage() {
   return (
@@ -88,10 +20,10 @@ export default function ServicesPage() {
         it.
       </p>
       <div className="mt-10 grid gap-4 md:grid-cols-2">
-        {SERVICES.map((s) => (
+        {services.map((s) => (
           <section
-            key={s.id}
-            id={s.id}
+            key={s.slug}
+            id={s.anchor}
             className="group relative flex scroll-mt-32 flex-col overflow-hidden rounded-3xl border border-line bg-surface transition duration-300 hover:-translate-y-0.5 hover:border-transparent hover:shadow-[0_24px_50px_-18px_rgba(49,39,131,0.6)] sm:flex-row"
           >
             <div className="relative aspect-[4/3] shrink-0 bg-white sm:aspect-auto sm:w-[40%]">
@@ -120,12 +52,22 @@ export default function ServicesPage() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={waLink(`Hi Supreme, I'd like to ask about: ${s.title}.`)}
-                className="relative mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition group-hover:border-white"
-              >
-                <IconWhatsApp className="h-4 w-4 text-wa" /> Enquire
-              </a>
+              <div className="relative mt-5 flex flex-wrap items-center gap-2.5">
+                <a
+                  href={`/services/${s.slug}`}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex w-fit items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition group-hover:bg-white group-hover:text-brand"
+                >
+                  Learn more <IconArrow className="h-4 w-4" />
+                </a>
+                <a
+                  href={waLink(`Hi Supreme, I'd like to ask about: ${s.title}.`)}
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition group-hover:border-white"
+                >
+                  <IconWhatsApp className="h-4 w-4 text-wa" /> Enquire
+                </a>
+              </div>
             </div>
           </section>
         ))}

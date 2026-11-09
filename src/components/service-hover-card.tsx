@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRef, useState, type CSSProperties } from "react";
 import { IconArrow } from "@/components/icons";
+import { services } from "@/data/services";
 
 export type Service = {
   title: string;
@@ -56,7 +57,11 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
   return (
     <div ref={ref} className={`relative h-[100px] ${isOpen ? "z-30" : "z-0"}`}>
       <Link
-        href={`/services#${sv.anchor}`}
+        href={
+          services.find((x) => x.anchor === sv.anchor)
+            ? `/services/${services.find((x) => x.anchor === sv.anchor)!.slug}`
+            : `/services#${sv.anchor}`
+        }
         onPointerEnter={open}
         onPointerLeave={() => setBox(null)}
         style={style}

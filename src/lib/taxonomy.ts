@@ -14,9 +14,7 @@ export const subName = (slug: string) => {
  * (its dropdown then lists each department's sub-categories side by side).
  */
 export type NavTab = { key: string; label: string; depts: Dept[] };
-const NAV_GROUPS: { label: string; depts: string[] }[] = [
-  { label: "Desks & Workstations", depts: ["office-desks-tables", "office-workstations"] },
-];
+const NAV_GROUPS: { label: string; depts: string[] }[] = [];
 export const navTabs: NavTab[] = (() => {
   const grouped = new Set(NAV_GROUPS.flatMap((g) => g.depts.slice(1)));
   return taxonomy

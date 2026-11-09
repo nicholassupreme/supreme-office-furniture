@@ -536,8 +536,8 @@ export const clients: Client[] = [
     "name": "Jabatan Perangkaan Malaysia (DOSM)",
     "logo": {
       "src": "/clients/dosm.png",
-      "w": 435,
-      "h": 217
+      "w": 438,
+      "h": 116
     }
   },
   {

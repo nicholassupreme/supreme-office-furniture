@@ -1,12 +1,22 @@
 import Image from "next/image";
 import { clients, type Client } from "@/data/clients";
 
-const MAX_ROWS = 10;
-const VISIBLE = 5; // logos visible per row on desktop (3 on phones)
+const MAX_ROWS = 5; // rows stacked down the page
+const VISIBLE = 10; // logos visible across one row on desktop (6 on tablets, 4 on phones)
+
+/* Every logo gets the same visual weight: equal area, capped in width and height,
+   so wide wordmarks and square crests read as the same size. Pixels at desktop. */
+const AREA = 1500;
+const MAX_W = 104;
+const MAX_H = 38;
+function logoWidth({ w, h }: Client["logo"]) {
+  const r = w / h;
+  return Math.round(Math.min(MAX_W, Math.sqrt(AREA * r), MAX_H * r));
+}
 
 /**
- * Client logo wall. Logos sit in grey and take their colour on hover, each in the same-size slot.
- * Up to 10 rows, 5 logos visible per row; a row holding more than fits slides right to left on its own.
+ * Client logo wall: up to 5 rows, 10 logos across. Each row that holds more than fits
+ * slides right to left on its own. Logos sit in grey and take their colour on hover.
  */
 export function ClientLogos() {
   const rowCount = Math.min(MAX_ROWS, Math.ceil(clients.length / VISIBLE));
@@ -18,29 +28,27 @@ export function ClientLogos() {
   return (
     <div className="overflow-hidden rounded-3xl bg-white ring-1 ring-line/70">
       {rows.map((row, r) => {
-        const moves = row.length > 3; // phones show 3; desktop shows 5 (see md: rules below)
-        const movesDesktop = row.length > VISIBLE;
+        const staticOnDesktop = row.length <= VISIBLE;
         return (
           <div
             key={r}
-            className={`logo-row @container overflow-hidden border-line/70 [mask-image:linear-gradient(90deg,transparent,#000_5%,#000_95%,transparent)] motion-reduce:overflow-x-auto ${
+            className={`logo-row @container overflow-hidden border-line/70 [mask-image:linear-gradient(90deg,transparent,#000_4%,#000_96%,transparent)] motion-reduce:overflow-x-auto ${
               r > 0 ? "border-t" : ""
             }`}
           >
             <ul
-              className={`logo-track flex w-max motion-reduce:animate-none ${moves ? "" : "animate-none"} ${
-                movesDesktop ? "" : "md:animate-none"
-              } ${r % 2 ? "[animation-delay:-7s]" : ""}`}
-              style={{ animationDuration: `${row.length * 4.5}s` }}
+              className={`logo-track flex w-max motion-reduce:animate-none ${
+                staticOnDesktop ? "lg:w-full lg:animate-none" : ""
+              } ${r % 2 ? "[animation-delay:-9s]" : ""}`}
+              style={{ animationDuration: `${row.length * 3.2}s` }}
             >
               {row.map((c) => (
                 <Tile key={c.name} c={c} />
               ))}
               {/* Second copy makes the loop seamless */}
-              {moves &&
-                row.map((c) => (
-                  <Tile key={`${c.name}-copy`} c={c} copy hideDesktop={!movesDesktop} />
-                ))}
+              {row.map((c) => (
+                <Tile key={`${c.name}-copy`} c={c} copy hideDesktop={staticOnDesktop} />
+              ))}
             </ul>
           </div>
         );
@@ -55,8 +63,8 @@ function Tile({ c, copy, hideDesktop }: { c: Client; copy?: boolean; hideDesktop
     <li
       aria-hidden={copy || undefined}
       title={c.name}
-      className={`group flex h-24 w-[calc(100cqw/3)] shrink-0 items-center justify-center px-4 md:h-28 md:w-[20cqw] md:px-8 ${
-        hideDesktop ? "md:hidden" : ""
+      className={`group flex h-[72px] w-[25cqw] shrink-0 items-center justify-center md:h-20 md:w-[calc(100cqw/6)] lg:w-[10cqw] ${
+        hideDesktop ? "lg:hidden" : ""
       } motion-reduce:[&[aria-hidden]]:hidden`}
     >
       <Image
@@ -65,8 +73,9 @@ function Tile({ c, copy, hideDesktop }: { c: Client; copy?: boolean; hideDesktop
         width={c.logo.w}
         height={c.logo.h}
         unoptimized={remote || c.logo.src.endsWith(".svg")}
-        sizes="200px"
-        className={`max-h-12 w-auto max-w-full object-contain transition duration-300 md:max-h-14 ${
+        sizes="120px"
+        style={{ width: `calc(${logoWidth(c.logo)}px * var(--logo-scale))` }}
+        className={`h-auto max-w-[86%] object-contain transition duration-300 [--logo-scale:0.78] md:[--logo-scale:0.9] lg:[--logo-scale:1] ${
           c.logo.onDark
             ? "opacity-45 brightness-0 group-hover:opacity-90"
             : "opacity-55 grayscale group-hover:opacity-100 group-hover:grayscale-0"

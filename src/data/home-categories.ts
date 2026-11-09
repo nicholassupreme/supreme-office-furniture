@@ -32,6 +32,6 @@ export const homeCategories: { slug: string; label: string }[] = [
   // Lockers, safes, pods, equipment
   { slug: "steel-lockers", label: "Steel Lockers" },
   { slug: "security-safe-box", label: "Safes" },
-  { slug: "office-phone-booth-open-pods", label: "Phone Booths" },
+  { slug: "office-phone-booth-open-pods", label: "Office Pods" },
   { slug: "writing-boards", label: "Whiteboards" },
 ];

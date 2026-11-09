@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { taxonomy } from "@/lib/taxonomy";
+import { navTabs, taxonomy } from "@/lib/taxonomy";
 import { rm, site, waLink } from "@/lib/site";
 import { cleanName } from "./product-card";
 import { useQuote } from "./quote-store";
@@ -48,7 +48,8 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
   const leave = () => {
     closeTimer.current = setTimeout(() => setOpen(null), 120);
   };
-  const dept = taxonomy.find((d) => d.slug === open);
+  const tab = navTabs.find((t) => t.key === open);
+  const dept = tab?.depts.length === 1 ? tab.depts[0] : undefined;
 
   return (
     <header
@@ -113,19 +114,21 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
 
         {/* Row 2: categories, centred */}
         <nav className="hidden h-12 items-stretch justify-center border-t border-line/70 xl:flex" onMouseLeave={leave}>
-          {taxonomy.map((d) => {
-            const on = open === d.slug || pathname.startsWith(`/collections/${d.slug}`);
+          {navTabs.map((t) => {
+            const on =
+              open === t.key ||
+              t.depts.some((d) => pathname === `/collections/${d.slug}` || d.subs.some(([s]) => pathname === `/collections/${s}`));
             return (
-              <div key={d.slug} className="flex items-stretch" onMouseEnter={() => enter(d.slug)}>
+              <div key={t.key} className="flex items-stretch" onMouseEnter={() => enter(t.key)}>
                 <Link
-                  href={`/collections/${d.slug}`}
-                  className={`group relative flex items-center whitespace-nowrap px-4 text-[14px] font-medium transition-colors 2xl:px-5 ${
+                  href={`/collections/${t.key}`}
+                  className={`group relative flex items-center whitespace-nowrap px-3.5 text-[14px] font-medium transition-colors 2xl:px-5 ${
                     on ? "text-ink" : "text-ink-2/80 hover:text-ink"
                   }`}
                 >
-                  {d.short}
+                  {t.label}
                   <span
-                    className={`absolute inset-x-4 bottom-0 h-[2px] origin-center rounded-full bg-brand transition-transform duration-300 2xl:inset-x-5 ${
+                    className={`absolute inset-x-3.5 bottom-0 h-[2px] origin-center rounded-full bg-brand transition-transform duration-300 2xl:inset-x-5 ${
                       on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                     }`}
                   />
@@ -135,6 +138,51 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
           })}
         </nav>
       </div>
+
+      {/* Desktop mega-menu: grouped tab (e.g. Desks & Workstations) */}
+      {tab && !dept && (
+        <div
+          className="absolute inset-x-0 top-full hidden border-b border-line bg-surface shadow-[0_24px_48px_-24px_rgba(22,24,29,0.18)] xl:block"
+          onMouseEnter={() => enter(tab.key)}
+          onMouseLeave={leave}
+        >
+          <div className="mx-auto grid max-w-[1320px] grid-cols-[minmax(0,1fr)_260px] gap-10 px-6 py-8">
+            <div className="grid gap-8 border-r border-line pr-8" style={{ gridTemplateColumns: `repeat(${tab.depts.length}, minmax(0, 1fr))` }}>
+              {tab.depts.map((d) => (
+                <div key={d.slug} onMouseLeave={() => setHoverSub(null)}>
+                  <Link href={`/collections/${d.slug}`} className="text-xl font-semibold tracking-tight hover:text-brand">
+                    {d.name}
+                  </Link>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted">{d.blurb}</p>
+                  <ul className="mt-4 grid content-start gap-y-0.5">
+                    {d.subs.map(([s, n]) => (
+                      <li key={s}>
+                        <Link
+                          href={`/collections/${s}`}
+                          onMouseEnter={() => setHoverSub(s)}
+                          onFocus={() => setHoverSub(s)}
+                          className={`flex items-center justify-between rounded-lg px-3 py-2 text-[15px] transition-colors ${
+                            hoverSub === s ? "bg-paper text-brand" : "text-ink-2 hover:text-brand"
+                          }`}
+                        >
+                          {n}
+                          <span className={`text-xs transition-opacity ${hoverSub === s ? "opacity-100" : "opacity-0"}`}>→</span>
+                        </Link>
+                      </li>
+                    ))}
+                    <li>
+                      <Link href={`/collections/${d.slug}`} className="mt-1 inline-flex px-3 py-2 text-sm font-medium text-brand hover:underline">
+                        Shop all {d.name.toLowerCase()} →
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <StarProduct p={stars[hoverSub ?? tab.key] ?? stars[tab.key]} />
+          </div>
+        </div>
+      )}
 
       {/* Desktop mega-menu */}
       {dept && (

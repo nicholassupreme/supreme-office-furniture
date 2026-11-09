@@ -130,7 +130,7 @@
  {
   "slug": "meeting-conference-table",
   "name": "Meeting & Conference",
-  "short": "Meeting",
+  "short": "Meeting Tables",
   "blurb": "Meeting tables from 2-seaters to 20ft boardroom tables.",
   "subs": [
    [
@@ -149,9 +149,9 @@
  },
  {
   "slug": "office-sofas-bench-seating-malaysia",
-  "name": "Sofas & Lounge",
-  "short": "Sofas",
-  "blurb": "Reception sofas, lounge chairs, coffee tables and waiting-area benches.",
+  "name": "Sofas & Reception",
+  "short": "Sofas & Reception",
+  "blurb": "Reception sofas, lounge chairs, coffee tables, waiting benches and link chairs.",
   "subs": [
    [
     "1-seater-office-sofa",
@@ -249,20 +249,20 @@
  },
  {
   "slug": "office-phone-booth-open-pods",
-  "name": "Phone Booths & Pods",
-  "short": "Phone Booths",
+  "name": "Office Pods & Phone Booths",
+  "short": "Office Pods",
   "blurb": "Soundproof phone booths and meeting pods for focus work and private calls.",
   "subs": []
  },
  {
-  "slug": "office-school-equipments",
-  "name": "Office & School Equipment",
-  "short": "Equipment",
-  "blurb": "Whiteboards, notice boards, shredders, projector screens, signage and trolleys.",
+  "slug": "whiteboards-presentation",
+  "name": "Whiteboards & Presentation",
+  "short": "Whiteboards",
+  "blurb": "Whiteboards, glass boards, notice boards, flip charts and projector screens for offices and classrooms.",
   "subs": [
    [
     "writing-boards",
-    "Writing Boards"
+    "Whiteboards & Writing Boards"
    ],
    [
     "notice-boards",
@@ -273,12 +273,20 @@
     "Flip Charts"
    ],
    [
-    "paper-shredder-machines",
-    "Paper Shredders"
-   ],
-   [
     "projector-screens-presentation-tools",
     "Projector Screens"
+   ]
+  ]
+ },
+ {
+  "slug": "office-school-equipments",
+  "name": "Office Essentials",
+  "short": "Office Essentials",
+  "blurb": "Paper shredders, trolleys, shoe racks, signage, queue stands and drafting tools.",
+  "subs": [
+   [
+    "paper-shredder-machines",
+    "Paper Shredders"
    ],
    [
     "signage-display-equipments",

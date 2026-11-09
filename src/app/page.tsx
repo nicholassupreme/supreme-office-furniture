@@ -59,9 +59,9 @@ export default function Home() {
               <span className="text-brand">you work.</span>
             </h1>
             <p className="mt-6 max-w-md text-[16.5px] leading-relaxed text-ink-2">
-              Chairs, desks, workstations, storage and safes for offices,
-              schools and institutions across Malaysia, with free layout
-              planning.
+              Chairs, desks, workstations, storage and safes for public listed
+              companies, SMEs, government, schools, healthcare and
+              institutions across Malaysia, with free layout planning.
             </p>
           </div>
         </div>
@@ -264,8 +264,8 @@ export default function Home() {
       {/* Clients */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <SectionHead
-          title="Trusted by Malaysia's institutions"
-          sub={`${clients.length}+ government agencies, banks, universities and companies we've furnished.`}
+          title="Trusted by Malaysia's leading organisations"
+          sub={`${clients.length}+ public listed companies, SMEs, government agencies, schools and healthcare providers we've furnished.`}
           href="/portfolio"
           cta="View portfolio"
         />

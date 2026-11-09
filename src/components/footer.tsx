@@ -17,8 +17,8 @@ export async function Footer() {
         <div>
           <Wordmark invert className="h-6 md:h-7" />
           <p className="mt-5 max-w-sm text-sm leading-relaxed">
-            One of Malaysia&apos;s longest-running office furniture suppliers. Serving offices, schools and institutions from
-            our showroom in Klang since {site.founded}.
+            One of Malaysia&apos;s longest-running office furniture suppliers. Serving public listed companies, private SMEs, government agencies, schools,
+            healthcare providers and institutions from our showroom in Klang since {site.founded}.
           </p>
           <div className="mt-6 space-y-1 text-sm">
             {site.address.map((l) => (

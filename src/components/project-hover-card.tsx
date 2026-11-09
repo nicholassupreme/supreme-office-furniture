@@ -12,7 +12,13 @@ type Anchor = "left" | "center" | "right";
  * Clicking anywhere opens the project page.
  * The grow direction is picked from the tile's position so it never spills off-screen.
  */
-export function ProjectHoverCard({ p, priority = false }: { p: Project; priority?: boolean }) {
+export function ProjectHoverCard({
+  p,
+  priority = false,
+}: {
+  p: Project;
+  priority?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [anchor, setAnchor] = useState<Anchor>("center");
   const [open, setOpen] = useState(false);
@@ -24,13 +30,23 @@ export function ProjectHoverCard({ p, priority = false }: { p: Project; priority
       const r = el.getBoundingClientRect();
       const grow = r.width * 0.4; // extra width on each side when centred
       const vw = document.documentElement.clientWidth;
-      setAnchor(r.left - grow < 16 ? "left" : r.right + grow > vw - 16 ? "right" : "center");
+      setAnchor(
+        r.left - grow < 16
+          ? "left"
+          : r.right + grow > vw - 16
+            ? "right"
+            : "center",
+      );
     }
     setOpen(true);
   };
 
   // Expanded panel: ~1.8x wider, ~2.3x taller, anchored so it stays on screen.
-  const sides = { left: ["0%", "-80%"], center: ["-40%", "-40%"], right: ["-80%", "0%"] }[anchor];
+  const sides = {
+    left: ["0%", "-80%"],
+    center: ["-40%", "-40%"],
+    right: ["-80%", "0%"],
+  }[anchor];
   const style = open
     ? { left: sides[0], right: sides[1], top: "-45%", bottom: "-85%" }
     : { left: "0%", right: "0%", top: "0%", bottom: "0%" };
@@ -49,19 +65,30 @@ export function ProjectHoverCard({ p, priority = false }: { p: Project; priority
         }`}
       >
         {/* Photo */}
-        <div className={`relative w-full shrink-0 overflow-hidden transition-all duration-300 ${open ? "h-[52%]" : "h-full"}`}>
+        <div
+          className={`relative w-full shrink-0 overflow-hidden transition-all duration-300 ${open ? "h-[52%]" : "h-full"}`}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={coverOf(p)}
-            alt={`${p.client} – ${p.type}`}
+            alt={`${p.type} – ${p.industry}`}
             loading={priority ? "eager" : "lazy"}
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-ink/0" />
+          {!open && (
+            <span className="tabular absolute right-2.5 top-2.5 rounded-full bg-white/90 px-2 py-0.5 text-[11px] font-semibold text-ink">
+              {p.year}
+            </span>
+          )}
           <div className="absolute inset-x-0 bottom-0 p-3 text-white md:p-4">
-            <p className="truncate text-[10px] font-medium uppercase tracking-[0.14em] text-white/75">{p.type}</p>
-            <p className={`mt-0.5 font-semibold leading-tight tracking-tight transition-all duration-300 ${open ? "text-lg md:text-xl" : "text-sm md:text-[15px]"}`}>
-              {p.client}
+            <p className="truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8b93ff]">
+              {p.industry}
+            </p>
+            <p
+              className={`mt-0.5 font-semibold leading-tight tracking-tight transition-all duration-300 ${open ? "text-lg md:text-xl" : "text-sm md:text-[15px]"}`}
+            >
+              {p.type}
             </p>
           </div>
         </div>
@@ -75,17 +102,19 @@ export function ProjectHoverCard({ p, priority = false }: { p: Project; priority
         >
           <div className="flex flex-wrap gap-1.5 text-[11px] font-medium text-ink-2">
             <span className="rounded-full bg-line px-2.5 py-1">{p.year}</span>
-            {p.size && <span className="rounded-full bg-line px-2.5 py-1">{p.size}</span>}
-            <span className="rounded-full bg-line px-2.5 py-1">{p.photos.length} photos</span>
+            {p.size && (
+              <span className="rounded-full bg-line px-2.5 py-1">{p.size}</span>
+            )}
           </div>
-          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-2">{p.summary}</p>
-          {p.supplied && (
-            <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted">
-              <span className="font-semibold text-ink-2">Supplied: </span>
-              {p.supplied.join(", ")}
-            </p>
-          )}
-          <p className="mt-auto pt-3 text-sm font-semibold text-oak">View project →</p>
+          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
+            Furniture supplied
+          </p>
+          <p className="mt-1 line-clamp-3 text-[13px] leading-snug text-ink-2">
+            {p.supplied ? p.supplied.join(", ") : p.summary}
+          </p>
+          <p className="mt-auto pt-3 text-sm font-semibold text-brand">
+            View project →
+          </p>
         </div>
       </Link>
     </div>

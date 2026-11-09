@@ -312,6 +312,8 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
               <a
                 href={waLink("Hi Supreme, I'd like to ask about office furniture.")}
                 className="flex items-center justify-center gap-2 rounded-full bg-wa py-3 text-sm font-semibold text-white"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <IconWhatsApp className="h-4 w-4" /> WhatsApp us
               </a>

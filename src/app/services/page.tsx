@@ -64,6 +64,8 @@ export default function ServicesPage() {
                 <a
                   href={waLink(`Hi Supreme, I'd like to ask about: ${s.title}.`)}
                   className="inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition group-hover:border-white"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <IconWhatsApp className="h-4 w-4 text-wa" /> Enquire
                 </a>

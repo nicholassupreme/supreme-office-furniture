@@ -89,6 +89,8 @@ export default async function ProjectPage({
             `Hi Supreme, I saw your ${p.type.toLowerCase()} project (${p.year}) and I'd like something similar for my office.`,
           )}
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-wa px-6 py-3.5 text-sm font-semibold text-white"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <IconWhatsApp className="h-4 w-4" /> Talk to us
         </a>

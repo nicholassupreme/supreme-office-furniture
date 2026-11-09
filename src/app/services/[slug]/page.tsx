@@ -62,6 +62,8 @@ export default async function ServicePage({
             <a
               href={enquire}
               className="inline-flex items-center gap-2 rounded-full bg-wa px-6 py-3 text-sm font-semibold text-white transition hover:bg-wa-ink"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <IconWhatsApp className="h-4 w-4" /> Enquire on WhatsApp
             </a>
@@ -182,6 +184,8 @@ export default async function ServicePage({
         <a
           href={enquire}
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-wa px-6 py-3 text-sm font-semibold text-white transition hover:bg-wa-ink"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <IconWhatsApp className="h-4 w-4" /> {site.whatsappDisplay}
         </a>

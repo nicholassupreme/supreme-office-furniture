@@ -28,6 +28,8 @@ export default function PartnersPage() {
       <a
         href={waLink("Hi Supreme, I'm a designer/contractor/dealer and I'd like to know about partner pricing.")}
         className="mt-8 inline-flex items-center gap-2 rounded-full bg-wa px-6 py-3.5 text-sm font-semibold text-white"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <IconWhatsApp className="h-4 w-4" /> Ask for partner pricing
       </a>

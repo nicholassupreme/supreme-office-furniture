@@ -103,6 +103,8 @@ export function WorkstationPicker({
           <a
             href={waHref}
             className="inline-flex items-center gap-2 text-sm text-white/75 transition hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <IconWhatsApp className="h-4 w-4" /> Prefer to talk? WhatsApp us
           </a>

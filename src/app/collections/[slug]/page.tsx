@@ -90,6 +90,8 @@ export default async function CollectionPage({ params }: PageProps<"/collections
           <a
             href={waLink("Hi Supreme, I'd like to customise a workstation layout.")}
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-ink px-5 py-2.5 font-semibold text-white"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <IconWhatsApp className="h-4 w-4" /> Customise on WhatsApp
           </a>

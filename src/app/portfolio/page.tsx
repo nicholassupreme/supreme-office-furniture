@@ -53,6 +53,8 @@ export default function PortfolioPage() {
             "Hi Supreme, I saw your portfolio and I'd like a quotation for my office.",
           )}
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <IconWhatsApp className="h-4 w-4 text-wa" /> Start my project
         </a>

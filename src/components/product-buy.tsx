@@ -182,6 +182,8 @@ export function ProductBuy({
             `Hi Supreme, I'm interested in: ${cleanName(name)}${optText ? ` (${optText})` : ""}, qty ${qty}. https://www.supreme.com.my/products/${slug}`,
           )}
           className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-wa text-sm font-semibold text-white transition hover:bg-wa-ink"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <IconWhatsApp className="h-4 w-4 text-white" /> Ask on WhatsApp
         </a>

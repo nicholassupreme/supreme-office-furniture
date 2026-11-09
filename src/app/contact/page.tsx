@@ -49,6 +49,8 @@ export default function ContactPage() {
                 <a
                   href={waLink("Hi, I'd like to ask about office furniture.", c.phone)}
                   className="flex shrink-0 items-center gap-1.5 rounded-full bg-wa px-4 py-2.5 text-sm font-semibold text-white"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <IconWhatsApp className="h-4 w-4" /> WhatsApp
                 </a>

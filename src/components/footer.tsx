@@ -29,6 +29,8 @@ export async function Footer() {
             <a
               href={waLink("Hi Supreme, I'd like to ask about office furniture.")}
               className="rounded-full bg-wa px-5 py-2.5 text-sm font-semibold text-white"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               WhatsApp {site.whatsappDisplay}
             </a>

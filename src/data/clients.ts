@@ -1,6 +1,7 @@
 // Clients shown on the homepage logo wall.
-// Entries without a logo render as a text tile until a logo file is added to /public/clients.
-export type Client = { name: string; logo?: { src: string; w: number; h: number } };
+// `src` is a file in /public/clients or a remote logo URL (Wikipedia / the company's own site).
+// `onDark`: the only available logo is white-on-transparent, so it is shown as a dark silhouette.
+export type Client = { name: string; logo: { src: string; w: number; h: number; onDark?: boolean } };
 
 export const clients: Client[] = [
   {
@@ -28,7 +29,20 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Universiti Tunku Abdul Rahman"
+    "name": "Concentrix",
+    "logo": {
+      "src": "/clients/concentrix.png",
+      "w": 294,
+      "h": 51
+    }
+  },
+  {
+    "name": "Universiti Tunku Abdul Rahman (UTAR)",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/en/f/f1/Universiti_Tunku_Abdul_Rahman_Logo.jpg",
+      "w": 338,
+      "h": 170
+    }
   },
   {
     "name": "Top Glove Corporation",
@@ -47,6 +61,14 @@ export const clients: Client[] = [
     }
   },
   {
+    "name": "Parker Hannifin",
+    "logo": {
+      "src": "/clients/parker.png",
+      "w": 478,
+      "h": 185
+    }
+  },
+  {
     "name": "Northport (M) Berhad",
     "logo": {
       "src": "/clients/northport.png",
@@ -55,7 +77,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "KVMRT (T) Sdn Bhd"
+    "name": "MMC Gamuda KVMRT (T)",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/9/9b/MMC-Gamuda_Logo.svg",
+      "w": 1702,
+      "h": 250
+    }
   },
   {
     "name": "Kumpulan Wang Simpanan Pekerja (KWSP)",
@@ -66,11 +93,19 @@ export const clients: Client[] = [
     }
   },
   {
+    "name": "Sime Industrial",
+    "logo": {
+      "src": "/clients/sime-industrial.png",
+      "w": 573,
+      "h": 240
+    }
+  },
+  {
     "name": "SME Bank",
     "logo": {
       "src": "/clients/sme-bank.png",
-      "w": 160,
-      "h": 44
+      "w": 600,
+      "h": 218
     }
   },
   {
@@ -82,7 +117,20 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "EcoWorld Foundation"
+    "name": "EcoWorld Foundation",
+    "logo": {
+      "src": "https://ecoworld.my/wp-content/themes/ecoworld-2021/img/logo-2.svg",
+      "w": 250,
+      "h": 59
+    }
+  },
+  {
+    "name": "Nord-Lock Group",
+    "logo": {
+      "src": "/clients/nord-lock.png",
+      "w": 600,
+      "h": 149
+    }
   },
   {
     "name": "Tenaga Nasional Berhad",
@@ -109,7 +157,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "MMC Gamuda"
+    "name": "Taylor's University",
+    "logo": {
+      "src": "/clients/taylors.png",
+      "w": 537,
+      "h": 200
+    }
   },
   {
     "name": "DRB-HICOM",
@@ -136,7 +189,20 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Shell Malaysia"
+    "name": "Sunway University",
+    "logo": {
+      "src": "/clients/sunway-university.png",
+      "w": 595,
+      "h": 240
+    }
+  },
+  {
+    "name": "Shell Malaysia",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/en/e/e8/Shell_logo.svg",
+      "w": 150,
+      "h": 139
+    }
   },
   {
     "name": "Bank Pembangunan Malaysia",
@@ -155,6 +221,14 @@ export const clients: Client[] = [
     }
   },
   {
+    "name": "Sunway Group",
+    "logo": {
+      "src": "/clients/sunway.png",
+      "w": 600,
+      "h": 93
+    }
+  },
+  {
     "name": "The New Straits Times Press",
     "logo": {
       "src": "/clients/nst.png",
@@ -163,7 +237,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Econsave Cash & Carry"
+    "name": "Econsave Cash & Carry",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/8/83/Econsave_logo.png",
+      "w": 457,
+      "h": 100
+    }
   },
   {
     "name": "TGV Cinemas",
@@ -190,7 +269,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Mycron Steel"
+    "name": "Mycron Steel",
+    "logo": {
+      "src": "https://mycronsteel.com/assets/images/mycron-logo-1.png",
+      "w": 850,
+      "h": 234
+    }
   },
   {
     "name": "Universiti Putra Malaysia",
@@ -217,7 +301,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Harvey Norman"
+    "name": "Harvey Norman",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/en/8/83/Harvey-norman-brand.svg",
+      "w": 440,
+      "h": 74
+    }
   },
   {
     "name": "SYABAS",
@@ -244,7 +333,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "SP Setia Berhad"
+    "name": "SP Setia Berhad",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/6/69/SPsetialogo.png",
+      "w": 584,
+      "h": 203
+    }
   },
   {
     "name": "Perbadanan Putrajaya",
@@ -271,7 +365,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "POSCO Malaysia"
+    "name": "POSCO Malaysia",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/0/05/POSCO_logo.svg",
+      "w": 1024,
+      "h": 277
+    }
   },
   {
     "name": "Jabatan Akauntan Negara",
@@ -298,7 +397,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "NTT MSC"
+    "name": "NTT MSC",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/e/e2/NTT_Data_2025.svg",
+      "w": 160,
+      "h": 33
+    }
   },
   {
     "name": "Jabatan Imigresen",
@@ -325,7 +429,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Berjaya Roasters"
+    "name": "Berjaya Roasters (Kenny Rogers Roasters)",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/en/5/57/Logo_for_Kenny_Rogers_Roasters.jpg",
+      "w": 230,
+      "h": 121
+    }
   },
   {
     "name": "Polis Diraja Malaysia",
@@ -352,7 +461,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Ahmad Zaki"
+    "name": "Ahmad Zaki Resources (AZRB)",
+    "logo": {
+      "src": "https://static.wixstatic.com/media/bc4239_68175b5fbe5d40758d073f8ebc65e46a~mv2.jpg/v1/fit/w_480,h_176,q_90/azrb.jpg",
+      "w": 3509,
+      "h": 1287
+    }
   },
   {
     "name": "Suruhanjaya Pilihan Raya",
@@ -379,14 +493,20 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Delloyd Industries"
+    "name": "Delloyd Industries",
+    "logo": {
+      "src": "https://delloyd.com/wp-content/uploads/2023/10/Logo-01.png",
+      "w": 658,
+      "h": 225,
+      "onDark": true
+    }
   },
   {
-    "name": "Jabatan Perangkaan Malaysia",
+    "name": "Jabatan Perangkaan Malaysia (DOSM)",
     "logo": {
       "src": "/clients/dosm.png",
-      "w": 135,
-      "h": 92
+      "w": 431,
+      "h": 228
     }
   },
   {
@@ -406,7 +526,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Tanjong Management"
+    "name": "Tanjong",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Tanjong_Logo.svg",
+      "w": 284,
+      "h": 87
+    }
   },
   {
     "name": "Jabatan Pengairan dan Saliran",
@@ -433,9 +558,6 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Pan Malaysian Tools"
-  },
-  {
     "name": "Jabatan Perancangan Bandar dan Desa",
     "logo": {
       "src": "/clients/planmalaysia.png",
@@ -460,7 +582,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Pokka Ace"
+    "name": "Pokka Ace",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Pokka_logo.png",
+      "w": 300,
+      "h": 87
+    }
   },
   {
     "name": "Jabatan Latihan Khidmat Negara",
@@ -487,9 +614,6 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Sazean Management"
-  },
-  {
     "name": "Lembaga Pertubuhan Peladang",
     "logo": {
       "src": "/clients/peladang.png",
@@ -512,9 +636,6 @@ export const clients: Client[] = [
       "w": 159,
       "h": 82
     }
-  },
-  {
-    "name": "NS One Motor Trading"
   },
   {
     "name": "Perpustakaan Negara Malaysia",
@@ -541,7 +662,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Malaysian Bible Seminary"
+    "name": "Malaysia Bible Seminary",
+    "logo": {
+      "src": "https://ed.mbs.org.my/wp-content/uploads/2021/06/mbs.logo_.web2_.png",
+      "w": 265,
+      "h": 201
+    }
   },
   {
     "name": "Majlis Bandaraya Petaling Jaya",
@@ -568,7 +694,12 @@ export const clients: Client[] = [
     }
   },
   {
-    "name": "Methodist Area Executive Consult"
+    "name": "Methodist Church in Malaysia",
+    "logo": {
+      "src": "https://upload.wikimedia.org/wikipedia/en/6/68/Methodist_malaysia.png",
+      "w": 98,
+      "h": 95
+    }
   },
   {
     "name": "Jabatan Mufti Negeri Selangor",
@@ -593,8 +724,5 @@ export const clients: Client[] = [
       "w": 114,
       "h": 116
     }
-  },
-  {
-    "name": "SJK(C) Kepong 1"
   }
 ];

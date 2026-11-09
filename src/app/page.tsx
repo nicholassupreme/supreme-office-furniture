@@ -18,7 +18,6 @@ import { site, waLink } from "@/lib/site";
 import { projects } from "@/data/portfolio";
 import { ProjectTile } from "@/components/project-card";
 import { ClientLogos } from "@/components/client-logos";
-import { clients } from "@/data/clients";
 
 export default function Home() {
   const products = allProducts();
@@ -265,7 +264,7 @@ export default function Home() {
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <SectionHead
           title="Trusted by Malaysia's leading organisations"
-          sub={`${clients.length}+ public listed companies, SMEs, government agencies, schools and healthcare providers we've furnished.`}
+          sub="Over 5,000 public listed companies, SMEs, government agencies, schools and healthcare providers furnished since 1985."
           href="/portfolio"
           cta="View portfolio"
         />

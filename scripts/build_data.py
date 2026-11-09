@@ -104,6 +104,9 @@ def desc_images(h):
 # Duplicate listings on the old store; their URLs redirect to the kept copy (see next.config.ts)
 REMOVED = {"steel-mobile-book-trolley-for-library-school", "mobile-book-trolley-for-library-school-1"}
 
+# Old store slugs that misdescribe the product; the site uses the new slug (no redirect kept)
+RENAMED = {"4-seater-workstation-with-acrylic-partition-g-": "2-seater-workstation-with-acrylic-partition-g"}
+
 products, stats = [], collections.Counter()
 for i, p in enumerate(raw):
     if p["slug"].strip("/") in REMOVED:
@@ -152,7 +155,7 @@ for i, p in enumerate(raw):
     images = list(dict.fromkeys(p["images"] + desc_images(p["descHtml"])))
     body = clean_html(p["descHtml"])
     products.append({
-        "slug": p["slug"].strip("/"),
+        "slug": RENAMED.get(p["slug"].strip("/"), p["slug"].strip("/")),
         "name": (p["title"] or p["name"]).strip(),
         "dept": dept,
         "subs": subs,

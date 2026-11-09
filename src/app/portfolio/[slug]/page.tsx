@@ -43,7 +43,7 @@ export default async function ProjectPage({
       <div className="mt-6 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand">
-            {p.industry} · {p.year}
+            {p.industry} · {p.location} · {p.year}
           </p>
           <h1 className="mt-3 text-[34px] font-semibold leading-tight tracking-[-0.03em] md:text-5xl">
             {p.type}
@@ -60,6 +60,10 @@ export default async function ProjectPage({
           <div className="bg-surface p-4">
             <dt className="text-muted">Team size</dt>
             <dd className="mt-1 font-semibold">{p.size ?? "—"}</dd>
+          </div>
+          <div className="col-span-2 bg-surface p-4">
+            <dt className="text-muted">Location</dt>
+            <dd className="mt-1 font-semibold">{p.location}</dd>
           </div>
           {p.supplied && (
             <div className="col-span-2 bg-surface p-4">

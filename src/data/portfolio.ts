@@ -30,7 +30,8 @@ export const renamedProjects: Record<string, string> = {
   "subang-jaya-medical-centre-sjmc-trainee-nurse-house-1":
     "trainee-nurse-hostel-2023",
   goodrich: "logistics-office-2023",
-  "anonymous-client-2": "corporate-office-2023",
+  "anonymous-client-2": "manufacturing-office-2023",
+  "corporate-office-2023": "manufacturing-office-2023",
   "sme-client-1": "warehouse-office-2023",
   "sin-tohoku-metal-scrap": "small-industrial-office-2023",
 };
@@ -39,6 +40,8 @@ export type Project = {
   slug: string;
   /** Industry group shown on the portfolio page. Must be one of `industries`. */
   industry: Industry;
+  /** Town and state, e.g. "Klang, Selangor". */
+  location: string;
   /** Kind of office/space, e.g. "Logistics office". Client names are deliberately not stored. */
   type: string;
   /** Year the project was completed. Portfolio page groups by this. */
@@ -52,6 +55,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ecommerce-office-2022",
+    location: "Petaling Jaya, Selangor",
     industry: "Technology & E-commerce",
     type: "E-commerce office",
     year: 2022,
@@ -111,6 +115,7 @@ export const projects: Project[] = [
   },
   {
     slug: "nursing-college-2022",
+    location: "Shah Alam, Selangor",
     industry: "Education",
     type: "Nursing college",
     year: 2022,
@@ -136,6 +141,7 @@ export const projects: Project[] = [
   },
   {
     slug: "trainee-nurse-hostel-2023",
+    location: "Subang Jaya, Selangor",
     industry: "Healthcare",
     type: "Trainee nurse hostel",
     year: 2023,
@@ -160,6 +166,7 @@ export const projects: Project[] = [
   },
   {
     slug: "logistics-office-2023",
+    location: "Klang, Selangor",
     industry: "Logistics & Warehousing",
     type: "Logistics office",
     year: 2023,
@@ -203,13 +210,14 @@ export const projects: Project[] = [
     ].map((i) => f(i + ".jpg")),
   },
   {
-    slug: "corporate-office-2023",
-    industry: "Corporate & Professional Services",
-    type: "Corporate office",
+    slug: "manufacturing-office-2023",
+    location: "Shah Alam, Selangor",
+    industry: "Manufacturing & Industrial",
+    type: "Manufacturing office",
     year: 2023,
-    size: "30 staff",
+    size: "30+ staff",
     summary:
-      "Complete workstation sets and a meeting room for a 30-person team.",
+      "Complete workstation sets and a meeting room for a manufacturing company's office team of 30+.",
     supplied: ["Workstation sets", "Meeting room furniture"],
     photos: ["9626758", "9626755", "9626760", "9626757"].map((i) =>
       f(i + ".jpg"),
@@ -217,6 +225,7 @@ export const projects: Project[] = [
   },
   {
     slug: "warehouse-office-2023",
+    location: "Shah Alam, Selangor",
     industry: "Logistics & Warehousing",
     type: "Warehouse office",
     year: 2023,
@@ -234,6 +243,7 @@ export const projects: Project[] = [
   },
   {
     slug: "small-industrial-office-2023",
+    location: "Klang, Selangor",
     industry: "Manufacturing & Industrial",
     type: "Small office",
     year: 2023,

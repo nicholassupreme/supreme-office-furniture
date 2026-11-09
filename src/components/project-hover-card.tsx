@@ -105,6 +105,9 @@ export function ProjectHoverCard({
             {p.size && (
               <span className="rounded-full bg-line px-2.5 py-1">{p.size}</span>
             )}
+            <span className="rounded-full bg-line px-2.5 py-1">
+              {p.location.replace(", Selangor", "")}
+            </span>
           </div>
           <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
             Furniture supplied

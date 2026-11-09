@@ -6,18 +6,26 @@ import {
   coverImage,
   deptCount,
   subCount,
-  toCard,
 } from "@/lib/catalog";
 import { homeCategories } from "@/data/home-categories";
 import {
   ServiceHoverCard,
   type Service,
 } from "@/components/service-hover-card";
-import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
-import { site, waLink } from "@/lib/site";
+import { IconArrow, IconPin } from "@/components/icons";
+import { rm, site, waLink } from "@/lib/site";
+import { WorkstationPicker } from "@/components/workstation-picker";
 import { projects } from "@/data/portfolio";
 import { ProjectTile } from "@/components/project-card";
 import { ClientLogos } from "@/components/client-logos";
+
+/** Homepage workstation picker: one chip per seater range, hero photo from the same G-leg fabric-partition line so the images match. */
+const WORKSTATION_GROUPS = [
+  { slug: "1-3-seater-workstation-prices-are-negotiable", label: "1–3 Seaters", seats: 2, hero: "2-seater-workstation-with-fabric-partition-g-" },
+  { slug: "4-5-seater-workstation-prices-are-negotiable", label: "4–5 Seaters", seats: 4, hero: "4-seater-workstation-with-fabric-partition-g-" },
+  { slug: "6-7-seater-workstation-prices-are-negotiable", label: "6–7 Seaters", seats: 6, hero: "6-seater-workstation-with-fabric-partition-g-" },
+  { slug: "8-seater-or-more-workstation-prices-are-negotiable", label: "8+ Seaters", seats: 8, hero: "8-seater-workstation-with-fabric-partition" },
+];
 
 export default function Home() {
   const products = allProducts();
@@ -168,70 +176,27 @@ export default function Home() {
 
       {/* Workstations band */}
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
-        <div className="grid overflow-hidden rounded-[28px] bg-brand-ink text-white lg:grid-cols-2">
-          <div className="p-8 md:p-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
-              Made to order
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-[42px]">
-              Workstations built around your floor plan.
-            </h2>
-            <p className="mt-5 max-w-md leading-relaxed text-white/75">
-              Send us your layout and headcount. We&apos;ll plan the clusters,
-              pick the partition height and finish, then quote it.
-              Seater counts, table sizes and fabric colours can all be changed.
-            </p>
-            <div className="mt-8 grid max-w-md grid-cols-2 gap-2 text-sm">
-              {taxonomy[2].subs.slice(0, 4).map(([s, n]) => (
-                <Link
-                  key={s}
-                  href={`/collections/${s}`}
-                  className="rounded-xl border border-white/15 px-4 py-3 transition hover:bg-white/10"
-                >
-                  {n}
-                </Link>
-              ))}
-            </div>
-            <a
-              href={waLink(
-                "Hi Supreme, I'd like to customise a workstation layout.",
-              )}
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink"
-            >
-              <IconWhatsApp className="h-4 w-4 text-wa" /> Plan my workstations
-            </a>
-          </div>
-          <div className="grid grid-cols-2 gap-px bg-white/10">
-            {[
-              "1-3-seater-workstation-prices-are-negotiable",
-              "4-5-seater-workstation-prices-are-negotiable",
-              "6-7-seater-workstation-prices-are-negotiable",
-              "8-seater-or-more-workstation-prices-are-negotiable",
-            ]
-              .map((s) =>
-                products.find((p) => p.subs.includes(s) && p.images[0])!,
-              )
-              .filter(Boolean)
-              .map(toCard)
-              .map((p) => (
-                <Link
-                  key={p.slug}
-                  href={`/products/${p.slug}`}
-                  className="group bg-white p-4"
-                >
-                  {p.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      loading="lazy"
-                      className="aspect-square w-full object-contain transition duration-500 group-hover:scale-105"
-                    />
-                  )}
-                </Link>
-              ))}
-          </div>
-        </div>
+        <WorkstationPicker
+          groups={WORKSTATION_GROUPS.map((w) => {
+            const inRange = products.filter((p) => p.subs.includes(w.slug));
+            const prices = inRange
+              .map((p) => p.price)
+              .filter((n): n is number => n != null && n > 0);
+            const hero =
+              inRange.find((p) => p.slug === w.hero && p.images[0]) ??
+              inRange.find((p) => p.images[0])!;
+            return {
+              slug: w.slug,
+              label: w.label,
+              seats: w.seats,
+              from: prices.length ? rm(Math.min(...prices)) : null,
+              image: hero.images[0],
+              imageAlt: hero.name,
+            };
+          })}
+          allHref={`/collections/${taxonomy[2].slug}`}
+          waHref={waLink("Hi Supreme, I'd like to customise a workstation.")}
+        />
       </section>
 
       {/* Portfolio preview */}

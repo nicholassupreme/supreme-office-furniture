@@ -149,9 +149,9 @@
  },
  {
   "slug": "office-sofas-bench-seating-malaysia",
-  "name": "Sofas & Reception",
-  "short": "Sofas & Reception",
-  "blurb": "Reception sofas, lounge chairs, coffee tables, waiting benches and link chairs.",
+  "name": "Office Sofas",
+  "short": "Sofas",
+  "blurb": "1, 2 and 3-seater office and reception sofas, plus coffee tables.",
   "subs": [
    [
     "1-seater-office-sofa",
@@ -166,12 +166,20 @@
     "3-Seater & Up"
    ],
    [
-    "lounge-chairs-benches",
-    "Lounge Chairs & Benches"
-   ],
-   [
     "coffee-table",
     "Coffee Tables"
+   ]
+  ]
+ },
+ {
+  "slug": "lounge-waiting-seating",
+  "name": "Lounge & Waiting Seating",
+  "short": "Lounge & Waiting",
+  "blurb": "Lounge chairs, benches, link chairs and waiting-area seating for lobbies, clinics and public counters.",
+  "subs": [
+   [
+    "lounge-chairs-benches",
+    "Lounge Chairs & Benches"
    ],
    [
     "link-chairs-waiting-benches-malaysia",

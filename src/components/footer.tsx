@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { taxonomy } from "@/lib/taxonomy";
 import { site, waLink } from "@/lib/site";
@@ -34,6 +35,19 @@ export async function Footer() {
             <a href={`mailto:${site.email}`} className="rounded-full border border-white/20 px-5 py-2.5 text-sm text-white">
               {site.email}
             </a>
+          </div>
+          <div className="mt-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white">Government procurement</p>
+            <div className="mt-4 grid max-w-md grid-cols-2 gap-3">
+              <Badge src="/badges/mof.png" alt="Malaysia Ministry of Finance (MOF) registered company" w={256} h={98}>
+                <strong>MOF Certified</strong>
+                <span>Registered with Ministry of Finance</span>
+              </Badge>
+              <Badge src="/badges/eperolehan.png" alt="ePerolehan" w={400} h={275}>
+                <strong>e-Perolehan Friendly</strong>
+                <span>Order via government e&#8209;procurement</span>
+              </Badge>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
@@ -73,6 +87,27 @@ export async function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function Badge({
+  src,
+  alt,
+  w,
+  h,
+  children,
+}: {
+  src: string;
+  alt: string;
+  w: number;
+  h: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-3 rounded-xl bg-white p-4 text-[#1a1450]">
+      <Image src={src} alt={alt} width={w} height={h} className="h-11 w-auto self-start object-contain" />
+      <div className="flex flex-col gap-0.5 text-xs leading-snug [&>span]:text-[#1a1450]/60 [&>strong]:text-sm">{children}</div>
+    </div>
   );
 }
 

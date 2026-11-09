@@ -21,6 +21,14 @@ export const clients: Client[] = [
     }
   },
   {
+    "name": "EcoWorld",
+    "logo": {
+      "src": "/clients/ecoworld.png",
+      "w": 588,
+      "h": 154
+    }
+  },
+  {
     "name": "Universiti Malaya",
     "logo": {
       "src": "/clients/universiti-malaya.png",
@@ -58,6 +66,14 @@ export const clients: Client[] = [
       "src": "/clients/sime-darby.png",
       "w": 101,
       "h": 98
+    }
+  },
+  {
+    "name": "Samsung",
+    "logo": {
+      "src": "/clients/samsung.png",
+      "w": 384,
+      "h": 64
     }
   },
   {
@@ -101,6 +117,14 @@ export const clients: Client[] = [
     }
   },
   {
+    "name": "Alam Flora",
+    "logo": {
+      "src": "/clients/alamflora.png",
+      "w": 302,
+      "h": 98
+    }
+  },
+  {
     "name": "SME Bank",
     "logo": {
       "src": "/clients/sme-bank.png",
@@ -119,9 +143,9 @@ export const clients: Client[] = [
   {
     "name": "EcoWorld Foundation",
     "logo": {
-      "src": "https://ecoworld.my/wp-content/themes/ecoworld-2021/img/logo-2.svg",
-      "w": 250,
-      "h": 59
+      "src": "/clients/ecoworld-foundation.png",
+      "w": 488,
+      "h": 160
     }
   },
   {
@@ -138,6 +162,14 @@ export const clients: Client[] = [
       "src": "/clients/tnb.png",
       "w": 156,
       "h": 66
+    }
+  },
+  {
+    "name": "Hong Leong Yamaha Motor",
+    "logo": {
+      "src": "/clients/hly-motor.png",
+      "w": 560,
+      "h": 92
     }
   },
   {
@@ -225,7 +257,7 @@ export const clients: Client[] = [
     "logo": {
       "src": "/clients/sunway.png",
       "w": 600,
-      "h": 93
+      "h": 94
     }
   },
   {
@@ -239,9 +271,9 @@ export const clients: Client[] = [
   {
     "name": "Econsave Cash & Carry",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/8/83/Econsave_logo.png",
-      "w": 457,
-      "h": 100
+      "src": "/clients/econsave.png",
+      "w": 600,
+      "h": 125
     }
   },
   {
@@ -495,18 +527,17 @@ export const clients: Client[] = [
   {
     "name": "Delloyd Industries",
     "logo": {
-      "src": "https://delloyd.com/wp-content/uploads/2023/10/Logo-01.png",
-      "w": 658,
-      "h": 225,
-      "onDark": true
+      "src": "/clients/delloyd.png",
+      "w": 600,
+      "h": 170
     }
   },
   {
     "name": "Jabatan Perangkaan Malaysia (DOSM)",
     "logo": {
       "src": "/clients/dosm.png",
-      "w": 431,
-      "h": 228
+      "w": 435,
+      "h": 217
     }
   },
   {

@@ -25,7 +25,7 @@ const moved: [string, string][] = [
   ],
   ["/legal/refund-policy", "/pages/refund-return-policy"],
   ["/pages/terms-of-service", "/pages/refund-return-policy"],
-  // Duplicate listing removed; the kept copy has the correct per-size pricing.
+  // Duplicate listings removed; old URLs point at the kept copy.
   [
     "/products/steel-mobile-book-trolley-for-library-school",
     "/products/steel-mobile-book-trolley-for-library-school-1",
@@ -33,6 +33,14 @@ const moved: [string, string][] = [
   [
     "/collections/:c/products/steel-mobile-book-trolley-for-library-school",
     "/products/steel-mobile-book-trolley-for-library-school-1",
+  ],
+  [
+    "/products/mobile-book-trolley-for-library-school-1",
+    "/products/mobile-book-trolley-for-library-school",
+  ],
+  [
+    "/collections/:c/products/mobile-book-trolley-for-library-school-1",
+    "/products/mobile-book-trolley-for-library-school",
   ],
   ["/cart", "/quote"],
   ["/account/:path*", "/quote"],

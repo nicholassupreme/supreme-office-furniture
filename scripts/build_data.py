@@ -102,7 +102,7 @@ def desc_images(h):
     return out
 
 # Duplicate listings on the old store; their URLs redirect to the kept copy (see next.config.ts)
-REMOVED = {"steel-mobile-book-trolley-for-library-school"}
+REMOVED = {"steel-mobile-book-trolley-for-library-school", "mobile-book-trolley-for-library-school-1"}
 
 products, stats = [], collections.Counter()
 for i, p in enumerate(raw):

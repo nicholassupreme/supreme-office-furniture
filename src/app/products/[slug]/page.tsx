@@ -1,15 +1,21 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { allProducts, getProduct, related, toCard } from "@/lib/catalog";
+import { getProduct, menuBooths, menuStars, related, toCard } from "@/lib/catalog";
 import { deptName, subName } from "@/lib/taxonomy";
 import { ProductBuy } from "@/components/product-buy";
 import { ProductCard, cleanName } from "@/components/product-card";
 import { site } from "@/lib/site";
 
 
+/**
+ * Pre-build only the products featured in the menu (one per category, plus the
+ * phone booths). Every other product page is built on its first visit and then
+ * cached, so each deploy no longer stores ~400 MB of pages for all 1,700+ products.
+ */
 export function generateStaticParams() {
-  return allProducts().map((p) => ({ slug: p.slug }));
+  const slugs = new Set([...Object.values(menuStars()).map((c) => c.slug), ...menuBooths().map((b) => b.slug)]);
+  return [...slugs].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/products/[slug]">): Promise<Metadata> {

@@ -4,7 +4,6 @@ const f = (id: string) =>
 
 /** Industry groups, in the order they appear on the portfolio page. */
 export const industries = [
-  "Corporate & Professional Services",
   "Banking & Finance",
   "Technology & E-commerce",
   "Healthcare",

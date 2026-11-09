@@ -463,7 +463,7 @@ const services: Service[] = [
     anchor: "rental",
     img: "/services/repair.webp",
     points: [
-      "Flexible furniture rental periods",
+      "Daily or monthly furniture rental",
       "Chair mechanisms and gas lifts",
       "Reupholstery and desk repairs",
     ],

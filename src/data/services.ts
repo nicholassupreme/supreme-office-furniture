@@ -67,6 +67,10 @@ export const services: ServiceDetail[] = [
         a: "Yes. Supreme is MOF-registered and regularly quotes for government agencies, universities and GLCs.",
       },
       {
+        q: "Is there a charge for the layout and quotation?",
+        a: "No. It comes with your furniture enquiry.",
+      },
+      {
         q: "Can I mix models from different ranges?",
         a: "Yes. The quote is itemised so you can mix ranges, finishes and sizes as needed.",
       },
@@ -247,7 +251,7 @@ export const services: ServiceDetail[] = [
     body: "Short-term furniture for project offices, events and temporary setups, without the upfront cost of buying.",
     points: [
       "Chairs, desks and workstations",
-      "Flexible rental periods",
+      "Daily or monthly rental",
       "Delivery and collection",
     ],
     intro:
@@ -262,8 +266,8 @@ export const services: ServiceDetail[] = [
         text: "Individual desks or cluster workstations for project teams.",
       },
       {
-        title: "Flexible periods",
-        text: "Rental periods to match your project, from short events to longer temporary offices.",
+        title: "Daily or monthly rental",
+        text: "Rent by the day for events or by the month for temporary offices, subject to stock availability.",
       },
       {
         title: "Delivery, setup and collection",
@@ -272,7 +276,7 @@ export const services: ServiceDetail[] = [
     ],
     steps: [
       { title: "Tell us what you need", text: "Items, quantities, location and rental dates." },
-      { title: "Quotation", text: "Rental pricing for the period you need." },
+      { title: "Availability and quote", text: "We confirm stock for your dates and quote the rental." },
       { title: "Delivery and setup", text: "Furniture delivered and arranged on site." },
       { title: "Collection", text: "We collect everything at the end of the rental." },
     ],
@@ -283,12 +287,12 @@ export const services: ServiceDetail[] = [
     ],
     faqs: [
       {
-        q: "What's the minimum rental period?",
-        a: "It depends on the items and quantity. Message us with your dates and we'll advise.",
+        q: "How long can I rent for?",
+        a: "Daily or monthly. Availability depends on stock, so send us your dates and quantities early.",
       },
       {
         q: "Can I extend the rental?",
-        a: "Usually yes. Let us know before the end date and we'll arrange it.",
+        a: "Usually yes, subject to stock. Let us know before the end date and we'll check.",
       },
     ],
   },
@@ -325,8 +329,8 @@ export const services: ServiceDetail[] = [
     ],
     steps: [
       { title: "Send photos", text: "What's broken and how many pieces." },
-      { title: "Assessment and quote", text: "We advise whether to repair or replace, and quote it." },
-      { title: "Repair", text: "Done on site or at our workshop, depending on the job." },
+      { title: "Diagnosis and quote", text: "We check the fault, advise whether to repair or replace, and quote it." },
+      { title: "Repair", text: "Most repairs are done at our workshop. Some chair and upholstery jobs can be done on site." },
       { title: "Return", text: "Repaired furniture back in use." },
     ],
     suits: [
@@ -337,7 +341,11 @@ export const services: ServiceDetail[] = [
     faqs: [
       {
         q: "Do you repair furniture you didn't supply?",
-        a: "Yes, in most cases. Send us photos and we'll tell you if parts are available.",
+        a: "Yes, we repair other brands too. Whether we can fix it depends on the diagnosis and parts availability.",
+      },
+      {
+        q: "Can you repair on site?",
+        a: "Most repairs are done at our workshop. Chair repairs and some upholstery work can be done on site, depending on the situation.",
       },
       {
         q: "Is it worth repairing or should I replace?",

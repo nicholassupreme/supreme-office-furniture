@@ -21,8 +21,8 @@ import { ProjectTile } from "@/components/project-card";
 export default function Home() {
   const products = allProducts();
 
-  const HERO_IMG = "https://cdn.store-assets.com/s/1022051/f/17534165.png";
-  const TEAM_IMG = "https://cdn.store-assets.com/s/1022051/f/17545491.png";
+  const HERO_IMG = "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/f/17534165.png";
+  const TEAM_IMG = "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/f/17545491.png";
 
   return (
     <>
@@ -107,7 +107,7 @@ export default function Home() {
               {/* White in the picture blends into the card, so it reads as cut out */}
               <div className="flex h-24 w-full items-end justify-center md:h-32">
                 <Image
-                  src={`https://cdn.store-assets.com/s/1022051/f/${img}.png`}
+                  src={`https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/f/${img}.png`}
                   alt=""
                   width={360}
                   height={360}

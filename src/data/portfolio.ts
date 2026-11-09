@@ -1,5 +1,5 @@
-// Projects from the old supreme.com.my portfolio pages. Photos are still served from EasyStore's image server.
-const f = (id: string) => `https://cdn.store-assets.com/s/1022051/f/${id}`;
+// Projects from the old supreme.com.my portfolio pages. Photos are served from our Cloudflare R2 bucket (supreme-products).
+const f = (id: string) => `https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/f/${id}`;
 
 export type Project = {
   slug: string;

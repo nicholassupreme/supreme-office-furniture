@@ -17,6 +17,8 @@ import { IconArrow, IconPin, IconWhatsApp } from "@/components/icons";
 import { site, waLink } from "@/lib/site";
 import { projects } from "@/data/portfolio";
 import { ProjectTile } from "@/components/project-card";
+import { ClientLogos } from "@/components/client-logos";
+import { clients } from "@/data/clients";
 
 export default function Home() {
   const products = allProducts();
@@ -257,6 +259,19 @@ export default function Home() {
         >
           View portfolio <IconArrow />
         </Link>
+      </section>
+
+      {/* Clients */}
+      <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
+        <SectionHead
+          title="Trusted by Malaysia's institutions"
+          sub={`${clients.length}+ government agencies, banks, universities and companies we've furnished.`}
+          href="/portfolio"
+          cta="View portfolio"
+        />
+        <div className="mt-8">
+          <ClientLogos />
+        </div>
       </section>
 
       {/* Services */}

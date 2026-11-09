@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { clients, type Client } from "@/data/clients";
+import { LogoRow } from "./logo-row";
 
 const MAX_ROWS = 5; // rows stacked down the page
 const VISIBLE = 10; // logos visible across one row on desktop (6 on tablets, 4 on phones)
@@ -16,7 +17,7 @@ function logoWidth({ w, h }: Client["logo"]) {
 
 /**
  * Client logo wall: up to 5 rows, 10 logos across. Each row that holds more than fits
- * slides right to left on its own. Logos sit in grey and take their colour on hover.
+ * slides right to left on its own and can be dragged. Logos sit in grey and take their colour on hover.
  */
 export function ClientLogos() {
   const rowCount = Math.min(MAX_ROWS, Math.ceil(clients.length / VISIBLE));
@@ -30,27 +31,22 @@ export function ClientLogos() {
       {rows.map((row, r) => {
         const staticOnDesktop = row.length <= VISIBLE;
         return (
-          <div
+          <LogoRow
             key={r}
-            className={`logo-row @container overflow-hidden border-line/70 [mask-image:linear-gradient(90deg,transparent,#000_4%,#000_96%,transparent)] motion-reduce:overflow-x-auto ${
+            speed={r % 2 ? 28 : 34}
+            className={`@container overflow-hidden border-line/70 [mask-image:linear-gradient(90deg,transparent,#000_4%,#000_96%,transparent)] ${
               r > 0 ? "border-t" : ""
             }`}
+            trackClassName={staticOnDesktop ? "lg:w-full" : ""}
           >
-            <ul
-              className={`logo-track flex w-max motion-reduce:animate-none ${
-                staticOnDesktop ? "lg:w-full lg:animate-none" : ""
-              } ${r % 2 ? "[animation-delay:-9s]" : ""}`}
-              style={{ animationDuration: `${row.length * 3.2}s` }}
-            >
-              {row.map((c) => (
-                <Tile key={c.name} c={c} />
-              ))}
-              {/* Second copy makes the loop seamless */}
-              {row.map((c) => (
-                <Tile key={`${c.name}-copy`} c={c} copy hideDesktop={staticOnDesktop} />
-              ))}
-            </ul>
-          </div>
+            {row.map((c) => (
+              <Tile key={c.name} c={c} />
+            ))}
+            {/* Second copy makes the loop seamless */}
+            {row.map((c) => (
+              <Tile key={`${c.name}-copy`} c={c} copy hideDesktop={staticOnDesktop} />
+            ))}
+          </LogoRow>
         );
       })}
     </div>
@@ -65,7 +61,7 @@ function Tile({ c, copy, hideDesktop }: { c: Client; copy?: boolean; hideDesktop
       title={c.name}
       className={`group flex h-[72px] w-[25cqw] shrink-0 items-center justify-center md:h-20 md:w-[calc(100cqw/6)] lg:w-[10cqw] ${
         hideDesktop ? "lg:hidden" : ""
-      } motion-reduce:[&[aria-hidden]]:hidden`}
+      }`}
     >
       <Image
         src={c.logo.src}
@@ -74,6 +70,7 @@ function Tile({ c, copy, hideDesktop }: { c: Client; copy?: boolean; hideDesktop
         height={c.logo.h}
         unoptimized={remote || c.logo.src.endsWith(".svg")}
         sizes="120px"
+        draggable={false}
         style={{ width: `calc(${logoWidth(c.logo)}px * var(--logo-scale))` }}
         className={`h-auto max-w-[86%] object-contain transition duration-300 [--logo-scale:0.78] md:[--logo-scale:0.9] lg:[--logo-scale:1] ${
           c.logo.onDark

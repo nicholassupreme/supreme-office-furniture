@@ -117,16 +117,3 @@ body { overflow-x: clip; }
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
 }
-
-/* Client logo wall: rows drift right to left, pause on hover */
-@layer components {
-  .logo-track {
-    animation: logo-drift 40s linear infinite;
-  }
-  .logo-row:hover .logo-track {
-    animation-play-state: paused;
-  }
-}
-@keyframes logo-drift {
-  to { transform: translateX(-50%); }
-}

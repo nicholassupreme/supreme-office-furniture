@@ -101,8 +101,13 @@ def desc_images(h):
             out.append(src)
     return out
 
+# Duplicate listings on the old store; their URLs redirect to the kept copy (see next.config.ts)
+REMOVED = {"steel-mobile-book-trolley-for-library-school"}
+
 products, stats = [], collections.Counter()
 for i, p in enumerate(raw):
+    if p["slug"].strip("/") in REMOVED:
+        continue
     if (p["name"] or "").startswith("Standard Table (MIX7)"):
         member[i] = member.get(i, []) + ["standard-office-desk"]
     subs = sorted(set(member.get(i, [])), key=lambda s: sub_order.get(s, (99, 99)))

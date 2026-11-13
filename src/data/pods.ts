@@ -28,9 +28,11 @@ export type PodContent = {
   suitableFor: string[];
   specs: { title: string; rows: [string, string][] }[];
   gallery: string[];
-  swatches: Record<string, { hex: string; image?: string }>;
+  swatches: Record<string, { hex: string; image?: string; tile?: string }>;
   swatchNote?: string;
   colourOpt: string;
+  chart?: { name: string; image: string }[]; // fabric colour chart
+  details?: { title: string; image: string }[]; // close-up detail photos
   features: PodFeature[];
   install: string;
   leadTime: string;
@@ -133,10 +135,32 @@ const HEX: Record<string, string> = {
   "Warm Sand": "#e2d2b4", "Pine Green": "#4d7c4a", "Shadow Grey": "#3c3d40", "Dusty Turquoise": "#4f9fa6",
 };
 
+/* Fabric colour chart (six exterior fabrics). Uno has its own four colours and no fabric tiles. */
+const TILE: Record<string, string> = {
+  "Orange Squash": A("tile-orange-squash"), "Mustard Yellow": A("tile-mustard-yellow"), "Green Moss": A("tile-green-moss"),
+  "Ocean Blue": A("tile-ocean-blue"), "Grey Ash": A("tile-grey-ash"), "Charcoal Grey": A("tile-charcoal-grey"),
+};
+/* Close-up photos of hardware shared by the Plus, Flex, Duo, Meet and Hub pods. */
+const DETAILS = [
+  { title: "Slatted wood-look acoustic wall", image: A("detail-slat-wall") },
+  { title: "Motion sensor and LED lighting", image: A("detail-sensor-lights") },
+  { title: "Silent ventilation fans", image: A("detail-airflow") },
+  { title: "Dimmer and fan controls", image: A("detail-controls") },
+  { title: "Power inlet", image: A("detail-power-inlet") },
+  { title: "Door handle", image: A("detail-handle") },
+  { title: "Ventilation grille", image: A("detail-vent-grille") },
+  { title: "Door hinge", image: A("detail-hinge") },
+];
+/* Extra on-site photos appended to a model's gallery. */
+const EXTRA_GALLERY: Partial<Record<ModelId, string[]>> = {
+  plus: [A("install-plus-1"), A("install-plus-2")],
+  duo: [A("install-duo-1"), A("install-duo-2"), A("install-duo-3")],
+};
+
 const LEAD = "3–4 working weeks after order and payment confirmation";
 const SIX_BODY = "Choose from six exterior fabric colours, from Charcoal Grey and Grey Ash to Ocean Blue, Green Moss, Mustard Yellow and Orange Squash. The interior is finished in Shimo Ash.";
 
-type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "layoutCode" | "layoutLabel" | "modelId">;
+type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "chart" | "details" | "layoutCode" | "layoutLabel" | "modelId">;
 
 const models: Record<ModelId, Model> = {
   /* ───────────── Ace Uno ───────────── */
@@ -383,8 +407,12 @@ export function getPodContent(slug: string): PodContent | undefined {
     layoutLabel: multi ? l.label : "",
     tagline: multi && l.blurb ? l.blurb : m.tagline,
     intro: multi && l.blurb ? [l.blurb, ...m.intro] : m.intro,
-    gallery: l.gallery,
-    swatches: Object.fromEntries(l.colours.map((c) => [c, { hex: HEX[c] ?? "#999", image: l.colourImages[c] }])),
+    gallery: [...l.gallery, ...(EXTRA_GALLERY[l.model] ?? [])],
+    swatches: Object.fromEntries(l.colours.map((c) => [c, { hex: HEX[c] ?? "#999", image: l.colourImages[c], tile: TILE[c] }])),
+    chart: l.model === "uno" ? undefined : Object.entries(TILE).map(([name, image]) => ({ name, image })),
+    details: l.model === "uno" ? [
+      { title: "Power and controls", image: A("uno-controls") },
+    ] : DETAILS,
     swatchNote: l.swatchNote || undefined,
     colourOpt: l.colourOpt,
   };

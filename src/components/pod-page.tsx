@@ -167,7 +167,7 @@ export function PodPage({
                             aria-pressed={on}
                             className={`h-11 w-11 rounded-full p-[3px] ring-2 transition ${on ? "ring-ink" : "ring-transparent hover:ring-line"}`}
                           >
-                            <span className="block h-full w-full rounded-full ring-1 ring-black/10" style={{ background: c.swatches[val].hex }} />
+                            <span className="block h-full w-full rounded-full ring-1 ring-black/10" style={c.swatches[val].tile ? { backgroundImage: `url(${c.swatches[val].tile})`, backgroundSize: "cover" } : { background: c.swatches[val].hex }} />
                           </button>
                         );
                       }
@@ -329,6 +329,52 @@ export function PodPage({
           )}
         </div>
       </section>
+
+      {/* ── Fabric colour chart + detail photos ────────────────── */}
+      {c.chart && (
+        <section className="mt-6 rounded-3xl bg-surface p-6 ring-1 ring-line/70 md:p-10">
+          <h2 className="text-2xl font-semibold tracking-[-0.02em] md:text-[30px]">Exterior fabric colour chart</h2>
+          <p className="mt-2 text-[15px] text-ink-2">Six acoustic fabrics. Tap a colour to see the pod in it.</p>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6">
+            {c.chart.map((t) => {
+              const can = colourOpt && c.swatches[t.name];
+              const on = colourOpt && sel[colourOpt] === t.name;
+              return (
+                <button
+                  key={t.name}
+                  type="button"
+                  disabled={!can}
+                  onClick={() => colourOpt && pick(colourOpt, t.name)}
+                  className={`group text-left ${can ? "" : "cursor-default"}`}
+                >
+                  <span className={`block aspect-[4/3] overflow-hidden rounded-2xl ring-1 transition ${on ? "ring-2 ring-brand" : "ring-line group-hover:ring-ink/30"}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={t.image} alt={t.name} loading="lazy" className="h-full w-full object-cover" />
+                  </span>
+                  <span className="mt-2 block text-sm font-medium">{t.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {c.details && c.details.length > 1 && (
+        <section className="mt-6 rounded-3xl bg-surface p-6 ring-1 ring-line/70 md:p-10">
+          <h2 className="text-2xl font-semibold tracking-[-0.02em] md:text-[30px]">Details</h2>
+          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {c.details.map((d) => (
+              <figure key={d.title}>
+                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-white ring-1 ring-line/70">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={d.image} alt={d.title} loading="lazy" className="h-full w-full object-cover" />
+                </div>
+                <figcaption className="mt-2 text-sm text-ink-2">{d.title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── Feature blocks ─────────────────────────────────────── */}
       <section className="mt-6 space-y-5">

@@ -83,7 +83,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
           }`}
         >
           <div className="flex items-center">
-            <button className="-ml-2 rounded-full p-2 xl:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
+            <button className="-ml-2.5 rounded-full p-3 xl:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
               <IconMenu />
             </button>
             <SearchBox />
@@ -96,7 +96,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
           <div className="flex items-center justify-end">
             <Link
               href="/quote"
-              className="relative flex items-center gap-2 rounded-full p-2 text-sm font-semibold transition md:bg-accent md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-accent-ink"
+              className="relative -mr-1 flex items-center gap-2 rounded-full p-3 text-sm font-semibold transition md:bg-accent md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-accent-ink"
               aria-label={`Quote basket, ${count} items`}
             >
               <IconBag className="h-[18px] w-[18px]" />
@@ -274,7 +274,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
           <div className="absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col bg-surface">
             <div className="flex h-16 items-center justify-between border-b border-line px-4">
               <Wordmark />
-              <button className="rounded-full p-2" onClick={() => setMobile(false)} aria-label="Close menu">
+              <button className="rounded-full p-3" onClick={() => setMobile(false)} aria-label="Close menu">
                 <IconClose />
               </button>
             </div>

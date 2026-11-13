@@ -38,7 +38,7 @@ export function ProductCard({ p, priority = false }: { p: CardData; priority?: b
         {isMadeInMalaysia(p.slug) && <MadeInMalaysia className="absolute bottom-2.5 right-2.5 h-11 w-11" />}
       </div>
       <div className="mt-3 px-0.5">
-        <p className="line-clamp-2 text-[14.5px] font-medium leading-snug text-ink group-hover:text-brand">
+        <p className="line-clamp-3 text-[14.5px] font-medium leading-snug text-ink group-hover:text-brand">
           {cleanName(p.name)}
         </p>
         <p className="tabular mt-1.5 text-[14px] text-ink-2">

@@ -87,14 +87,14 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white">{title}</p>
-      <ul className="mt-4 space-y-2.5 text-sm">{children}</ul>
+      <ul className="mt-3 space-y-0.5 text-sm">{children}</ul>
     </div>
   );
 }
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={href} className="hover:text-white">
+      <Link href={href} className="inline-block py-1.5 hover:text-white md:py-0.5">
         {children}
       </Link>
     </li>

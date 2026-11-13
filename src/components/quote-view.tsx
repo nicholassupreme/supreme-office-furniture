@@ -88,7 +88,7 @@ export function QuoteView() {
                 )}
               </Link>
               <div className="min-w-0 flex-1">
-                <Link href={`/products/${i.slug}`} className="line-clamp-2 font-medium leading-snug hover:text-brand">
+                <Link href={`/products/${i.slug}`} className="line-clamp-3 font-medium leading-snug hover:text-brand">
                   {i.name}
                 </Link>
                 {Object.keys(i.opts).length > 0 && (
@@ -126,7 +126,8 @@ export function QuoteView() {
           </div>
           <p className="mt-2 text-xs leading-relaxed text-muted">
             Final pricing, delivery and installation are confirmed in your formal quotation.
-            {total >= 1500 && " This order qualifies for free delivery in Klang Valley."}
+            {total >= 1500 && !items.some((i) => i.slug.startsWith("ace-")) && " This order qualifies for free delivery in Klang Valley."}
+            {items.some((i) => i.slug.startsWith("ace-")) && " Ace pods: delivery is RM400 per trip within Klang Valley."}
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">

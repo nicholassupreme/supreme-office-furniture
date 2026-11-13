@@ -15,8 +15,8 @@ export default function ContactPage() {
         Talk to our sales team on WhatsApp, or visit the Klang showroom to see and try products in person.
       </p>
 
-      <div className="mt-10 grid gap-4 lg:grid-cols-[1.3fr_1fr]">
-        <div className="rounded-3xl border border-line bg-surface p-7 md:p-10">
+      <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-[1.3fr_1fr]">
+        <div className="min-w-0 rounded-3xl border border-line bg-surface p-6 md:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">Showroom</p>
           <p className="mt-4 flex items-start gap-2.5 text-lg">
             <IconPin className="mt-1 h-5 w-5 shrink-0 text-oak" />
@@ -36,19 +36,19 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-line bg-surface p-7 md:p-10">
+        <div className="min-w-0 rounded-3xl border border-line bg-surface p-6 md:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oak">Sales enquiries</p>
           <ul className="mt-4 divide-y divide-line">
             {site.contacts.map((c) => (
-              <li key={c.phone} className="flex items-center justify-between gap-4 py-4">
+              <li key={c.phone} className="flex flex-col items-start gap-3 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                 <div className="min-w-0">
                   <p className="font-semibold">{c.name}</p>
                   <p className="tabular text-sm text-muted">{c.display}</p>
-                  <a href={`mailto:${c.email}`} className="block truncate text-sm text-muted hover:text-brand">{c.email}</a>
+                  <a href={`mailto:${c.email}`} className="block break-all text-sm text-muted hover:text-brand">{c.email}</a>
                 </div>
                 <a
                   href={waLink("Hi, I'd like to ask about office furniture.", c.phone)}
-                  className="flex shrink-0 items-center gap-1.5 rounded-full bg-wa px-4 py-2.5 text-sm font-semibold text-white"
+                  className="flex shrink-0 items-center gap-1.5 rounded-full bg-wa px-5 py-3 text-sm font-semibold text-white"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

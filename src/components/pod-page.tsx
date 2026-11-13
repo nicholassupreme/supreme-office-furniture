@@ -99,6 +99,14 @@ export function PodPage({
               </button>
             ))}
           </div>
+          <div className="mx-auto mt-4 max-w-[680px] rounded-2xl bg-white px-4 py-3 ring-1 ring-line/60 sm:px-6">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/badges/pod-credentials.webp"
+              alt="Made in Malaysia, eco friendly, FSC, CARB P2, scratch, stain and cigarette burn resistant"
+              className="mx-auto h-auto w-full"
+            />
+          </div>
         </div>
 
         <div>

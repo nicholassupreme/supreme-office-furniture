@@ -120,7 +120,7 @@
   "slug": "ace-flex-fixed-height-table",
   "model": "flex",
   "label": "Fixed Height Table",
-  "price": 21800,
+  "price": 22800,
   "blurb": "The larger one-person pod with a fixed-height table.",
   "gallery": [
    "/ace/flex-fixed-grey-ash.webp",
@@ -157,10 +157,51 @@
   "name": "Ace Flex – Fixed Height Table"
  },
  {
+  "slug": "ace-flex-sofa-fixed-height-table",
+  "model": "flex",
+  "label": "2-Seater Sofa + Fixed Height Table",
+  "price": 23800,
+  "blurb": "The larger pod with a 2-seater sofa and a fixed-height table.",
+  "gallery": [
+   "/ace/flex-sofa-table-angle.webp",
+   "/ace/flex-sofa-table-front.webp",
+   "/ace/flex-orange-squash.webp",
+   "/ace/flex-mustard-yellow.webp",
+   "/ace/flex-ocean-blue.webp",
+   "/ace/flex-charcoal-grey.webp",
+   "/ace/flex-green-moss.webp",
+   "/ace/flex-front.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/flex-orange-squash.webp",
+   "Mustard Yellow": "/ace/flex-mustard-yellow.webp",
+   "Green Moss": "/ace/flex-green-moss.webp",
+   "Ocean Blue": "/ace/flex-ocean-blue.webp",
+   "Grey Ash": "/ace/flex-sofa-table-angle.webp",
+   "Charcoal Grey": "/ace/flex-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "code": "",
+  "swatchNote": "Photos show the sofa and fixed table in Grey Ash. Other colours are shown without the sofa and table.",
+  "name": "Ace Flex – 2-Seater Sofa + Fixed Height Table"
+ },
+ {
   "slug": "ace-flex-height-adjustable-table",
   "model": "flex",
   "label": "Height Adjustable Table",
-  "price": 24500,
+  "price": 25500,
   "blurb": "The larger one-person pod with a height-adjustable table, so you can sit or stand.",
   "gallery": [
    "/ace/flex-adjustable-table.webp",

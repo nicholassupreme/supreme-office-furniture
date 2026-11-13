@@ -29,7 +29,7 @@ export const ACE_ROWS: Row[] = [
   ["Acoustic performance", { uno: "Approx. 25 dB(A)", plus: "27 dB(A), TÜV SÜD verified", flex: "27 dB(A), TÜV SÜD verified", meet: "27 dB(A), TÜV SÜD verified", hub: "27 dB(A), TÜV SÜD verified" }],
   ["Weight (kg)", { plus: "335 (455 with crate)", flex: "523 (663 with crate)", meet: "636 (826 with crate)", hub: "700" }],
   ["Layout options", {
-    flex: "Empty pod, fixed table, or height-adjustable table",
+    flex: "Empty pod, fixed table, 2-seater sofa + fixed table, or height-adjustable table",
     meet: "Empty (BS1), sofa + fixed centre table (DK1), height-adjustable table (DK2), fixed table (DK3), sofa + whiteboard (DK4)",
     hub: "DK1+ (fixed centre table, 2 sofas), DK4+ (adds whiteboard), BS1+ (L-shape sofa, multimedia; TV not included)",
   }],

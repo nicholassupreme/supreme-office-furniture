@@ -3,6 +3,7 @@ const SEATS: [prefix: string, seats: number][] = [
   ["ace-uno", 1],
   ["ace-plus", 1],
   ["ace-flex-duo", 2],
+  ["ace-flex-sofa", 2],
   ["ace-flex", 1],
   ["ace-meet", 4],
   ["ace-hub", 6],

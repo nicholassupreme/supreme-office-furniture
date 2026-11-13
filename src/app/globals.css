@@ -117,3 +117,43 @@ body { overflow-x: clip; }
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
 }
+
+/* Homepage hero motion */
+@keyframes heroPush {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.07) translate3d(-1.2%, -0.8%, 0); }
+}
+@keyframes heroSweep {
+  0%, 55% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+  62% { opacity: 1; }
+  100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+@keyframes heroProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes heroCaret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.hero-photo {
+  animation: heroPush 16s ease-in-out infinite alternate;
+  transform-origin: 70% 50%;
+  will-change: transform;
+}
+.hero-sweep {
+  background: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  animation: heroSweep 9s ease-in-out infinite;
+  will-change: transform;
+}
+.hero-progress {
+  transform-origin: left;
+  animation: heroProgress linear forwards;
+}
+.hero-caret {
+  animation: heroCaret 1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo, .hero-sweep, .hero-progress, .hero-caret { animation: none; }
+  .hero-sweep { display: none; }
+}

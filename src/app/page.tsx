@@ -18,6 +18,7 @@ import { WorkstationPicker } from "@/components/workstation-picker";
 import { projects } from "@/data/portfolio";
 import { ProjectTile } from "@/components/project-card";
 import { ClientLogos } from "@/components/client-logos";
+import { HeroHeadline } from "@/components/hero-headline";
 
 /** Homepage workstation picker: one chip per seater range, hero photo from the same G-leg fabric-partition line so the images match. */
 const WORKSTATION_GROUPS = [
@@ -39,14 +40,15 @@ export default function Home() {
       <section className="mx-auto max-w-[1320px] px-4 pt-5 md:px-6 md:pt-8">
         <div className="relative overflow-hidden rounded-[28px] bg-white ring-1 ring-line/70 md:rounded-[36px]">
           {/* Photo: fills the right side on desktop, sits on top on mobile */}
-          <div className="relative aspect-[4/3] md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[62%]">
+          <div className="relative aspect-[4/3] overflow-hidden md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[62%]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMG}
               alt="Office with Supreme workstations and ergonomic chairs"
               fetchPriority="high"
-              className="h-full w-full object-cover object-[70%_50%]"
+              className="hero-photo h-full w-full object-cover object-[70%_50%]"
             />
+            <div aria-hidden className="hero-sweep pointer-events-none absolute inset-0" />
             <div className="absolute inset-0 bg-gradient-to-t from-white via-white/0 to-white/0 md:bg-gradient-to-r md:from-white md:via-white/10 md:to-transparent" />
           </div>
 
@@ -58,13 +60,7 @@ export default function Home() {
               </span>
               Since {site.founded} · Klang, Selangor
             </p>
-            <h1 className="mt-5 text-[38px] font-semibold leading-[1.02] tracking-[-0.035em] text-ink sm:text-[52px] xl:text-[64px]">
-              Office furniture,
-              <br />
-              made to fit how
-              <br />
-              <span className="text-brand">you work.</span>
-            </h1>
+            <HeroHeadline />
             <p className="mt-6 max-w-md text-[16.5px] leading-relaxed text-ink-2">
               Chairs, desks, workstations, storage and safes for public listed
               companies, SMEs, government, schools, healthcare and

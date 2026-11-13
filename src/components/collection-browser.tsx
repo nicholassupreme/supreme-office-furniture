@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ProductCard, type CardData } from "./product-card";
+import { aceSeats } from "@/lib/ace-order";
 
 type Item = CardData & { subs: string[]; dept: string };
 type Facet = { slug: string; name: string };
@@ -25,14 +26,16 @@ export function CollectionBrowser({
   items,
   facets,
   facetKey,
+  aceFirst = false,
 }: {
   items: Item[];
   facets: Facet[]; // sub-categories (or departments on /collections/all)
   facetKey: "subs" | "dept";
+  aceFirst?: boolean; // Ace pods first, by seater count
 }) {
   const [facet, setFacet] = useState<string>("all");
   const [price, setPrice] = useState("all");
-  const [sort, setSort] = useState("price-asc");
+  const [sort, setSort] = useState(aceFirst ? "featured" : "price-asc");
   const [shown, setShown] = useState(PAGE);
 
   const facetCounts = useMemo(() => {
@@ -51,11 +54,17 @@ export function CollectionBrowser({
         (facet === "all" || (facetKey === "subs" ? it.subs.includes(facet) : it.dept === facet)) &&
         (price === "all" || (it.price != null && pt(it.price))),
     );
+    if (sort === "featured" && aceFirst) {
+      out.sort((a, b) => {
+        const sa = aceSeats(a.slug) ?? 99, sb = aceSeats(b.slug) ?? 99;
+        return sa - sb || (a.price ?? 1e9) - (b.price ?? 1e9);
+      });
+    }
     if (sort === "price-asc") out.sort((a, b) => (a.price ?? 1e9) - (b.price ?? 1e9));
     if (sort === "price-desc") out.sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
     if (sort === "name") out.sort((a, b) => a.name.localeCompare(b.name));
     return out;
-  }, [items, facet, facetKey, price, sort]);
+  }, [items, facet, facetKey, price, sort, aceFirst]);
 
   const visibleFacets = facets.filter((f) => facetCounts[f.slug]);
   const reset = (fn: () => void) => {

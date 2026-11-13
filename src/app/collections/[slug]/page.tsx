@@ -99,7 +99,7 @@ export default async function CollectionPage({ params }: PageProps<"/collections
       )}
 
       <div className="mt-8">
-        <CollectionBrowser items={items} facets={facets} facetKey={facetKey} />
+        <CollectionBrowser items={items} facets={facets} facetKey={facetKey} aceFirst={c.kind !== "all" && items.some((i) => i.slug.startsWith("ace-"))} />
       </div>
     </div>
   );

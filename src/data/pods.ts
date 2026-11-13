@@ -11,7 +11,7 @@ import layoutsJson from "./ace-layouts.json";
 
 export type PodFeature = { title: string; body: string; image: string; fit?: "contain" | "cover" };
 export type Layout = {
-  slug: string; model: ModelId; code: string; label: string; name: string; blurb: string; price: number;
+  slug: string; model: ModelId; seatLabel: string; code: string; label: string; name: string; blurb: string; price: number;
   gallery: string[]; colourImages: Record<string, string>; swatchNote: string;
   colours: string[]; interior: string[]; colourOpt: string; interiorOpt: string;
 };
@@ -21,6 +21,7 @@ export type PodContent = {
   title: string;
   layoutCode: string;
   layoutLabel: string;
+  seatLabel: string; // e.g. "1 Seater", "Up to 4 Seaters"
   tagline: string;
   seats: string;
   dims: { w: number; d: number; h: number }; // mm, external
@@ -169,7 +170,7 @@ const EXTRA_GALLERY: Partial<Record<ModelId, string[]>> = {
 const LEAD = "3–4 working weeks after order and payment confirmation";
 const SIX_BODY = "Choose from six standard exterior fabric colours: Orange Squash, Mustard Yellow, Green Moss, Ocean Blue, Grey Ash and Charcoal Grey. The interior is finished in Shimo Ash melamine-faced chipboard / MDF.";
 
-type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "interiorTiles" | "chart" | "details" | "layoutCode" | "layoutLabel" | "modelId">;
+type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "seatLabel" | "interiorTiles" | "chart" | "details" | "layoutCode" | "layoutLabel" | "modelId">;
 
 const models: Record<ModelId, Model> = {
   /* ───────────── Ace Uno ───────────── */
@@ -415,6 +416,7 @@ export function getPodContent(slug: string): PodContent | undefined {
     modelId: l.model,
     drawing: m.drawing ?? DRAWINGS[l.model],
     interiorTiles: { "Shimo Ash": A("tile-shimo-ash"), "Soft Sand": A("tile-uno-soft-sand") },
+    seatLabel: l.seatLabel,
     layoutCode: l.code,
     layoutLabel: multi ? l.label : "",
     tagline: multi && l.blurb ? l.blurb : m.tagline,

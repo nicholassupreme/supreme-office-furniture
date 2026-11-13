@@ -33,7 +33,8 @@
   "code": "",
   "blurb": "",
   "swatchNote": "",
-  "name": "Ace Uno Acoustic Office Pod"
+  "name": "Ace Uno Acoustic Office Pod (1 Seater)",
+  "seatLabel": "1 Seater"
  },
  {
   "slug": "ace-plus-office-pod-phone-booth-silent-acoustic-pod-for-1-seater-kindly-contact-us-before-ordering-",
@@ -74,7 +75,8 @@
   "code": "",
   "blurb": "",
   "swatchNote": "",
-  "name": "Ace Plus Acoustic Office Pod"
+  "name": "Ace Plus Acoustic Office Pod (1 Seater)",
+  "seatLabel": "1 Seater"
  },
  {
   "slug": "ace-flex-spacious-single-seater-kindly-contact-us-before-ordering",
@@ -114,7 +116,8 @@
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
   "swatchNote": "",
-  "name": "Ace Flex – Empty Pod"
+  "name": "Ace Flex – Empty Pod (1 Seater)",
+  "seatLabel": "1 Seater"
  },
  {
   "slug": "ace-flex-fixed-height-table",
@@ -154,7 +157,8 @@
   "interiorOpt": "Interior MFC Colour",
   "code": "",
   "swatchNote": "Photo shows the fixed table in Grey Ash. Other colours are shown without the table.",
-  "name": "Ace Flex – Fixed Height Table"
+  "name": "Ace Flex – Fixed Height Table (1 Seater)",
+  "seatLabel": "1 Seater"
  },
  {
   "slug": "ace-flex-sofa-fixed-height-table",
@@ -195,7 +199,8 @@
   "interiorOpt": "Interior MFC Colour",
   "code": "",
   "swatchNote": "Photos show the sofa and fixed table in Grey Ash. Other colours are shown without the sofa and table.",
-  "name": "Ace Flex – 2-Seater Sofa + Fixed Height Table"
+  "name": "Ace Flex – 2-Seater Sofa + Fixed Height Table (Up to 2 Seaters)",
+  "seatLabel": "Up to 2 Seaters"
  },
  {
   "slug": "ace-flex-height-adjustable-table",
@@ -230,7 +235,8 @@
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
   "code": "",
-  "name": "Ace Flex – Height Adjustable Table"
+  "name": "Ace Flex – Height Adjustable Table (1 Seater)",
+  "seatLabel": "1 Seater"
  },
  {
   "slug": "ace-flex-duo-up-to-2-seaters-discussion-booth-",
@@ -271,7 +277,8 @@
   "code": "",
   "blurb": "",
   "swatchNote": "",
-  "name": "Ace Flex Duo Acoustic Office Pod"
+  "name": "Ace Flex Duo Acoustic Office Pod (Up to 2 Seaters)",
+  "seatLabel": "Up to 2 Seaters"
  },
  {
   "slug": "ace-meet-office-pod-office-phone-booth-for-2-4-seater-kindly-contact-us-before-order-",
@@ -299,7 +306,8 @@
   ],
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
-  "name": "Ace Meet BS1 – Empty Pod"
+  "name": "Ace Meet BS1 – Empty Pod (Up to 4 Seaters)",
+  "seatLabel": "Up to 4 Seaters"
  },
  {
   "slug": "ace-meet-dk1-sofa-fixed-centre-table",
@@ -339,7 +347,8 @@
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
   "swatchNote": "",
-  "name": "Ace Meet DK1 – Sofa Settee + Fixed Centre Table"
+  "name": "Ace Meet DK1 – Sofa Settee + Fixed Centre Table (Up to 4 Seaters)",
+  "seatLabel": "Up to 4 Seaters"
  },
  {
   "slug": "ace-meet-dk2-height-adjustable-table",
@@ -366,7 +375,8 @@
   ],
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
-  "name": "Ace Meet DK2 – Height Adjustable Table"
+  "name": "Ace Meet DK2 – Height Adjustable Table (Up to 4 Seaters)",
+  "seatLabel": "Up to 4 Seaters"
  },
  {
   "slug": "ace-meet-dk3-fixed-height-table",
@@ -393,7 +403,8 @@
   ],
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
-  "name": "Ace Meet DK3 – Fixed Height Table"
+  "name": "Ace Meet DK3 – Fixed Height Table (Up to 4 Seaters)",
+  "seatLabel": "Up to 4 Seaters"
  },
  {
   "slug": "ace-meet-dk4-sofa-whiteboard-fixed-centre-table",
@@ -420,7 +431,8 @@
   ],
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
-  "name": "Ace Meet DK4 – Sofa Settee + Whiteboard + Fixed Centre Table"
+  "name": "Ace Meet DK4 – Sofa Settee + Whiteboard + Fixed Centre Table (Up to 4 Seaters)",
+  "seatLabel": "Up to 4 Seaters"
  },
  {
   "slug": "ace-hub-office-phone-booth-pods-silent-acoustic-phone-booth-for-up-to-6-seater-kindly-contact-us-before-order-",
@@ -450,7 +462,8 @@
   ],
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
-  "name": "Ace Hub DK1+ – Fixed Centre Table + 2 Sofas"
+  "name": "Ace Hub DK1+ – Fixed Centre Table + 2 Sofas (Up to 6 Seaters)",
+  "seatLabel": "Up to 6 Seaters"
  },
  {
   "slug": "ace-hub-dk4-sofa-whiteboard",
@@ -481,7 +494,8 @@
   ],
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
-  "name": "Ace Hub DK4+ – Fixed Centre Table + 2 Sofas + Whiteboard"
+  "name": "Ace Hub DK4+ – Fixed Centre Table + 2 Sofas + Whiteboard (Up to 6 Seaters)",
+  "seatLabel": "Up to 6 Seaters"
  },
  {
   "slug": "ace-hub-bs1-l-shape-sofa-multimedia",
@@ -520,6 +534,7 @@
   "colourOpt": "Exterior Fabric Colour",
   "interiorOpt": "Interior MFC Colour",
   "swatchNote": "",
-  "name": "Ace Hub BS1+ – L-Shape Sofa + Multimedia Facility"
+  "name": "Ace Hub BS1+ – L-Shape Sofa + Multimedia Facility (Up to 6 Seaters)",
+  "seatLabel": "Up to 6 Seaters"
  }
 ]

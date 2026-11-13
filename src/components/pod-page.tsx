@@ -72,7 +72,7 @@ export function PodPage({
   };
 
   const go = (d: number) => setActive((a) => (a + d + gallery.length) % gallery.length);
-  const name = c.layoutLabel ? `${c.title.replace(/ Acoustic.*$/, "")} ${c.layoutCode ? c.layoutCode + " – " : "– "}${c.layoutLabel}` : c.title;
+  const name = `${c.layoutLabel ? `${c.title.replace(/ Acoustic.*$/, "")} ${c.layoutCode ? c.layoutCode + " – " : "– "}${c.layoutLabel}` : c.title} (${c.seatLabel})`;
 
   return (
     <div>
@@ -111,7 +111,7 @@ export function PodPage({
 
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">Ace Office Pods · {c.seats}</p>
-          <h1 className="mt-2 text-[30px] font-semibold leading-[1.1] tracking-[-0.025em] md:text-[40px]">{c.title}</h1>
+          <h1 className="mt-2 text-[30px] font-semibold leading-[1.1] tracking-[-0.025em] md:text-[40px]">{c.title} <span className="whitespace-nowrap">({c.seatLabel})</span></h1>
           {c.layoutLabel && (
             <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-brand-soft px-3 py-1.5 text-[13px] font-semibold text-brand">
               {c.layoutCode && <span className="rounded-full bg-brand px-2 py-0.5 text-[11px] text-white">{c.layoutCode}</span>}

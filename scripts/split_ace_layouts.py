@@ -25,7 +25,7 @@ def summary(l):
 
 products = []
 for l in layouts:
-    l["name"] = name(l)
+    l["name"] = f"{name(l)} ({l['seatLabel']})"
     co, io = l["colourOpt"], l["interiorOpt"]
     products.append({
         "slug": l["slug"], "name": l["name"], "dept": DEPT, "subs": [],

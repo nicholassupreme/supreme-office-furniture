@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { rm } from "@/lib/site";
-import { MadeInMalaysia } from "./made-in-malaysia";
+import { MadeInMalaysia, isMadeInMalaysia } from "./made-in-malaysia";
 
 export type CardData = {
   slug: string;
@@ -35,7 +35,7 @@ export function ProductCard({ p, priority = false }: { p: CardData; priority?: b
         ) : (
           <div className="grid h-full place-items-center text-sm text-muted">No image</div>
         )}
-        {p.slug.startsWith("ace-") && <MadeInMalaysia className="absolute bottom-2.5 right-2.5 h-11 w-11" />}
+        {isMadeInMalaysia(p.slug) && <MadeInMalaysia className="absolute bottom-2.5 right-2.5 h-11 w-11" />}
       </div>
       <div className="mt-3 px-0.5">
         <p className="line-clamp-2 text-[14.5px] font-medium leading-snug text-ink group-hover:text-brand">

@@ -5,6 +5,7 @@ import { useQuote } from "./quote-store";
 import { IconWhatsApp } from "./icons";
 import { rm, waLink } from "@/lib/site";
 import { cleanName } from "./product-card";
+import { MadeInMalaysia, isMadeInMalaysia } from "./made-in-malaysia";
 
 type Variant = { opts: Record<string, string>; price: number | null; image?: string | null };
 
@@ -70,6 +71,7 @@ export function ProductBuy({
             // eslint-disable-next-line @next/next/no-img-element
             <img src={gallery[active]} alt={name} className="absolute inset-0 m-auto h-[82%] w-[82%] object-contain" fetchPriority="high" />
           )}
+          {isMadeInMalaysia(slug) && <MadeInMalaysia className="absolute bottom-12 right-4 h-14 w-14" />}
           {gallery.length > 1 && (
             <>
               <button

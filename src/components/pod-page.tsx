@@ -286,7 +286,12 @@ export function PodPage({
 
           {tab === "dimensions" && (
             <div className="grid items-center gap-8 md:grid-cols-[1fr_1fr]">
-              <PodDiagram dims={c.dims} />
+              {c.drawing ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={c.drawing} alt={`${c.title} dimensions`} className="mx-auto w-full max-w-[420px] rounded-2xl bg-white" />
+              ) : (
+                <PodDiagram dims={c.dims} />
+              )}
               <div>
                 <ul className="space-y-3 text-sm">
                   {(
@@ -303,7 +308,7 @@ export function PodPage({
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 text-xs text-muted">External dimensions. Illustration only, not to scale.</p>
+                <p className="mt-5 text-xs text-muted">{c.drawing ? "External dimensions." : "External dimensions. Illustration only, not to scale."}</p>
               </div>
             </div>
           )}

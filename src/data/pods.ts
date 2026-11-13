@@ -31,6 +31,7 @@ export type PodContent = {
   swatches: Record<string, { hex: string; image?: string; tile?: string }>;
   swatchNote?: string;
   colourOpt: string;
+  drawing?: string; // supplier dimension drawing, replaces the generated diagram
   chart?: { name: string; image: string }[]; // fabric colour chart
   details?: { title: string; image: string }[]; // close-up detail photos
   features: PodFeature[];
@@ -169,6 +170,7 @@ const models: Record<ModelId, Model> = {
     tagline: "A compact, modern one-person pod for calls, video meetings and focused work.",
     seats: "1 person",
     dims: { w: 1418, d: 1018, h: 2185 },
+    drawing: A("uno-dimension-drawing"),
     intro: [
       "Ace Uno is a modern single-person acoustic office pod that creates a comfortable private space within an open-plan office.",
       "It suits phone calls, video meetings, focused work, online interviews and private conversations, without any permanent renovation.",

@@ -140,7 +140,10 @@ const HEX: Record<string, string> = {
 const TILE: Record<string, string> = {
   "Orange Squash": A("tile-orange-squash"), "Mustard Yellow": A("tile-mustard-yellow"), "Green Moss": A("tile-green-moss"),
   "Ocean Blue": A("tile-ocean-blue"), "Grey Ash": A("tile-grey-ash"), "Charcoal Grey": A("tile-charcoal-grey"),
+  "Pine Green": A("tile-uno-pine-green"), "Shadow Grey": A("tile-uno-shadow-grey"),
+  "Dusty Turquoise": A("tile-uno-dusty-turquoise"), "Warm Sand": A("tile-uno-warm-sand"),
 };
+const SIX = ["Orange Squash", "Mustard Yellow", "Green Moss", "Ocean Blue", "Grey Ash", "Charcoal Grey"];
 /* Close-up photos of hardware shared by the Plus, Flex, Duo, Meet and Hub pods. */
 const DETAILS = [
   { title: "Slatted wood-look acoustic wall", image: A("detail-slat-wall") },
@@ -215,7 +218,7 @@ const models: Record<ModelId, Model> = {
       { title: "A private space, no renovation", body: "Ace Uno gives one person an enclosed space in an open-plan office for calls, video meetings, interviews and focused work. It is freestanding and plug-and-play, so there are no permanent works.", image: A("uno-warm-sand"), fit: "contain" },
       { title: "Fresh air and good light", body: "Two quiet airflow fans move 108 CFM each, and a round 4000K LED ceiling light keeps the space bright for video calls.", image: A("uno-interior"), fit: "cover" },
       { title: "Power at your fingertips", body: "A universal socket with USB Type-A and USB Type-C ports sits beside an ergonomic natural oak worktop, so laptops and phones stay charged.", image: A("uno-controls"), fit: "cover" },
-      { title: "Four colours", body: "Choose Pine Green, Shadow Grey, Dusty Turquoise or Warm Sand for the exterior fabric. The interior is Soft Sand.", image: A("uno-pine-green"), fit: "contain" },
+      { title: "Four colours", body: "Choose Pine Green, Shadow Grey, Dusty Turquoise or Warm Sand for the exterior PET fabric. The interior is Soft Sand, with a Natural Oak table top.", image: A("uno-colour-chart"), fit: "contain" },
     ],
     install: "RM450 per unit, Klang Valley.",
     leadTime: LEAD,
@@ -411,7 +414,7 @@ export function getPodContent(slug: string): PodContent | undefined {
     intro: multi && l.blurb ? [l.blurb, ...m.intro] : m.intro,
     gallery: [...l.gallery, ...(EXTRA_GALLERY[l.model] ?? [])],
     swatches: Object.fromEntries(l.colours.map((c) => [c, { hex: HEX[c] ?? "#999", image: l.colourImages[c], tile: TILE[c] }])),
-    chart: l.model === "uno" ? undefined : Object.entries(TILE).map(([name, image]) => ({ name, image })),
+    chart: l.model === "uno" ? undefined : SIX.map((name) => ({ name, image: TILE[name] })),
     details: l.model === "uno" ? [
       { title: "Power and controls", image: A("uno-controls") },
     ] : DETAILS,

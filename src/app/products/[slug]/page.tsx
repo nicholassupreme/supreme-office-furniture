@@ -4,6 +4,10 @@ import type { Metadata } from "next";
 import { getProduct, menuBooths, menuStars, related, toCard } from "@/lib/catalog";
 import { deptName, subName } from "@/lib/taxonomy";
 import { ProductBuy } from "@/components/product-buy";
+import { PodPage } from "@/components/pod-page";
+import { getPodContent, layoutsOf, defaultLayout, type ModelId } from "@/data/pods";
+import { AceCompare } from "@/components/ace-compare";
+import { ACE_COLUMNS } from "@/data/ace-compare";
 import { ProductCard, cleanName } from "@/components/product-card";
 import { site } from "@/lib/site";
 
@@ -35,8 +39,19 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
   const p = getProduct(slug);
   if (!p) notFound();
 
+  const pod = getPodContent(slug);
   const sub = p.subs[0];
-  const more = related(p).map(toCard);
+  const more = pod ? [] : related(p).map(toCard);
+  const siblings = pod
+    ? layoutsOf(pod.modelId).map((l) => ({ slug: l.slug, code: l.code, label: l.label, price: l.price, image: l.gallery[0] ?? null }))
+    : [];
+  const compareCols = pod
+    ? ACE_COLUMNS.map((c) => {
+        const ls = layoutsOf(c.id as ModelId);
+        const prices = ls.map((l) => l.price);
+        return { ...c, slug: defaultLayout(c.id as ModelId).slug, image: defaultLayout(c.id as ModelId).gallery[0] ?? null, price: Math.min(...prices), priceMax: Math.max(...prices) };
+      })
+    : [];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -77,18 +92,24 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
       </nav>
 
       <div className="mt-6">
-        <ProductBuy
-          slug={p.slug}
-          name={p.name}
-          images={p.images}
-          options={p.options}
-          variants={p.variants}
-          basePrice={p.price}
-          madeToOrder={p.made_to_order}
-        />
+        {pod ? (
+          <PodPage slug={p.slug} options={p.options} variants={p.variants} content={pod} siblings={siblings} />
+        ) : (
+          <ProductBuy
+            slug={p.slug}
+            name={p.name}
+            images={p.images}
+            options={p.options}
+            variants={p.variants}
+            basePrice={p.price}
+            madeToOrder={p.made_to_order}
+          />
+        )}
       </div>
 
-      {p.html && (
+      {pod && <AceCompare cols={compareCols} currentId={pod.modelId} />}
+
+      {!pod && p.html && (
         <section className="mt-16 grid gap-6 border-t border-line pt-12 lg:grid-cols-[1fr_2fr] lg:gap-14">
           <h2 className="text-2xl font-semibold tracking-tight">Details</h2>
           <div className="prose-desc max-w-3xl" dangerouslySetInnerHTML={{ __html: p.html }} />

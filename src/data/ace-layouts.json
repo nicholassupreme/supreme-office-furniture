@@ -1,0 +1,484 @@
+[
+ {
+  "slug": "ace-uno-modern-spacious-1-seater-acoustic-phone-pod-booth",
+  "model": "uno",
+  "label": "Standard",
+  "price": 9900,
+  "gallery": [
+   "/ace/uno-warm-sand.webp",
+   "/ace/uno-pine-green.webp",
+   "/ace/uno-shadow-grey.webp",
+   "/ace/uno-dusty-turquoise.webp",
+   "/ace/uno-warm-sand-front.webp",
+   "/ace/uno-interior.webp",
+   "/ace/uno-controls.webp"
+  ],
+  "colourImages": {
+   "Warm Sand": "/ace/uno-warm-sand.webp",
+   "Pine Green": "/ace/uno-pine-green.webp",
+   "Shadow Grey": "/ace/uno-shadow-grey.webp",
+   "Dusty Turquoise": "/ace/uno-dusty-turquoise.webp"
+  },
+  "colours": [
+   "Warm Sand",
+   "Pine Green",
+   "Shadow Grey",
+   "Dusty Turquoise"
+  ],
+  "interior": [
+   "Soft Sand"
+  ],
+  "colourOpt": "Exterior Fabric PET Colour",
+  "interiorOpt": "Interior Fabric PET Colour",
+  "code": "",
+  "blurb": "",
+  "swatchNote": "",
+  "name": "Ace Uno Acoustic Office Pod"
+ },
+ {
+  "slug": "ace-plus-office-pod-phone-booth-silent-acoustic-pod-for-1-seater-kindly-contact-us-before-ordering-",
+  "model": "plus",
+  "label": "Standard",
+  "price": 15900,
+  "gallery": [
+   "/ace/plus-orange-squash.webp",
+   "/ace/plus-grey-ash.webp",
+   "/ace/plus-mustard-yellow.webp",
+   "/ace/plus-ocean-blue.webp",
+   "/ace/plus-charcoal-grey.webp",
+   "/ace/plus-green-moss.webp",
+   "/ace/plus-front.webp",
+   "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/i/108886015.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/plus-orange-squash.webp",
+   "Mustard Yellow": "/ace/plus-mustard-yellow.webp",
+   "Green Moss": "/ace/plus-green-moss.webp",
+   "Ocean Blue": "/ace/plus-ocean-blue.webp",
+   "Grey Ash": "/ace/plus-grey-ash.webp",
+   "Charcoal Grey": "/ace/plus-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "code": "",
+  "blurb": "",
+  "swatchNote": "",
+  "name": "Ace Plus Acoustic Office Pod"
+ },
+ {
+  "slug": "ace-flex-spacious-single-seater-kindly-contact-us-before-ordering",
+  "model": "flex",
+  "code": "",
+  "label": "Empty Pod",
+  "price": 21800,
+  "blurb": "The larger one-person pod, supplied empty so you can fit it out your way.",
+  "gallery": [
+   "/ace/flex-orange-squash.webp",
+   "/ace/flex-grey-ash.webp",
+   "/ace/flex-mustard-yellow.webp",
+   "/ace/flex-ocean-blue.webp",
+   "/ace/flex-charcoal-grey.webp",
+   "/ace/flex-green-moss.webp",
+   "/ace/flex-front.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/flex-orange-squash.webp",
+   "Mustard Yellow": "/ace/flex-mustard-yellow.webp",
+   "Green Moss": "/ace/flex-green-moss.webp",
+   "Ocean Blue": "/ace/flex-ocean-blue.webp",
+   "Grey Ash": "/ace/flex-grey-ash.webp",
+   "Charcoal Grey": "/ace/flex-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "swatchNote": "",
+  "name": "Ace Flex – Empty Pod"
+ },
+ {
+  "slug": "ace-flex-fixed-height-table",
+  "model": "flex",
+  "label": "Fixed Height Table",
+  "price": 21800,
+  "blurb": "The larger one-person pod with a fixed-height table.",
+  "gallery": [
+   "/ace/flex-orange-squash.webp",
+   "/ace/flex-grey-ash.webp",
+   "/ace/flex-mustard-yellow.webp",
+   "/ace/flex-ocean-blue.webp",
+   "/ace/flex-charcoal-grey.webp",
+   "/ace/flex-green-moss.webp",
+   "/ace/flex-front.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/flex-orange-squash.webp",
+   "Mustard Yellow": "/ace/flex-mustard-yellow.webp",
+   "Green Moss": "/ace/flex-green-moss.webp",
+   "Ocean Blue": "/ace/flex-ocean-blue.webp",
+   "Grey Ash": "/ace/flex-grey-ash.webp",
+   "Charcoal Grey": "/ace/flex-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "code": "",
+  "swatchNote": "",
+  "name": "Ace Flex – Fixed Height Table"
+ },
+ {
+  "slug": "ace-flex-height-adjustable-table",
+  "model": "flex",
+  "label": "Height Adjustable Table",
+  "price": 24500,
+  "blurb": "The larger one-person pod with a height-adjustable table, so you can sit or stand.",
+  "gallery": [
+   "/ace/flex-adjustable-table.webp",
+   "/ace/flex-front.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/flex-adjustable-table.webp",
+   "Mustard Yellow": "/ace/flex-adjustable-table.webp",
+   "Green Moss": "/ace/flex-adjustable-table.webp",
+   "Ocean Blue": "/ace/flex-adjustable-table.webp",
+   "Grey Ash": "/ace/flex-adjustable-table.webp",
+   "Charcoal Grey": "/ace/flex-adjustable-table.webp"
+  },
+  "swatchNote": "Photo shows Grey Ash. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "code": "",
+  "name": "Ace Flex – Height Adjustable Table"
+ },
+ {
+  "slug": "ace-flex-duo-up-to-2-seaters-discussion-booth-",
+  "model": "duo",
+  "label": "Standard",
+  "price": 26500,
+  "gallery": [
+   "/ace/duo-orange-squash.webp",
+   "/ace/duo-grey-ash.webp",
+   "/ace/duo-mustard-yellow.webp",
+   "/ace/duo-ocean-blue.webp",
+   "/ace/duo-charcoal-grey.webp",
+   "/ace/duo-green-moss.webp",
+   "/ace/duo-hero.webp",
+   "/ace/duo-front.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/duo-orange-squash.webp",
+   "Mustard Yellow": "/ace/duo-mustard-yellow.webp",
+   "Green Moss": "/ace/duo-green-moss.webp",
+   "Ocean Blue": "/ace/duo-ocean-blue.webp",
+   "Grey Ash": "/ace/duo-grey-ash.webp",
+   "Charcoal Grey": "/ace/duo-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "code": "",
+  "blurb": "",
+  "swatchNote": "",
+  "name": "Ace Flex Duo Acoustic Office Pod"
+ },
+ {
+  "slug": "ace-meet-office-pod-office-phone-booth-for-2-4-seater-kindly-contact-us-before-order-",
+  "model": "meet",
+  "code": "BS1",
+  "label": "Empty Pod",
+  "price": 22800,
+  "blurb": "The 2 to 4 person pod, supplied empty so you can furnish it yourself.",
+  "gallery": [
+   "/ace/meet-bs1-front.webp",
+   "/ace/meet-bs1.webp"
+  ],
+  "colourImages": {},
+  "swatchNote": "Photo shows the empty pod. Pick your exterior colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "name": "Ace Meet BS1 – Empty Pod"
+ },
+ {
+  "slug": "ace-meet-dk1-sofa-fixed-centre-table",
+  "model": "meet",
+  "code": "DK1",
+  "label": "Sofa Settee + Fixed Centre Table",
+  "price": 28000,
+  "blurb": "Two sofa settees facing a fixed centre table, for up to four people.",
+  "gallery": [
+   "/ace/meet-dk1-orange-squash.webp",
+   "/ace/meet-dk1-grey-ash.webp",
+   "/ace/meet-dk1-mustard-yellow.webp",
+   "/ace/meet-dk1-ocean-blue.webp",
+   "/ace/meet-dk1-charcoal-grey.webp",
+   "/ace/meet-dk1-green-moss.webp",
+   "/ace/meet-dk1-menu.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/meet-dk1-orange-squash.webp",
+   "Mustard Yellow": "/ace/meet-dk1-mustard-yellow.webp",
+   "Green Moss": "/ace/meet-dk1-green-moss.webp",
+   "Ocean Blue": "/ace/meet-dk1-ocean-blue.webp",
+   "Grey Ash": "/ace/meet-dk1-grey-ash.webp",
+   "Charcoal Grey": "/ace/meet-dk1-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "swatchNote": "",
+  "name": "Ace Meet DK1 – Sofa Settee + Fixed Centre Table"
+ },
+ {
+  "slug": "ace-meet-dk2-height-adjustable-table",
+  "model": "meet",
+  "code": "DK2",
+  "label": "Height Adjustable Table",
+  "price": 26500,
+  "blurb": "A height-adjustable table for sit-or-stand meetings.",
+  "gallery": [
+   "/ace/meet-dk2.webp"
+  ],
+  "colourImages": {},
+  "swatchNote": "Photo shows Ocean Blue. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "name": "Ace Meet DK2 – Height Adjustable Table"
+ },
+ {
+  "slug": "ace-meet-dk3-fixed-height-table",
+  "model": "meet",
+  "code": "DK3",
+  "label": "Fixed Height Table",
+  "price": 23900,
+  "blurb": "A fixed-height table, ready for chairs of your choice.",
+  "gallery": [
+   "/ace/meet-dk3.webp"
+  ],
+  "colourImages": {},
+  "swatchNote": "Photo shows Grey Ash. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "name": "Ace Meet DK3 – Fixed Height Table"
+ },
+ {
+  "slug": "ace-meet-dk4-sofa-whiteboard-fixed-centre-table",
+  "model": "meet",
+  "code": "DK4",
+  "label": "Sofa Settee + Whiteboard + Fixed Centre Table",
+  "price": 31000,
+  "blurb": "The sofa layout with a whiteboard added, for presentations and workshops.",
+  "gallery": [
+   "/ace/meet-dk4.webp"
+  ],
+  "colourImages": {},
+  "swatchNote": "Photo shows Charcoal Grey. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "name": "Ace Meet DK4 – Sofa Settee + Whiteboard + Fixed Centre Table"
+ },
+ {
+  "slug": "ace-hub-office-phone-booth-pods-silent-acoustic-phone-booth-for-up-to-6-seater-kindly-contact-us-before-order-",
+  "model": "hub",
+  "code": "DK1+",
+  "label": "Fixed Centre Table + 2 Sofas",
+  "price": 36700,
+  "blurb": "A fixed centre table with two sofas, for up to six people.",
+  "gallery": [
+   "/ace/hub-dk1.webp",
+   "/ace/hub-dk1-grey-ash.webp",
+   "/ace/hub-dk1-grey-ash-2.webp",
+   "/ace/hub-dk1-front.webp"
+  ],
+  "colourImages": {},
+  "swatchNote": "Photos show Grey Ash. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "name": "Ace Hub DK1+ – Fixed Centre Table + 2 Sofas"
+ },
+ {
+  "slug": "ace-hub-dk4-sofa-whiteboard",
+  "model": "hub",
+  "code": "DK4+",
+  "label": "Fixed Centre Table + 2 Sofas + Whiteboard",
+  "price": 40200,
+  "blurb": "The two-sofa layout with a whiteboard added, for presentations and workshops.",
+  "gallery": [
+   "/ace/hub-dk4-grey-ash.webp",
+   "/ace/hub-dk4-charcoal-grey.webp"
+  ],
+  "colourImages": {
+   "Grey Ash": "/ace/hub-dk4-grey-ash.webp",
+   "Charcoal Grey": "/ace/hub-dk4-charcoal-grey.webp"
+  },
+  "swatchNote": "Photos show Grey Ash and Charcoal Grey. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "name": "Ace Hub DK4+ – Fixed Centre Table + 2 Sofas + Whiteboard"
+ },
+ {
+  "slug": "ace-hub-bs1-l-shape-sofa-multimedia",
+  "model": "hub",
+  "code": "BS1+",
+  "label": "L-Shape Sofa + Multimedia Facility",
+  "price": 38400,
+  "blurb": "An L-shape sofa with a multimedia facility for presentations and video calls. TV not included.",
+  "gallery": [
+   "/ace/hub-bs1-grey-ash.webp",
+   "/ace/hub-bs1-orange-squash.webp",
+   "/ace/hub-bs1-mustard-yellow.webp",
+   "/ace/hub-bs1-ocean-blue.webp",
+   "/ace/hub-bs1-charcoal-grey.webp",
+   "/ace/hub-bs1-green-moss.webp"
+  ],
+  "colourImages": {
+   "Orange Squash": "/ace/hub-bs1-orange-squash.webp",
+   "Mustard Yellow": "/ace/hub-bs1-mustard-yellow.webp",
+   "Green Moss": "/ace/hub-bs1-green-moss.webp",
+   "Ocean Blue": "/ace/hub-bs1-ocean-blue.webp",
+   "Grey Ash": "/ace/hub-bs1-grey-ash.webp",
+   "Charcoal Grey": "/ace/hub-bs1-charcoal-grey.webp"
+  },
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "swatchNote": "",
+  "name": "Ace Hub BS1+ – L-Shape Sofa + Multimedia Facility"
+ }
+]

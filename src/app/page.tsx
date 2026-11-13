@@ -137,34 +137,66 @@ export default function Home() {
           title="Shop by category"
           sub="From a single chair to a full office fit-out."
         />
-        <div className="mt-8 grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 md:gap-3">
-          {homeCategories.map((c) => {
-            const img = coverImage(c.slug);
-            const n = deptCount(c.slug) || subCount(c.slug);
+        <div className="mt-8 grid grid-cols-2 gap-2.5 md:gap-3 lg:grid-cols-4 lg:gap-4">
+          {homeCategories.map((g) => {
+            const img = coverImage(g.imageSlug);
+            const total = g.countSlugs.reduce(
+              (n, s) => n + (deptCount(s) || subCount(s)),
+              0,
+            );
             return (
-              <Link
-                key={c.slug}
-                href={`/collections/${c.slug}`}
-                className="group relative flex flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-line/70 transition duration-200 ease-out hover:z-10 hover:scale-[1.08] hover:ring-brand/40 hover:shadow-[0_16px_40px_-12px_rgba(0,0,0,0.25)]"
+              <div
+                key={g.slug}
+                className="group flex flex-col overflow-hidden rounded-2xl bg-surface ring-1 ring-line/70 transition duration-300 hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.2)]"
               >
-                <div className="aspect-square bg-white">
+                <Link
+                  href={`/collections/${g.slug}`}
+                  className="flex aspect-[5/4] items-center justify-center border-b sm:aspect-[4/3] border-line/70 bg-white"
+                  aria-label={`Shop all ${g.title}`}
+                >
                   {img && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={img}
                       alt=""
                       loading="lazy"
-                      className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105"
+                      className="h-[86%] w-[78%] object-contain transition duration-500 group-hover:scale-105"
                     />
                   )}
+                </Link>
+                <div className="flex flex-1 flex-col px-3 pb-3.5 pt-3 sm:px-4 sm:pb-4 sm:pt-3.5">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <Link
+                      href={`/collections/${g.slug}`}
+                      className="text-base font-semibold tracking-tight hover:text-brand sm:text-lg"
+                    >
+                      {g.title}
+                    </Link>
+                    <span className="hidden text-xs text-muted sm:inline">{total} items</span>
+                  </div>
+                  <ul className="mt-3 divide-y divide-line/60 text-sm">
+                    {g.items.map((it) => (
+                      <li key={it.slug}>
+                        <Link
+                          href={`/collections/${it.slug}`}
+                          className="flex items-center justify-between gap-2 py-1.5 text-[13px] text-ink-2 transition-colors hover:text-brand sm:text-sm"
+                        >
+                          <span className="truncate">{it.label}</span>
+                          <span className="hidden text-xs text-muted sm:inline">
+                            {deptCount(it.slug) || subCount(it.slug)}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/collections/${g.slug}`}
+                    className="mt-auto inline-flex items-center gap-1 pt-3.5 text-sm font-semibold text-brand hover:underline"
+                  >
+                    Shop all {g.title.toLowerCase()} <IconArrow />
+                  </Link>
                 </div>
-                <div className="border-t border-line/70 px-2.5 py-2 text-center">
-                  <p className="truncate text-[13px] font-semibold leading-tight tracking-tight group-hover:text-brand">
-                    {c.label}
-                  </p>
-                  <p className="mt-0.5 text-[11px] text-muted">{n} items</p>
-                </div>
-              </Link>
+              </div>
             );
           })}
         </div>

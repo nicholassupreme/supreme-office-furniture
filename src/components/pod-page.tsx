@@ -81,8 +81,8 @@ export function PodPage({
         <div className="min-w-0">
           <div className="relative mx-auto aspect-square w-full max-w-[680px] overflow-hidden rounded-3xl bg-white ring-1 ring-line/70">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={gallery[active]} alt={name} className="absolute inset-0 m-auto h-[88%] w-[88%] object-contain" fetchPriority="high" />
-            <MadeInMalaysia className="absolute bottom-4 left-1/2 h-14 w-14 -translate-x-1/2" />
+            <img src={gallery[active]} alt={name} className="absolute inset-0 m-auto h-[96%] w-[96%] object-contain" fetchPriority="high" />
+            <MadeInMalaysia className="absolute bottom-4 right-4 h-14 w-14" />
             <button onClick={() => go(-1)} aria-label="Previous image" className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-ink text-lg text-white shadow transition hover:bg-brand">‹</button>
             <button onClick={() => go(1)} aria-label="Next image" className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-ink text-lg text-white shadow transition hover:bg-brand">›</button>
           </div>

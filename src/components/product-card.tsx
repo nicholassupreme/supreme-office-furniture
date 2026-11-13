@@ -30,12 +30,12 @@ export function ProductCard({ p, priority = false }: { p: CardData; priority?: b
             alt={p.name}
             loading={priority ? "eager" : "lazy"}
             decoding="async"
-            className={`h-full w-full object-contain p-5 transition duration-500 group-hover:scale-[1.04] ${p.slug.startsWith("ace-") ? "pb-14" : ""}`}
+            className={`h-full w-full object-contain transition duration-500 ${p.slug.startsWith("ace-") ? "scale-[1.08] group-hover:scale-[1.12]" : "p-5 group-hover:scale-[1.04]"}`}
           />
         ) : (
           <div className="grid h-full place-items-center text-sm text-muted">No image</div>
         )}
-        {p.slug.startsWith("ace-") && <MadeInMalaysia className="absolute bottom-2.5 left-1/2 h-11 w-11 -translate-x-1/2" />}
+        {p.slug.startsWith("ace-") && <MadeInMalaysia className="absolute bottom-2.5 right-2.5 h-11 w-11" />}
       </div>
       <div className="mt-3 px-0.5">
         <p className="line-clamp-2 text-[14.5px] font-medium leading-snug text-ink group-hover:text-brand">

@@ -31,6 +31,7 @@ export type PodContent = {
   swatches: Record<string, { hex: string; image?: string; tile?: string }>;
   swatchNote?: string;
   colourOpt: string;
+  interiorTiles?: Record<string, string>; // interior finish swatches
   drawing?: string; // supplier dimension drawing, replaces the generated diagram
   chart?: { name: string; image: string }[]; // fabric colour chart
   details?: { title: string; image: string }[]; // close-up detail photos
@@ -168,7 +169,7 @@ const EXTRA_GALLERY: Partial<Record<ModelId, string[]>> = {
 const LEAD = "3–4 working weeks after order and payment confirmation";
 const SIX_BODY = "Choose from six standard exterior fabric colours: Orange Squash, Mustard Yellow, Green Moss, Ocean Blue, Grey Ash and Charcoal Grey. The interior is finished in Shimo Ash melamine-faced chipboard / MDF.";
 
-type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "chart" | "details" | "layoutCode" | "layoutLabel" | "modelId">;
+type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "interiorTiles" | "chart" | "details" | "layoutCode" | "layoutLabel" | "modelId">;
 
 const models: Record<ModelId, Model> = {
   /* ───────────── Ace Uno ───────────── */
@@ -413,6 +414,7 @@ export function getPodContent(slug: string): PodContent | undefined {
     ...m,
     modelId: l.model,
     drawing: m.drawing ?? DRAWINGS[l.model],
+    interiorTiles: { "Shimo Ash": A("tile-shimo-ash"), "Soft Sand": A("tile-uno-soft-sand") },
     layoutCode: l.code,
     layoutLabel: multi ? l.label : "",
     tagline: multi && l.blurb ? l.blurb : m.tagline,

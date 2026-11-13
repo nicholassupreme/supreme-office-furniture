@@ -181,6 +181,20 @@ export function PodPage({
                           </button>
                         );
                       }
+                      if (c.interiorTiles?.[val]) {
+                        return (
+                          <button
+                            key={val}
+                            onClick={() => pick(o, val)}
+                            title={val}
+                            aria-label={val}
+                            aria-pressed={on}
+                            className={`h-11 w-11 rounded-full p-[3px] ring-2 transition ${on ? "ring-ink" : "ring-transparent hover:ring-line"}`}
+                          >
+                            <span className="block h-full w-full rounded-full ring-1 ring-black/10" style={{ backgroundImage: `url(${c.interiorTiles[val]})`, backgroundSize: "cover" }} />
+                          </button>
+                        );
+                      }
                       return (
                         <button
                           key={val}

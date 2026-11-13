@@ -241,12 +241,12 @@ export function PodPage({
               <span className="font-semibold">Lead time</span>
               <span className="text-ink-2">{c.leadTime}</span>
               <span className="font-semibold">Delivery</span>
-              <span className="text-ink-2">Free within Klang Valley. Other areas quoted separately.</span>
+              <span className="text-ink-2">RM400 per trip within Klang Valley (flat rate).</span>
               <span className="font-semibold">Installation</span>
               <span className="text-ink-2">{c.install}</span>
             </div>
             <p className="border-t border-line bg-paper/60 px-4 py-3 text-[13px] text-ink-2">
-              Please contact us before ordering to confirm colour, power needs, delivery location and installation access.
+              Delivery and installation are also available outside Klang Valley, with prices varying by location. Please contact us before ordering to confirm colour, power needs, delivery location and installation access.
             </p>
           </div>
         </div>
@@ -342,8 +342,9 @@ export function PodPage({
               <p>Listed prices do not include delivery, handling or installation. These depend on the location and the manpower needed to move the pod.</p>
               <dl className="divide-y divide-line rounded-2xl border border-line bg-surface">
                 {[
-                  ["Delivery", "Free within Klang Valley. Other areas have different charges."],
-                  ["Installation", `${c.install.replace(/\.$/, "")}. Other areas have different charges.`],
+                  ["Delivery", "RM400 per trip, flat rate within Klang Valley."],
+                  ["Installation", `${c.install.replace(/\.$/, "")}. Installation price varies by pod model.`],
+                  ["Outside Klang Valley", "Delivery and installation are also available outside Klang Valley. Prices vary between locations, so please contact us with your address for a quote."],
                   ["Handling by lift", "Free."],
                   ["Handling by staircase", "+RM400 per staircase level."],
                   ["Lead time", c.leadTime],

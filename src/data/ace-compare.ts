@@ -31,7 +31,7 @@ export const ACE_ROWS: Row[] = [
   ["Layout options", {
     flex: "Empty pod, fixed table, 2-seater sofa + fixed table, or height-adjustable table",
     meet: "Empty (BS1), sofa + fixed centre table (DK1), height-adjustable table (DK2), fixed table (DK3), sofa + whiteboard (DK4)",
-    hub: "DK1+ (fixed centre table, 2 sofas), DK4+ (adds whiteboard), BS1+ (L-shape sofa, multimedia; TV not included)",
+    hub: "Empty pod, DK1+ (fixed centre table, 2 sofas), DK4+ (adds whiteboard), BS1+ (L-shape sofa, multimedia; TV not included)",
   }],
   ["Exterior colours", { uno: "Pine Green, Shadow Grey, Dusty Turquoise, Warm Sand", plus: SIX, flex: SIX, duo: SIX, meet: SIX, hub: SIX }],
   ["Interior finish", {

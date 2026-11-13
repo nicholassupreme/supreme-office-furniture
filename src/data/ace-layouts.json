@@ -536,5 +536,33 @@
   "swatchNote": "",
   "name": "Ace Hub BS1+ – L-Shape Sofa + Multimedia Facility (Up to 6 Seaters)",
   "seatLabel": "Up to 6 Seaters"
+ },
+ {
+  "slug": "ace-hub-empty-office-phone-booth-pods-silent-acoustic-phone-booth-for-up-to-6-seater-kindly-contact-us-before-order-",
+  "model": "hub",
+  "code": "",
+  "label": "Empty Pod",
+  "price": 31500,
+  "blurb": "An empty Ace Hub shell with no furniture inside, for up to six people. Fit it out your own way.",
+  "gallery": [
+   "/ace/hub-empty-pod.webp"
+  ],
+  "colourImages": {},
+  "swatchNote": "Photos show Grey Ash. Pick your colour with the swatches.",
+  "colours": [
+   "Orange Squash",
+   "Mustard Yellow",
+   "Green Moss",
+   "Ocean Blue",
+   "Grey Ash",
+   "Charcoal Grey"
+  ],
+  "interior": [
+   "Shimo Ash"
+  ],
+  "colourOpt": "Exterior Fabric Colour",
+  "interiorOpt": "Interior MFC Colour",
+  "seatLabel": "Up to 6 Seaters",
+  "name": "Ace Hub – Empty Pod (Up to 6 Seaters)"
  }
 ]

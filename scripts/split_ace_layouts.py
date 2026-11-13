@@ -18,6 +18,7 @@ def name(l):
     if m == "plus": return "Ace Plus Acoustic Office Pod"
     if m == "duo": return "Ace Flex Duo Acoustic Office Pod"
     if m == "flex": return f"Ace Flex – {l['label']}"
+    if not l["code"]: return f"Ace {m.title()} – {l['label']}"
     return f"Ace {m.title()} {l['code']} – {l['label']}"
 
 def summary(l):

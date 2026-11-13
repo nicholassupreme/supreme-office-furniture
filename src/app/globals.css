@@ -157,3 +157,8 @@ body { overflow-x: clip; }
   .hero-photo, .hero-sweep, .hero-progress, .hero-caret { animation: none; }
   .hero-sweep { display: none; }
 }
+
+/* Desktop: render the whole site at 80% (same as a browser zoom of 80%). Phones and tablets stay at 100%. */
+@media (min-width: 1024px) {
+  body { zoom: 0.8; }
+}

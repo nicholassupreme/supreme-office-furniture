@@ -11,6 +11,8 @@ export type HomeCategoryGroup = {
   slug: string;
   imageSlug: string;
   countSlugs: string[];
+  /** Footer links under the list. Defaults to one "Shop all" link to `slug`; use two where the card spans two departments. */
+  shopAll?: { slug: string; label: string }[];
   items: { slug: string; label: string }[];
 };
 
@@ -70,6 +72,10 @@ export const homeCategories: HomeCategoryGroup[] = [
     slug: "office-sofas-bench-seating-malaysia",
     imageSlug: "1-seater-office-sofa",
     countSlugs: ["office-sofas-bench-seating-malaysia", "lounge-waiting-seating"],
+    shopAll: [
+      { slug: "office-sofas-bench-seating-malaysia", label: "All sofas" },
+      { slug: "lounge-waiting-seating", label: "Lounge & waiting" },
+    ],
     items: [
       { slug: "1-seater-office-sofa", label: "1-Seater Sofas" },
       { slug: "2-seater-office-sofa", label: "2-Seater Sofas" },
@@ -82,6 +88,10 @@ export const homeCategories: HomeCategoryGroup[] = [
     slug: "office-wooden-storage",
     imageSlug: "low-height-office-cabinets",
     countSlugs: ["office-wooden-storage", "steel-storage"],
+    shopAll: [
+      { slug: "office-wooden-storage", label: "Wooden storage" },
+      { slug: "steel-storage", label: "Steel storage" },
+    ],
     items: [
       { slug: "low-height-office-cabinets", label: "Low Height Cabinets" },
       { slug: "full-high-height-office-cabinets", label: "Full Height Cabinets" },
@@ -106,6 +116,10 @@ export const homeCategories: HomeCategoryGroup[] = [
     slug: "office-phone-booth-open-pods",
     imageSlug: "office-phone-booth-open-pods",
     countSlugs: ["office-phone-booth-open-pods", "whiteboards-presentation"],
+    shopAll: [
+      { slug: "office-phone-booth-open-pods", label: "Office pods" },
+      { slug: "whiteboards-presentation", label: "Whiteboards" },
+    ],
     items: [
       { slug: "office-phone-booth-open-pods", label: "Office Pods" },
       { slug: "writing-boards", label: "Whiteboards" },

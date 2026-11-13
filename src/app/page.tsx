@@ -189,16 +189,52 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    href={`/collections/${g.slug}`}
-                    className="mt-auto inline-flex items-center gap-1 pt-3.5 text-sm font-semibold text-brand hover:underline"
-                  >
-                    Shop all {g.title.toLowerCase()} <IconArrow />
-                  </Link>
+                  <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-3.5">
+                    {(g.shopAll ?? [{ slug: g.slug, label: `All ${g.title.toLowerCase()}` }]).map((l) => (
+                      <Link
+                        key={l.slug}
+                        href={`/collections/${l.slug}`}
+                        className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline"
+                      >
+                        {l.label} <IconArrow />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Full index: every department and sub-category, straight from the catalogue taxonomy */}
+        <div className="mt-12 border-t border-line/70 pt-8">
+          <h3 className="text-xl font-semibold tracking-tight">Browse all categories</h3>
+          <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
+            {taxonomy.map((d) => (
+              <div key={d.slug}>
+                <Link
+                  href={`/collections/${d.slug}`}
+                  className="text-sm font-semibold tracking-tight text-ink hover:text-brand"
+                >
+                  {d.name}
+                </Link>
+                {d.subs.length > 0 && (
+                  <ul className="mt-2 space-y-1">
+                    {d.subs.map(([slug, name]) => (
+                      <li key={slug}>
+                        <Link
+                          href={`/collections/${slug}`}
+                          className="text-[13px] text-muted transition-colors hover:text-brand"
+                        >
+                          {name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -143,7 +143,6 @@ const TILE: Record<string, string> = {
   "Pine Green": A("tile-uno-pine-green"), "Shadow Grey": A("tile-uno-shadow-grey"),
   "Dusty Turquoise": A("tile-uno-dusty-turquoise"), "Warm Sand": A("tile-uno-warm-sand"),
 };
-const SIX = ["Orange Squash", "Mustard Yellow", "Green Moss", "Ocean Blue", "Grey Ash", "Charcoal Grey"];
 /* Close-up photos of hardware shared by the Plus, Flex, Duo, Meet and Hub pods. */
 const DETAILS = [
   { title: "Slatted wood-look acoustic wall", image: A("detail-slat-wall") },
@@ -162,7 +161,7 @@ const EXTRA_GALLERY: Partial<Record<ModelId, string[]>> = {
 };
 
 const LEAD = "3–4 working weeks after order and payment confirmation";
-const SIX_BODY = "Choose from six exterior fabric colours, from Charcoal Grey and Grey Ash to Ocean Blue, Green Moss, Mustard Yellow and Orange Squash. The interior is finished in Shimo Ash.";
+const SIX_BODY = "Choose from six standard exterior fabric colours: Orange Squash, Mustard Yellow, Green Moss, Ocean Blue, Grey Ash and Charcoal Grey. The interior is finished in Shimo Ash melamine-faced chipboard / MDF.";
 
 type Model = Omit<PodContent, "gallery" | "swatches" | "swatchNote" | "colourOpt" | "chart" | "details" | "layoutCode" | "layoutLabel" | "modelId">;
 
@@ -250,7 +249,7 @@ const models: Record<ModelId, Model> = {
       { title: "Quiet when you need it", body: "Verified at 27 dB(A) by TÜV SÜD, Ace Plus keeps calls private and cuts the chatter of an open-plan floor, so you can focus or take a sensitive conversation without leaving your desk area.", image: R("108886026"), fit: "cover" },
       { title: "Fits the floor you already have", body: "A compact one-person footprint slots into open-plan layouts without much floor space. No construction needed: installation is quick, and the pod rolls on four heavy-duty castors if your layout changes.", image: R("108886024"), fit: "cover" },
       { title: "Ready for daily use", body: "LED lighting with a dimmer, super silent ventilation, a power socket and a standing table are all built in, so it works for a five-minute call or a full afternoon of focused work.", image: R("108885996"), fit: "contain" },
-      { title: "Six colours to match your office", body: SIX_BODY, image: R("108886011"), fit: "cover" },
+      { title: "Six colours to match your office", body: SIX_BODY, image: A("six-colour-chart"), fit: "contain" },
     ],
     install: "RM450 per unit, Klang Valley.",
     leadTime: LEAD,
@@ -282,7 +281,7 @@ const models: Record<ModelId, Model> = {
       { title: "More room to think and work", body: "With an internal size of 1452 × 1100 mm, Ace Flex gives you far more space than a standard phone booth. It is built for longer sessions, not just a quick call.", image: A("flex-orange-squash"), fit: "contain" },
       { title: "Sit or stand", body: "Choose an empty pod, a fixed-height table, or a height-adjustable table that lets you switch between sitting and standing through the day.", image: A("flex-adjustable-table"), fit: "contain" },
       { title: "Quiet and fresh", body: "Verified at 27 dB(A) by TÜV SÜD. Super silent fans give a complete air exchange at 155 CFM, so the pod stays comfortable during long calls.", image: A("flex-grey-ash"), fit: "contain" },
-      { title: "Six colours to match your office", body: SIX_BODY, image: A("flex-ocean-blue"), fit: "contain" },
+      { title: "Six colours to match your office", body: SIX_BODY, image: A("six-colour-chart"), fit: "contain" },
     ],
     install: "RM550 per unit, Klang Valley.",
     leadTime: LEAD,
@@ -316,7 +315,7 @@ const models: Record<ModelId, Model> = {
       { title: "Two people, one enclosed space", body: "Ace Flex Duo gives two people a private place to talk or work side by side, without booking or building a full meeting room.", image: A("duo-hero"), fit: "contain" },
       { title: "Ready for everyday use", body: "Built-in lighting, ventilation and power access make it comfortable for a quick one-to-one or a longer working session.", image: A("duo-front"), fit: "contain" },
       { title: "Plan your ceiling height", body: "The pod stands 2350 mm tall and needs a room height of at least 2500 mm. Its compact footprint makes good use of floor space.", image: A("duo-grey-ash"), fit: "contain" },
-      { title: "Six colours to match your office", body: SIX_BODY, image: A("duo-orange-squash"), fit: "contain" },
+      { title: "Six colours to match your office", body: SIX_BODY, image: A("six-colour-chart"), fit: "contain" },
     ],
     install: "RM800 per unit, Klang Valley.",
     leadTime: "Approx. 3–6 weeks after order and payment confirmation",
@@ -349,7 +348,7 @@ const models: Record<ModelId, Model> = {
       { title: "A meeting room without the renovation", body: "Ace Meet gives a small team a private, enclosed space in the middle of an open-plan office. There is no construction, and it installs with minimal disruption.", image: A("meet-dk1-orange-squash"), fit: "contain" },
       { title: "Pick your layout", body: "Choose an empty pod, a sofa settee with a fixed centre table, a height-adjustable table, a fixed-height table, or the sofa layout with a whiteboard. Each layout is its own product, with its own price.", image: A("meet-dk1-menu"), fit: "contain" },
       { title: "Quiet and fresh", body: "Verified at 27 dB(A) by TÜV SÜD. Two super silent fans plus an exhaust fan move 310 CFM, so the air stays fresh during longer meetings.", image: A("meet-dk2"), fit: "contain" },
-      { title: "Six colours to match your office", body: SIX_BODY, image: A("meet-dk1-green-moss"), fit: "contain" },
+      { title: "Six colours to match your office", body: SIX_BODY, image: A("six-colour-chart"), fit: "contain" },
     ],
     install: "RM650 per unit, Klang Valley.",
     leadTime: LEAD,
@@ -384,7 +383,7 @@ const models: Record<ModelId, Model> = {
       { title: "Room for up to six", body: "At 2200 × 1500 mm, Ace Hub seats a full project team, with enough interior space (2030 × 1440 mm) for longer sessions.", image: A("hub-dk1"), fit: "contain" },
       { title: "Three layouts", body: "DK1+ has a fixed centre table and two sofas. DK4+ adds a whiteboard. BS1+ has an L-shape sofa with a multimedia facility (TV not included). Each is its own product, with its own price.", image: A("hub-bs1-grey-ash"), fit: "contain" },
       { title: "Quiet and fresh", body: "Verified at 27 dB(A) by TÜV SÜD. Two super silent fans plus an exhaust fan move 310 CFM, and the pod rolls on six heavy-duty castors.", image: A("hub-dk4-grey-ash"), fit: "contain" },
-      { title: "Six colours to match your office", body: SIX_BODY, image: A("hub-dk1-grey-ash"), fit: "contain" },
+      { title: "Six colours to match your office", body: SIX_BODY, image: A("six-colour-chart"), fit: "contain" },
     ],
     install: "RM800 per unit, Klang Valley.",
     leadTime: LEAD,
@@ -414,7 +413,7 @@ export function getPodContent(slug: string): PodContent | undefined {
     intro: multi && l.blurb ? [l.blurb, ...m.intro] : m.intro,
     gallery: [...l.gallery, ...(EXTRA_GALLERY[l.model] ?? [])],
     swatches: Object.fromEntries(l.colours.map((c) => [c, { hex: HEX[c] ?? "#999", image: l.colourImages[c], tile: TILE[c] }])),
-    chart: l.model === "uno" ? undefined : SIX.map((name) => ({ name, image: TILE[name] })),
+    
     details: l.model === "uno" ? [
       { title: "Power and controls", image: A("uno-controls") },
     ] : DETAILS,

@@ -154,6 +154,11 @@ const DETAILS = [
   { title: "Ventilation grille", image: A("detail-vent-grille") },
   { title: "Door hinge", image: A("detail-hinge") },
 ];
+/* Supplier dimension drawings shown on the Dimensions tab. Plus has none yet (generated diagram is used). */
+const DRAWINGS: Partial<Record<ModelId, string>> = {
+  flex: A("flex-dimension-drawing"), duo: A("flex-dimension-drawing"),
+  meet: A("meet-dimension-drawing"), hub: A("hub-dimension-drawing"),
+};
 /* Extra on-site photos appended to a model's gallery. */
 const EXTRA_GALLERY: Partial<Record<ModelId, string[]>> = {
   plus: [A("install-plus-1"), A("install-plus-2")],
@@ -407,6 +412,7 @@ export function getPodContent(slug: string): PodContent | undefined {
   return {
     ...m,
     modelId: l.model,
+    drawing: m.drawing ?? DRAWINGS[l.model],
     layoutCode: l.code,
     layoutLabel: multi ? l.label : "",
     tagline: multi && l.blurb ? l.blurb : m.tagline,

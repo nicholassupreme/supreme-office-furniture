@@ -205,37 +205,6 @@ export default function Home() {
             );
           })}
         </div>
-
-        {/* Full index: every department and sub-category, straight from the catalogue taxonomy */}
-        <div className="mt-12 border-t border-line/70 pt-8">
-          <h3 className="text-xl font-semibold tracking-tight">Browse all categories</h3>
-          <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
-            {taxonomy.map((d) => (
-              <div key={d.slug}>
-                <Link
-                  href={`/collections/${d.slug}`}
-                  className="text-sm font-semibold tracking-tight text-ink hover:text-brand"
-                >
-                  {d.name}
-                </Link>
-                {d.subs.length > 0 && (
-                  <ul className="mt-2 space-y-1">
-                    {d.subs.map(([slug, name]) => (
-                      <li key={slug}>
-                        <Link
-                          href={`/collections/${slug}`}
-                          className="text-[13px] text-muted transition-colors hover:text-brand"
-                        >
-                          {name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Workstations band */}

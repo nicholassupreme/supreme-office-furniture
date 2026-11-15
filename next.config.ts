@@ -42,6 +42,9 @@ const moved: [string, string][] = [
     "/collections/:c/products/mobile-book-trolley-for-library-school-1",
     "/products/mobile-book-trolley-for-library-school",
   ],
+  // Product whose old store slug was just "v".
+  ["/products/v", "/products/io2-wooden-low-back-office-chair-1"],
+  ["/collections/:c/products/v", "/products/io2-wooden-low-back-office-chair-1"],
   ["/cart", "/quote"],
   ["/account/:path*", "/quote"],
 ];

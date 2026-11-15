@@ -105,7 +105,8 @@ def desc_images(h):
 REMOVED = {"steel-mobile-book-trolley-for-library-school", "mobile-book-trolley-for-library-school-1"}
 
 # Old store slugs that misdescribe the product; the site uses the new slug (no redirect kept)
-RENAMED = {"4-seater-workstation-with-acrylic-partition-g-": "2-seater-workstation-with-acrylic-partition-g"}
+RENAMED = {"4-seater-workstation-with-acrylic-partition-g-": "2-seater-workstation-with-acrylic-partition-g",
+           "v": "io2-wooden-low-back-office-chair-1"}  # old slug was just "v"; /products/v redirects (next.config.ts)
 
 products, stats = [], collections.Counter()
 for i, p in enumerate(raw):

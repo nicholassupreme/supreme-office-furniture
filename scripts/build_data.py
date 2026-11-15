@@ -115,6 +115,9 @@ for i, p in enumerate(raw):
         member[i] = member.get(i, []) + ["standard-office-desk"]
     subs = sorted(set(member.get(i, [])), key=lambda s: sub_order.get(s, (99, 99)))
     subs = [s for s in subs if s in sub_to_dept]
+    # Meeting Chairs is an extra grouping: keep these chairs in their usual back-height category too
+    if subs == ["meeting-chairs"] and chair_sub((p["name"] or "").lower()):
+        subs = sorted(subs + [chair_sub((p["name"] or "").lower())], key=lambda s: sub_order.get(s, (99, 99)))
     in_pod_dept = "office-phone-booth-open-pods" in member.get(i, [])
     if not subs and re.search(r"banquet|designer chair|plastic (arm )?chair|cafe", (p["name"] or "").lower()):
         subs = ["cafe-banquet-chairs"]

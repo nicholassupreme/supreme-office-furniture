@@ -26,7 +26,7 @@ export const ACE_ROWS: Row[] = [
     plus: "853 × 918 × 2070", flex: "1452 × 1100 × 2070", duo: "1452 × 1100 × 2070", meet: "2030 × 1140 × 2070", hub: "2030 × 1440 × 2070",
   }],
   ["Room height needed (mm)", { uno: "Min. 2500", plus: "Min. 2500", flex: "Min. 2500", duo: "Min. 2500", meet: "Min. 2500", hub: "Min. 2500" }],
-  ["Acoustic performance", { uno: "Approx. 25 dB(A)", plus: "27 dB(A), TÜV SÜD verified", flex: "27 dB(A), TÜV SÜD verified", meet: "27 dB(A), TÜV SÜD verified", hub: "27 dB(A), TÜV SÜD verified" }],
+  ["Acoustic performance", { uno: "Approx. 25 dB(A)", plus: "27 dB(A), TÜV SÜD verified", flex: "27 dB(A), TÜV SÜD verified", duo: "27 dB(A), TÜV SÜD verified", meet: "27 dB(A), TÜV SÜD verified", hub: "27 dB(A), TÜV SÜD verified" }],
   ["Weight (kg)", { plus: "335 (455 with crate)", flex: "523 (663 with crate)", meet: "636 (826 with crate)", hub: "700" }],
   ["Layout options", {
     flex: "Empty pod, fixed table, 2-seater sofa + fixed table, or height-adjustable table",

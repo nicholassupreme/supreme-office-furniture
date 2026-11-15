@@ -317,6 +317,7 @@ const models: Record<ModelId, Model> = {
         ],
       },
       { title: "Included", rows: [["Built in", "Lighting, ventilation and power access"], ["Exterior", "Fabric, 6 colours"], ["Interior", "Melamine (MFC / MDF), Shimo Ash"]] },
+      { title: "Acoustic", rows: [["Published acoustic claim", "Verified: 27 dB(A), TÜV SÜD"]] },
     ],
     features: [
       { title: "Two people, one enclosed space", body: "Ace Flex Duo gives two people a private place to talk or work side by side, without booking or building a full meeting room.", image: A("duo-hero"), fit: "contain" },

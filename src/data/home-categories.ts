@@ -26,6 +26,7 @@ export const homeCategories: HomeCategoryGroup[] = [
       { slug: "ergonomic-office-chairs", label: "Ergonomic Chairs" },
       { slug: "director-high-back-office-chairs-malaysia", label: "Director & High Back" },
       { slug: "medium-low-back-office-chairs-malaysia", label: "Medium & Low Back" },
+      { slug: "meeting-chairs", label: "Meeting Chairs" },
       { slug: "visitor-office-chairs-malaysia", label: "Visitor Chairs" },
       { slug: "training-classroom-chairs-malaysia", label: "Training & Classroom" },
     ],

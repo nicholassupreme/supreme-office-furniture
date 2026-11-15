@@ -33,7 +33,7 @@ export function QuoteView() {
     "",
     ...items.map((i, n) => {
       const opts = Object.entries(i.opts).map(([k, v]) => `${k}: ${v}`).join(", ");
-      return `${n + 1}. ${i.name}${opts ? ` (${opts})` : ""} × ${i.qty}${i.price != null ? ` @ ${rm(i.price)}` : ""}\n   ${site.url}/products/${i.slug}`;
+      return `${n + 1}. ${i.name}${opts ? ` (${opts})` : ""} × ${i.qty}${i.price != null ? ` @ ${rm(i.price)}` : ""}\n   ${site.url}${i.href ?? `/products/${i.slug}`}`;
     }),
     "",
     `Estimated total: ${rm(total)}${hasUnpriced ? " + items priced on request" : ""}`,
@@ -81,14 +81,14 @@ export function QuoteView() {
         <ul className="divide-y divide-line rounded-3xl border border-line bg-surface">
           {items.map((i) => (
             <li key={i.key} className="flex gap-4 p-4 md:p-5">
-              <Link href={`/products/${i.slug}`} className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-line/70 md:h-24 md:w-24">
+              <Link href={i.href ?? `/products/${i.slug}`} className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-line/70 md:h-24 md:w-24">
                 {i.image && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={i.image} alt="" className="h-full w-full object-contain p-2" />
                 )}
               </Link>
               <div className="min-w-0 flex-1">
-                <Link href={`/products/${i.slug}`} className="line-clamp-2 font-medium leading-snug hover:text-brand">
+                <Link href={i.href ?? `/products/${i.slug}`} className="line-clamp-2 font-medium leading-snug hover:text-brand">
                   {i.name}
                 </Link>
                 {Object.keys(i.opts).length > 0 && (

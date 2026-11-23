@@ -45,6 +45,19 @@ const moved: [string, string][] = [
   // Product whose old store slug was just "v".
   ["/products/v", "/products/io2-wooden-low-back-office-chair-1"],
   ["/collections/:c/products/v", "/products/io2-wooden-low-back-office-chair-1"],
+  // Old EasyStore URLs that had no equivalent (found by comparing the old sitemaps with this site).
+  ["/blogs/news", "/"],
+  ["/blogs/news/top-office-pod-sellers-malaysia", "/collections/office-phone-booth-open-pods"],
+  ["/blogs/news/:slug", "/"],
+  ["/collections/cafe-banquet-chairs-malaysia", "/collections/office-work-chairs-malaysia"],
+  ["/collections/feature-on-homepage", "/collections/all"],
+  ["/collections/office-projectors", "/collections/whiteboards-presentation"],
+  ["/pages/office-relocation-or-office-furniture-disposal-service", "/services#relocation"],
+  ["/pages/refund-policy", "/pages/refund-return-policy"],
+  ["/pages/smes-corporates", "/about"],
+  ["/products/espress-high-back-office-chair-1", "/products/espress-high-back-office-chair"],
+  ["/products/galla-high-back-office-chair-k-", "/products/galla2-high-back-office-chair-k-"],
+  ["/products/4-seater-workstation-with-acrylic-partition-g-", "/collections/office-workstations"],
   ["/cart", "/quote"],
   ["/account/:path*", "/quote"],
 ];

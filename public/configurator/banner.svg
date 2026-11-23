@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 520 300" width="520" height="300">
+<defs>
+<linearGradient id="wsb-wood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efd9b1"></stop><stop offset="1" stop-color="#cfa676"></stop></linearGradient>
+<linearGradient id="wsb-fab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3d0ea"></stop><stop offset="1" stop-color="#86acd0"></stop></linearGradient>
+<radialGradient id="wsb-seat" cx="0.4" cy="0.35" r="0.75"><stop offset="0" stop-color="#5a5e68"></stop><stop offset="1" stop-color="#25272c"></stop></radialGradient>
+<linearGradient id="wsb-back" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d4048"></stop><stop offset="1" stop-color="#18191d"></stop></linearGradient>
+<filter id="wsb-sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="4" stdDeviation="3.5" flood-color="#0a0726" flood-opacity="0.5"></feDropShadow></filter>
+<g id="wsb-chair">
+<g stroke="#121316" stroke-width="3.2" stroke-linecap="round"><line x1="0" y1="2" x2="24" y2="10"></line><line x1="0" y1="2" x2="0" y2="28"></line><line x1="0" y1="2" x2="-24" y2="10"></line><line x1="0" y1="2" x2="-15" y2="-19"></line><line x1="0" y1="2" x2="15" y2="-19"></line></g>
+<g fill="#2a2c31"><circle cx="24" cy="10" r="3.4"></circle><circle cx="0" cy="28" r="3.4"></circle><circle cx="-24" cy="10" r="3.4"></circle><circle cx="-15" cy="-19" r="3.4"></circle><circle cx="15" cy="-19" r="3.4"></circle></g>
+<rect x="-19" y="-12" width="38" height="34" rx="11" fill="url(#wsb-seat)"></rect>
+<rect x="-25" y="-7" width="6.5" height="22" rx="3.2" fill="#16171a"></rect>
+<rect x="18.5" y="-7" width="6.5" height="22" rx="3.2" fill="#16171a"></rect>
+<path d="M -23 -15 Q 0 -31 23 -15 L 22 -9 Q 0 -22 -22 -9 Z" fill="url(#wsb-back)"></path>
+<path d="M -18 -17 Q 0 -27 18 -17" fill="none" stroke="#6a6e78" stroke-width="1.2" stroke-linecap="round"></path>
+</g>
+</defs>
+<rect x="8" y="4" width="504" height="292" rx="18" fill="#ffffff" fill-opacity="0.07"></rect>
+<g filter="url(#wsb-sh)">
+<rect x="52" y="80" width="136" height="70" rx="2" fill="url(#wsb-wood)"></rect><rect x="192" y="80" width="136" height="70" rx="2" fill="url(#wsb-wood)"></rect><rect x="332" y="80" width="136" height="70" rx="2" fill="url(#wsb-wood)"></rect>
+<rect x="52" y="150" width="136" height="70" rx="2" fill="url(#wsb-wood)"></rect><rect x="192" y="150" width="136" height="70" rx="2" fill="url(#wsb-wood)"></rect><rect x="332" y="150" width="136" height="70" rx="2" fill="url(#wsb-wood)"></rect>
+</g>
+<g fill="#f3f3f1" stroke="#c4c2bc" stroke-width="0.8">
+<rect x="100" y="98" width="40" height="11" rx="2"></rect><rect x="240" y="98" width="40" height="11" rx="2"></rect><rect x="380" y="98" width="40" height="11" rx="2"></rect>
+<rect x="100" y="191" width="40" height="11" rx="2"></rect><rect x="240" y="191" width="40" height="11" rx="2"></rect><rect x="380" y="191" width="40" height="11" rx="2"></rect>
+<ellipse cx="150" cy="104" rx="4" ry="6"></ellipse><ellipse cx="290" cy="104" rx="4" ry="6"></ellipse><ellipse cx="430" cy="104" rx="4" ry="6"></ellipse>
+<ellipse cx="150" cy="197" rx="4" ry="6"></ellipse><ellipse cx="290" cy="197" rx="4" ry="6"></ellipse><ellipse cx="430" cy="197" rx="4" ry="6"></ellipse>
+</g>
+<g fill="#1c1d21">
+<rect x="97" y="134" width="46" height="5" rx="2"></rect><rect x="237" y="134" width="46" height="5" rx="2"></rect><rect x="377" y="134" width="46" height="5" rx="2"></rect>
+<rect x="97" y="161" width="46" height="5" rx="2"></rect><rect x="237" y="161" width="46" height="5" rx="2"></rect><rect x="377" y="161" width="46" height="5" rx="2"></rect>
+</g>
+<g fill="#3a3c42"><rect x="114" y="139" width="12" height="4" rx="1"></rect><rect x="254" y="139" width="12" height="4" rx="1"></rect><rect x="394" y="139" width="12" height="4" rx="1"></rect><rect x="114" y="157" width="12" height="4" rx="1"></rect><rect x="254" y="157" width="12" height="4" rx="1"></rect><rect x="394" y="157" width="12" height="4" rx="1"></rect></g>
+<circle cx="72" cy="104" r="6" fill="#ffffff" stroke="#c4c2bc" stroke-width="0.8"></circle><circle cx="72" cy="104" r="3.6" fill="#6b4a33"></circle>
+<rect x="346" y="178" width="26" height="32" rx="2" fill="#2f4f8f" transform="rotate(-8 359 194)"></rect>
+<g fill="#5d86ab"><rect x="50" y="151" width="422" height="6" rx="1.5"></rect><rect x="51" y="82" width="6" height="140" rx="1.5"></rect><rect x="191" y="82" width="6" height="140" rx="1.5"></rect><rect x="331" y="82" width="6" height="140" rx="1.5"></rect><rect x="467" y="82" width="6" height="140" rx="1.5"></rect></g>
+<g fill="url(#wsb-fab)"><rect x="48" y="146" width="422" height="6" rx="1.5"></rect><rect x="47" y="79" width="6" height="140" rx="1.5"></rect><rect x="187" y="79" width="6" height="140" rx="1.5"></rect><rect x="327" y="79" width="6" height="140" rx="1.5"></rect><rect x="465" y="79" width="6" height="140" rx="1.5"></rect></g>
+<g filter="url(#wsb-sh)">
+<use xlink:href="#wsb-chair" transform="translate(120 56)"></use><use xlink:href="#wsb-chair" transform="translate(260 56)"></use><use xlink:href="#wsb-chair" transform="translate(400 56)"></use>
+<use xlink:href="#wsb-chair" transform="translate(120 244) rotate(180)"></use><use xlink:href="#wsb-chair" transform="translate(260 244) rotate(180)"></use><use xlink:href="#wsb-chair" transform="translate(400 244) rotate(180)"></use>
+</g>
+</svg>

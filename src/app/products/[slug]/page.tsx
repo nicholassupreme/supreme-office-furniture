@@ -8,6 +8,7 @@ import { PodPage } from "@/components/pod-page";
 import { getPodContent, layoutsOf, defaultLayout, type ModelId } from "@/data/pods";
 import { AceCompare } from "@/components/ace-compare";
 import { ACE_COLUMNS } from "@/data/ace-compare";
+import { noFreeDeliveryDepts } from "@/lib/site";
 import { ProductCard, cleanName } from "@/components/product-card";
 import { site } from "@/lib/site";
 
@@ -103,6 +104,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
             variants={p.variants}
             basePrice={p.price}
             madeToOrder={p.made_to_order}
+            noFreeDelivery={noFreeDeliveryDepts.includes(p.dept)}
           />
         )}
       </div>

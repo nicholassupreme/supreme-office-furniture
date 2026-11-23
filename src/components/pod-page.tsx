@@ -221,7 +221,7 @@ export function PodPage({
             </div>
             <button
               disabled={!match}
-              onClick={() => add({ slug, name, image: c.swatches[sel[colourOpt ?? ""]]?.image ?? gallery[0] ?? null, opts: sel, price }, qty)}
+              onClick={() => add({ slug, name, image: c.swatches[sel[colourOpt ?? ""]]?.image ?? gallery[0] ?? null, opts: sel, price, noFreeDelivery: true }, qty)}
               className="h-12 flex-1 rounded-full bg-accent text-sm font-semibold text-white transition hover:bg-accent-ink disabled:opacity-40"
             >
               Add to quote

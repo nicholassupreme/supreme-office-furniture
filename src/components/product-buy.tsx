@@ -17,6 +17,7 @@ export function ProductBuy({
   variants,
   basePrice,
   madeToOrder,
+  noFreeDelivery = false,
 }: {
   slug: string;
   name: string;
@@ -25,6 +26,7 @@ export function ProductBuy({
   variants: Variant[];
   basePrice: number | null;
   madeToOrder: boolean;
+  noFreeDelivery?: boolean;
 }) {
   const { add } = useQuote();
 
@@ -170,7 +172,7 @@ export function ProductBuy({
             disabled={variants.length > 0 && !match}
             onClick={() =>
               add(
-                { slug, name: cleanName(name), image: (match?.image ?? gallery[0]) || null, opts: options.length ? sel : {}, price },
+                { slug, name: cleanName(name), image: (match?.image ?? gallery[0]) || null, opts: options.length ? sel : {}, price, noFreeDelivery },
                 qty,
               )
             }
@@ -193,7 +195,9 @@ export function ProductBuy({
         <ul className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface text-sm">
           {[
             ["Made to order", "Not ready stock. We confirm the lead time with your quote."],
-            ["Free delivery", "Within Klang Valley on orders above RM1,500."],
+            noFreeDelivery
+              ? ["Delivery", "Transport charge applies to this item and is quoted per order. Not part of the free-delivery offer."]
+              : ["Free delivery", "Standard items within Klang Valley on orders above RM1,500. T&C apply. Bulky items and other areas are charged."],
           ].map(([t, d]) => (
             <li key={t} className="flex gap-3 p-4">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-oak" />

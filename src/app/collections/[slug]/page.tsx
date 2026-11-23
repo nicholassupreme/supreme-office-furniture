@@ -5,7 +5,7 @@ import { collectionProducts, getCollection, toCard } from "@/lib/catalog";
 import { taxonomy } from "@/lib/taxonomy";
 import { CollectionBrowser } from "@/components/collection-browser";
 import { waLink } from "@/lib/site";
-import { IconWhatsApp } from "@/components/icons";
+import { IconArrow, IconWhatsApp } from "@/components/icons";
 
 
 export function generateStaticParams() {
@@ -82,7 +82,38 @@ export default async function CollectionPage({ params }: PageProps<"/collections
       )}
 
       {isWorkstation && (
-        <div className="mt-6 flex flex-col gap-3 rounded-2xl bg-brand-soft p-5 text-sm text-brand-ink md:flex-row md:items-center md:justify-between">
+        <Link
+          href="/workstations/build"
+          className="group mt-6 flex flex-wrap items-center gap-x-6 gap-y-4 rounded-[18px] bg-brand p-5 text-white md:px-7 md:py-6"
+        >
+          <span aria-hidden className="flex h-[150px] w-[260px] max-w-full shrink-0 items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/configurator/banner.svg"
+              alt=""
+              width={260}
+              height={150}
+              className="h-[150px] w-[260px] [transform:perspective(760px)_rotateX(26deg)] [transform-origin:50%_60%]"
+            />
+          </span>
+          <span className="flex min-w-0 flex-[999_1_340px] flex-col gap-1.5">
+            <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#c9c6ef]">New · Workstation builder</span>
+            <span className="text-2xl font-semibold leading-tight tracking-[-0.01em]">Customise your workstation now</span>
+            <span className="text-sm text-[#e3e2f5]">
+              Pick seaters, top size, colours and partitions, see it take shape, then send it to us for a quote.
+            </span>
+            <span className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-[#e3e2f5]">
+              <span>1 · Seaters</span><span>2 · Top size</span><span>3 · Colours</span><span>4 · Partition</span><span>5 · Legs &amp; add-ons</span>
+            </span>
+          </span>
+          <span className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-white px-6 font-semibold text-brand-ink transition group-hover:bg-brand-soft">
+            Start building <IconArrow className="h-[18px] w-[18px]" />
+          </span>
+        </Link>
+      )}
+
+      {isWorkstation && (
+        <div className="mt-4 flex flex-col gap-3 rounded-2xl bg-brand-soft p-5 text-sm text-brand-ink md:flex-row md:items-center md:justify-between">
           <p>
             <strong className="font-semibold">Prices are negotiable.</strong> Seater count, table size, partition height and
             colours can all be customised to your floor plan.

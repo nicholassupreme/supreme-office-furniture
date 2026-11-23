@@ -10,6 +10,10 @@ export type QuoteItem = {
   opts: Record<string, string>;
   price: number | null;
   qty: number;
+  /** page to link back to, when it isn't a catalogue product (e.g. the workstation builder) */
+  href?: string;
+  /** heavy / bulky item (safes, pods): excluded from free delivery */
+  noFreeDelivery?: boolean;
 };
 
 type Ctx = {

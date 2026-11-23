@@ -27,7 +27,16 @@ const bySlug = new Map(catalog.map((p) => [p.slug, p]));
 const counts = countsJson as { dept: Record<string, number>; sub: Record<string, number> };
 
 export const allProducts = () => catalog;
-export const getProduct = (slug: string) => bySlug.get(slug);
+// Browsers send non-ASCII slugs (é, °) percent-encoded, so try the decoded form too.
+export const getProduct = (slug: string) => {
+  const hit = bySlug.get(slug);
+  if (hit) return hit;
+  try {
+    return bySlug.get(decodeURIComponent(slug));
+  } catch {
+    return undefined;
+  }
+};
 export const toCard = (p: Product): Card => ({
   slug: p.slug, name: p.name, dept: p.dept, subs: p.subs, price: p.price, priceMax: p.priceMax, image: p.images[0] ?? null,
 });

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<"/products/[slug]">
   return {
     title: cleanName(p.name),
     description: p.summary || `${cleanName(p.name)} from Supreme Office Furniture, Klang.`,
-    alternates: { canonical: `/products/${slug}` },
+    alternates: { canonical: `/products/${encodeURI(p.slug)}` },
     openGraph: { images: p.images.slice(0, 1) },
   };
 }

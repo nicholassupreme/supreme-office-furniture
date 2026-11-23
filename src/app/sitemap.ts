@@ -11,6 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages.map((p) => ({ url: site.url + p })),
     ...cols.map((p) => ({ url: site.url + p })),
-    ...allProducts().map((p) => ({ url: `${site.url}/products/${p.slug}` })),
+    ...allProducts().map((p) => ({ url: `${site.url}/products/${encodeURI(p.slug)}` })),
   ];
 }

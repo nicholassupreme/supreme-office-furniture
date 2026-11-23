@@ -76,7 +76,7 @@ export default function Home() {
               [
                 "17641907",
                 "Free delivery",
-                "On orders above RM1,500 within Klang Valley.",
+                "Standard items within Klang Valley, orders above RM1,500. T&C apply.",
               ],
               [
                 "17641908",
@@ -413,11 +413,11 @@ const services: Service[] = [
   },
   {
     title: "Delivery & installation",
-    desc: "Free in Klang Valley above RM1,500. Chairs arrive assembled.",
+    desc: "Free in Klang Valley above RM1,500 (T&C apply). Chairs arrive assembled.",
     anchor: "planning",
     img: "/services/installation.webp",
     points: [
-      "Free delivery in Klang Valley above RM1,500",
+      "Free delivery in Klang Valley above RM1,500 (T&C apply; safes, pods and bulky items excluded)",
       "Chairs arrive fully assembled",
       "Installed and positioned on site",
     ],

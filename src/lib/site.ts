@@ -19,6 +19,9 @@ export const site = {
   ],
 };
 
+/** Heavy / bulky departments: never part of the free-delivery offer (transport charge applies). */
+export const noFreeDeliveryDepts = ["security-safe-box", "office-phone-booth-open-pods"];
+
 export function waLink(text: string, phone = site.whatsapp) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 }

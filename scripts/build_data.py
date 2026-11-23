@@ -4,7 +4,9 @@ Inputs (data/): supreme-catalogue.json, collections-leaf.json, taxonomy.json
 Outputs: src/data/catalog.json (full product data, server-only)
          public/search-index.json (slim, loaded by the client for search/filter)
 """
-import json, re, html, pathlib, collections, base64, hashlib, io
+import json, re, html, pathlib, collections, base64, hashlib, io, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import delivery_terms
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 raw = json.load(open(ROOT / "data/supreme-catalogue.json"))
@@ -157,7 +159,7 @@ for i, p in enumerate(raw):
     # Drop options with a single value everywhere? keep: they still describe the product
     prices = [v["price"] for v in variants if v["price"]] or ([num(p["price"])] if num(p["price"]) else [])
     images = list(dict.fromkeys(p["images"] + desc_images(p["descHtml"])))
-    body = clean_html(p["descHtml"])
+    body = delivery_terms.apply(clean_html(p["descHtml"]), (p["title"] or p["name"]).strip(), dept)
     products.append({
         "slug": RENAMED.get(p["slug"].strip("/"), p["slug"].strip("/")),
         "name": (p["title"] or p["name"]).strip(),

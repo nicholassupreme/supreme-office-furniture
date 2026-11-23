@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getProduct, menuBooths, menuStars, related, toCard } from "@/lib/catalog";
 import { deptName, subName } from "@/lib/taxonomy";
 import { ProductBuy } from "@/components/product-buy";
+import { noFreeDeliveryDepts } from "@/lib/site";
 import { ProductCard, cleanName } from "@/components/product-card";
 import { site } from "@/lib/site";
 
@@ -85,6 +86,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           variants={p.variants}
           basePrice={p.price}
           madeToOrder={p.made_to_order}
+          noFreeDelivery={noFreeDeliveryDepts.includes(p.dept)}
         />
       </div>
 

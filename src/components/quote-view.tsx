@@ -126,7 +126,9 @@ export function QuoteView() {
           </div>
           <p className="mt-2 text-xs leading-relaxed text-muted">
             Final pricing, delivery and installation are confirmed in your formal quotation.
-            {total >= 1500 && " This order qualifies for free delivery in Klang Valley."}
+            {total >= 1500 && !items.some((i) => i.noFreeDelivery)
+              ? " Orders above RM1,500 of standard items may qualify for free delivery in Klang Valley (T&C apply)."
+              : " Safes, pods and other bulky items carry a transport charge, and delivery outside Klang Valley is charged. We confirm all delivery charges in your quotation."}
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">

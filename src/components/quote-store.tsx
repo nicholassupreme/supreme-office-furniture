@@ -14,6 +14,8 @@ export type QuoteItem = {
   href?: string;
   /** heavy / bulky item (safes, pods): excluded from free delivery */
   noFreeDelivery?: boolean;
+  /** minimum order quantity (e.g. café chairs: 10 units) */
+  minQty?: number;
 };
 
 type Ctx = {
@@ -53,6 +55,7 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
   }, [items, ready]);
 
   const add: Ctx["add"] = useCallback((item, qty = 1) => {
+    qty = Math.max(qty, item.minQty ?? 1);
     const key = item.slug + "|" + Object.entries(item.opts).map(([k, v]) => `${k}=${v}`).join("|");
     setItems((prev) => {
       const found = prev.find((i) => i.key === key);
@@ -70,7 +73,7 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
       ready,
       count: items.reduce((n, i) => n + i.qty, 0),
       add,
-      setQty: (key, qty) => setItems((p) => p.map((i) => (i.key === key ? { ...i, qty: Math.max(1, qty) } : i))),
+      setQty: (key, qty) => setItems((p) => p.map((i) => (i.key === key ? { ...i, qty: Math.max(i.minQty ?? 1, qty) } : i))),
       remove: (key) => setItems((p) => p.filter((i) => i.key !== key)),
       clear: () => setItems([]),
       lastAdded,

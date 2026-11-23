@@ -12,6 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 raw = json.load(open(ROOT / "data/supreme-catalogue.json"))
 leaf = json.load(open(ROOT / "data/collections-leaf.json"))
 # Full option names/values per product, from the store's embedded product JSON (more complete than JSON-LD)
+PRICE_OVERRIDES = {"9-seater-workstation-120°-tabletop-whiteboard-standing-partition": 15000.0}
 variants_src = json.load(open(ROOT / "data/supreme-variants.json"))
 tax = json.load(open(ROOT / "data/taxonomy.json"))
 
@@ -157,6 +158,9 @@ for i, p in enumerate(raw):
                              "price": num(v["price"]), "image": v.get("image")})
         option_names = [opt_name(k) for k in p["variesBy"]]
     # Drop options with a single value everywhere? keep: they still describe the product
+    for v in variants:  # owner price overrides (set by Nic), keyed by slug
+        if p["slug"].strip("/") in PRICE_OVERRIDES:
+            v["price"] = PRICE_OVERRIDES[p["slug"].strip("/")]
     prices = [v["price"] for v in variants if v["price"]] or ([num(p["price"])] if num(p["price"]) else [])
     images = list(dict.fromkeys(p["images"] + desc_images(p["descHtml"])))
     body = delivery_terms.apply(clean_html(p["descHtml"]), (p["title"] or p["name"]).strip(), dept)

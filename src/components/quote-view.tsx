@@ -108,6 +108,7 @@ export function QuoteView() {
               <p className="tabular shrink-0 text-right text-sm font-semibold">
                 {i.price != null ? rm(i.price * i.qty) : "On request"}
                 {i.qty > 1 && i.price != null && <span className="block text-xs font-normal text-muted">{rm(i.price)} each</span>}
+                {i.minQty && <span className="block text-xs font-normal text-muted">Minimum {i.minQty} units</span>}
               </p>
             </li>
           ))}

@@ -19,6 +19,12 @@ export const site = {
   ],
 };
 
+/** Minimum order quantity written in a product name, e.g. "(minimum order: 10 units)". */
+export function minQtyOf(name: string): number {
+  const m = name.match(/minimum order:?\s*(\d+)\s*units?/i);
+  return m ? parseInt(m[1], 10) : 1;
+}
+
 /** Heavy / bulky departments: never part of the free-delivery offer (transport charge applies). */
 export const noFreeDeliveryDepts = ["security-safe-box", "office-phone-booth-open-pods"];
 

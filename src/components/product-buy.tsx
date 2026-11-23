@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useQuote } from "./quote-store";
 import { IconWhatsApp } from "./icons";
-import { rm, waLink } from "@/lib/site";
+import { rm, waLink, minQtyOf } from "@/lib/site";
 import { cleanName } from "./product-card";
 import { MadeInMalaysia, isMadeInMalaysia } from "./made-in-malaysia";
 
@@ -39,7 +39,8 @@ export function ProductBuy({
   }, [options, variants]);
 
   const [sel, setSel] = useState<Record<string, string>>(() => (variants[0] ? { ...variants[0].opts } : {}));
-  const [qty, setQty] = useState(1);
+  const minQty = minQtyOf(name);
+  const [qty, setQty] = useState(minQty);
   const [active, setActive] = useState(0);
 
   const match = variants.find((v) => options.every((o) => v.opts[o] === sel[o]));
@@ -156,12 +157,17 @@ export function ProductBuy({
           </fieldset>
         ))}
 
-        <div className="mt-8 flex gap-3">
+        {minQty > 1 && (
+          <p className="mt-8 rounded-xl border border-line bg-surface px-4 py-3 text-sm font-medium">
+            Minimum order: {minQty} units
+          </p>
+        )}
+        <div className={minQty > 1 ? "mt-3 flex gap-3" : "mt-8 flex gap-3"}>
           <div className="flex h-12 items-center rounded-full border border-line bg-surface">
-            <button className="h-full w-11 text-lg text-muted" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease quantity">−</button>
+            <button className="h-full w-11 text-lg text-muted" onClick={() => setQty((q) => Math.max(minQty, q - 1))} aria-label="Decrease quantity">−</button>
             <input
               value={qty}
-              onChange={(e) => setQty(Math.max(1, parseInt(e.target.value) || 1))}
+              onChange={(e) => setQty(Math.max(minQty, parseInt(e.target.value) || minQty))}
               inputMode="numeric"
               className="tabular w-10 bg-transparent text-center text-sm font-semibold outline-none"
               aria-label="Quantity"
@@ -172,7 +178,7 @@ export function ProductBuy({
             disabled={variants.length > 0 && !match}
             onClick={() =>
               add(
-                { slug, name: cleanName(name), image: (match?.image ?? gallery[0]) || null, opts: options.length ? sel : {}, price, noFreeDelivery },
+                { slug, name: cleanName(name), image: (match?.image ?? gallery[0]) || null, opts: options.length ? sel : {}, price, noFreeDelivery, minQty: minQty > 1 ? minQty : undefined },
                 qty,
               )
             }

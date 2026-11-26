@@ -47,7 +47,7 @@ export const clients: Client[] = [
   {
     "name": "Universiti Tunku Abdul Rahman (UTAR)",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/en/f/f1/Universiti_Tunku_Abdul_Rahman_Logo.jpg",
+      "src": "/clients/universiti_tunku_abdul_rahman_logo.jpg",
       "w": 338,
       "h": 170
     }
@@ -231,7 +231,7 @@ export const clients: Client[] = [
   {
     "name": "Shell Malaysia",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/en/e/e8/Shell_logo.svg",
+      "src": "/clients/shell_logo.svg",
       "w": 150,
       "h": 139
     }
@@ -303,7 +303,7 @@ export const clients: Client[] = [
   {
     "name": "Mycron Steel",
     "logo": {
-      "src": "https://mycronsteel.com/assets/images/mycron-logo-1.png",
+      "src": "/clients/mycron-logo-1.png",
       "w": 850,
       "h": 234
     }
@@ -335,7 +335,7 @@ export const clients: Client[] = [
   {
     "name": "Harvey Norman",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/en/8/83/Harvey-norman-brand.svg",
+      "src": "/clients/harvey-norman-brand.svg",
       "w": 440,
       "h": 74
     }
@@ -367,7 +367,7 @@ export const clients: Client[] = [
   {
     "name": "SP Setia Berhad",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/6/69/SPsetialogo.png",
+      "src": "/clients/spsetialogo.png",
       "w": 584,
       "h": 203
     }
@@ -399,7 +399,7 @@ export const clients: Client[] = [
   {
     "name": "POSCO Malaysia",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/0/05/POSCO_logo.svg",
+      "src": "/clients/posco_logo.svg",
       "w": 1024,
       "h": 277
     }
@@ -431,7 +431,7 @@ export const clients: Client[] = [
   {
     "name": "NTT MSC",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/e/e2/NTT_Data_2025.svg",
+      "src": "/clients/ntt_data_2025.svg",
       "w": 160,
       "h": 33
     }
@@ -463,7 +463,7 @@ export const clients: Client[] = [
   {
     "name": "Berjaya Roasters (Kenny Rogers Roasters)",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/en/5/57/Logo_for_Kenny_Rogers_Roasters.jpg",
+      "src": "/clients/logo_for_kenny_rogers_roasters.jpg",
       "w": 230,
       "h": 121
     }
@@ -495,7 +495,7 @@ export const clients: Client[] = [
   {
     "name": "Ahmad Zaki Resources (AZRB)",
     "logo": {
-      "src": "https://static.wixstatic.com/media/bc4239_68175b5fbe5d40758d073f8ebc65e46a~mv2.jpg/v1/fit/w_480,h_176,q_90/azrb.jpg",
+      "src": "/clients/azrb.jpg",
       "w": 3509,
       "h": 1287
     }
@@ -695,7 +695,7 @@ export const clients: Client[] = [
   {
     "name": "Malaysia Bible Seminary",
     "logo": {
-      "src": "https://ed.mbs.org.my/wp-content/uploads/2021/06/mbs.logo_.web2_.png",
+      "src": "/clients/mbs.logo_.web2_.png",
       "w": 265,
       "h": 201
     }
@@ -727,7 +727,7 @@ export const clients: Client[] = [
   {
     "name": "Methodist Church in Malaysia",
     "logo": {
-      "src": "https://upload.wikimedia.org/wikipedia/en/6/68/Methodist_malaysia.png",
+      "src": "/clients/methodist_malaysia.png",
       "w": 98,
       "h": 95
     }

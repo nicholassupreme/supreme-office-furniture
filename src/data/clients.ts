@@ -47,7 +47,7 @@ export const clients: Client[] = [
   {
     "name": "Universiti Tunku Abdul Rahman (UTAR)",
     "logo": {
-      "src": "/clients/universiti_tunku_abdul_rahman_logo.jpg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/universiti_tunku_abdul_rahman_logo.jpg",
       "w": 338,
       "h": 170
     }
@@ -231,7 +231,7 @@ export const clients: Client[] = [
   {
     "name": "Shell Malaysia",
     "logo": {
-      "src": "/clients/shell_logo.svg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/shell_logo.svg",
       "w": 150,
       "h": 139
     }
@@ -303,7 +303,7 @@ export const clients: Client[] = [
   {
     "name": "Mycron Steel",
     "logo": {
-      "src": "/clients/mycron-logo-1.png",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/mycron-logo-1.png",
       "w": 850,
       "h": 234
     }
@@ -335,7 +335,7 @@ export const clients: Client[] = [
   {
     "name": "Harvey Norman",
     "logo": {
-      "src": "/clients/harvey-norman-brand.svg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/harvey-norman-brand.svg",
       "w": 440,
       "h": 74
     }
@@ -367,7 +367,7 @@ export const clients: Client[] = [
   {
     "name": "SP Setia Berhad",
     "logo": {
-      "src": "/clients/spsetialogo.png",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/spsetialogo.png",
       "w": 584,
       "h": 203
     }
@@ -399,7 +399,7 @@ export const clients: Client[] = [
   {
     "name": "POSCO Malaysia",
     "logo": {
-      "src": "/clients/posco_logo.svg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/posco_logo.svg",
       "w": 1024,
       "h": 277
     }
@@ -431,7 +431,7 @@ export const clients: Client[] = [
   {
     "name": "NTT MSC",
     "logo": {
-      "src": "/clients/ntt_data_2025.svg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/ntt_data_2025.svg",
       "w": 160,
       "h": 33
     }
@@ -463,7 +463,7 @@ export const clients: Client[] = [
   {
     "name": "Berjaya Roasters (Kenny Rogers Roasters)",
     "logo": {
-      "src": "/clients/logo_for_kenny_rogers_roasters.jpg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/logo_for_kenny_rogers_roasters.jpg",
       "w": 230,
       "h": 121
     }
@@ -495,7 +495,7 @@ export const clients: Client[] = [
   {
     "name": "Ahmad Zaki Resources (AZRB)",
     "logo": {
-      "src": "/clients/azrb.jpg",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/azrb.jpg",
       "w": 3509,
       "h": 1287
     }
@@ -695,7 +695,7 @@ export const clients: Client[] = [
   {
     "name": "Malaysia Bible Seminary",
     "logo": {
-      "src": "/clients/mbs.logo_.web2_.png",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/mbs.logo_.web2_.png",
       "w": 265,
       "h": 201
     }
@@ -727,7 +727,7 @@ export const clients: Client[] = [
   {
     "name": "Methodist Church in Malaysia",
     "logo": {
-      "src": "/clients/methodist_malaysia.png",
+      "src": "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/site/clients/methodist_malaysia.png",
       "w": 98,
       "h": 95
     }

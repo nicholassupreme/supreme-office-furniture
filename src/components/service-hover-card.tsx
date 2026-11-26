@@ -9,6 +9,8 @@ export type Service = {
   title: string;
   desc: string;
   anchor: string;
+  /** Overrides the default /services link, e.g. for a page that is not a service. */
+  href?: string;
   img?: string;
   points: string[];
 };
@@ -58,9 +60,10 @@ export function ServiceHoverCard({ sv }: { sv: Service }) {
     <div ref={ref} className={`relative h-[100px] ${isOpen ? "z-30" : "z-0"}`}>
       <Link
         href={
-          services.find((x) => x.anchor === sv.anchor)
+          sv.href ??
+          (services.find((x) => x.anchor === sv.anchor)
             ? `/services/${services.find((x) => x.anchor === sv.anchor)!.slug}`
-            : `/services#${sv.anchor}`
+            : `/services#${sv.anchor}`)
         }
         onPointerEnter={open}
         onPointerLeave={() => setBox(null)}

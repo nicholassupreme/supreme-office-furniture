@@ -72,7 +72,7 @@ export function PortfolioBrowser({
             {list.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-line px-5 py-6 text-sm text-muted">
                 {ind} projects will be added here soon. Planning one? Send us
-                your floor plan for a free layout.
+                your floor plan and we will quote it.
               </p>
             ) : (
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">

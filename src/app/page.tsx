@@ -262,7 +262,7 @@ export default function Home() {
       <section className="mx-auto mt-20 max-w-[1320px] px-4 md:mt-28 md:px-6">
         <SectionHead
           title="Trusted by Malaysia's leading organisations"
-          sub="Over 5,000 public listed companies, SMEs, government agencies, schools and healthcare providers furnished since 1985."
+          sub="Over 5,000 organisations furnished since 1985, from public listed companies and SMEs to government agencies, schools and healthcare providers."
           href="/portfolio"
           cta="View portfolio"
         />
@@ -414,7 +414,8 @@ const services: Service[] = [
   {
     title: "Delivery & installation",
     desc: "Free in Klang Valley above RM1,500 (T&C apply). Chairs arrive assembled.",
-    anchor: "planning",
+    anchor: "delivery",
+    href: "/pages/delivery-terms",
     img: "/services/installation.webp",
     points: [
       "Free delivery in Klang Valley above RM1,500 (T&C apply; safes, pods and bulky items excluded)",

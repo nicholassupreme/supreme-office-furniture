@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ProductCard, type CardData } from "./product-card";
-import { aceSeats } from "@/lib/ace-order";
+import { podSeats, SEAT_GROUPS } from "@/lib/ace-order";
 
 type Item = CardData & { subs: string[]; dept: string };
 type Facet = { slug: string; name: string };
@@ -27,13 +27,16 @@ export function CollectionBrowser({
   facets,
   facetKey,
   aceFirst = false,
+  seatChips = false,
 }: {
   items: Item[];
   facets: Facet[]; // sub-categories (or departments on /collections/all)
   facetKey: "subs" | "dept";
   aceFirst?: boolean; // Ace pods first, by seater count
+  seatChips?: boolean; // Office Pods: filter chips + sections by seat count
 }) {
   const [facet, setFacet] = useState<string>("all");
+  const [seatKey, setSeatKey] = useState<string>("all");
   const [price, setPrice] = useState("all");
   const [sort, setSort] = useState(aceFirst ? "featured" : "price-asc");
   const [shown, setShown] = useState(PAGE);
@@ -52,11 +55,12 @@ export function CollectionBrowser({
     const out = items.filter(
       (it) =>
         (facet === "all" || (facetKey === "subs" ? it.subs.includes(facet) : it.dept === facet)) &&
+        (!seatChips || seatKey === "all" || String(podSeats(it.slug)) === seatKey) &&
         (price === "all" || (it.price != null && pt(it.price))),
     );
     if (sort === "featured" && aceFirst) {
       out.sort((a, b) => {
-        const sa = aceSeats(a.slug) ?? 99, sb = aceSeats(b.slug) ?? 99;
+        const sa = podSeats(a.slug) ?? 99, sb = podSeats(b.slug) ?? 99;
         return sa - sb || (a.price ?? 1e9) - (b.price ?? 1e9);
       });
     }
@@ -64,7 +68,17 @@ export function CollectionBrowser({
     if (sort === "price-desc") out.sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
     if (sort === "name") out.sort((a, b) => a.name.localeCompare(b.name));
     return out;
-  }, [items, facet, facetKey, price, sort, aceFirst]);
+  }, [items, facet, facetKey, price, sort, aceFirst, seatChips, seatKey]);
+
+  const seatCounts = useMemo(() => {
+    const c: Record<string, number> = {};
+    for (const it of items) {
+      const k = String(podSeats(it.slug));
+      c[k] = (c[k] ?? 0) + 1;
+    }
+    return c;
+  }, [items]);
+  const grouped = seatChips && seatKey === "all" && sort === "featured";
 
   const visibleFacets = facets.filter((f) => facetCounts[f.slug]);
   const reset = (fn: () => void) => {
@@ -74,6 +88,22 @@ export function CollectionBrowser({
 
   return (
     <div>
+      {seatChips && (
+        <div className="rounded-[18px] border border-line bg-surface p-4 md:p-5">
+          <p className="text-sm font-semibold">Shop by seats <span className="font-normal text-muted">– how many people need to fit?</span></p>
+          <div className="no-scrollbar -mx-1 mt-3 flex gap-2 overflow-x-auto px-1 pb-1 md:flex-wrap">
+            <Chip active={seatKey === "all"} onClick={() => reset(() => setSeatKey("all"))}>
+              All pods <span className="opacity-60">{items.length}</span>
+            </Chip>
+            {SEAT_GROUPS.filter((g) => seatCounts[g.seats]).map((g) => (
+              <Chip key={g.key} active={seatKey === g.key} onClick={() => reset(() => setSeatKey(g.key))}>
+                {g.label} <span className="opacity-60">{seatCounts[g.seats]}</span>
+              </Chip>
+            ))}
+          </div>
+        </div>
+      )}
+
       {visibleFacets.length > 1 && (
         <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0">
           <Chip active={facet === "all"} onClick={() => reset(() => setFacet("all"))}>
@@ -100,9 +130,29 @@ export function CollectionBrowser({
       {list.length === 0 ? (
         <div className="py-20 text-center">
           <p className="font-medium">No products match these filters.</p>
-          <button className="mt-3 text-sm font-medium text-brand underline" onClick={() => reset(() => { setFacet("all"); setPrice("all"); })}>
+          <button className="mt-3 text-sm font-medium text-brand underline" onClick={() => reset(() => { setFacet("all"); setPrice("all"); setSeatKey("all"); })}>
             Clear filters
           </button>
+        </div>
+      ) : grouped ? (
+        <div className="mt-8 flex flex-col gap-12">
+          {SEAT_GROUPS.map((g) => {
+            const rows = list.filter((p) => podSeats(p.slug) === g.seats);
+            if (!rows.length) return null;
+            return (
+              <section key={g.key} aria-labelledby={`seat-${g.key}`}>
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h2 id={`seat-${g.key}`} className="text-2xl font-semibold tracking-[-0.02em]">{g.label}</h2>
+                  <p className="text-sm text-muted">{g.blurb}</p>
+                </div>
+                <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6">
+                  {rows.map((p, i) => (
+                    <ProductCard key={p.slug} p={p} priority={g.seats === 1 && i < 4} />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       ) : (
         <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6">
@@ -112,7 +162,7 @@ export function CollectionBrowser({
         </div>
       )}
 
-      {shown < list.length && (
+      {!grouped && shown < list.length && (
         <div className="mt-12 flex flex-col items-center gap-3">
           <p className="tabular text-sm text-muted">
             Showing {shown} of {list.length}

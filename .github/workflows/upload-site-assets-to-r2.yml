@@ -1,0 +1,65 @@
+name: Upload site assets to R2
+
+# One-off job. Copies public/desc-images and public/clients into the
+# supreme-products R2 bucket under s/1022051/site/. Run it by hand from the
+# Actions tab. It only ever adds or overwrites files; it never deletes.
+#
+# Needs two repository secrets (Settings > Secrets and variables > Actions):
+#   R2_ACCESS_KEY_ID
+#   R2_SECRET_ACCESS_KEY
+# Delete the R2 token in Cloudflare once the run is green.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  R2_ACCOUNT_ID: 495e30f29ca4ca85a078f9cbac471054
+  R2_BUCKET: supreme-products
+  R2_PREFIX: s/1022051/site
+  PUBLIC_BASE: https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev
+  AWS_DEFAULT_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check secrets are set
+        env:
+          K: ${{ secrets.R2_ACCESS_KEY_ID }}
+          S: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          if [ -z "$K" ] || [ -z "$S" ]; then
+            echo "Missing R2_ACCESS_KEY_ID or R2_SECRET_ACCESS_KEY repository secret."
+            exit 1
+          fi
+
+      - name: Upload to R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          EP="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          for d in desc-images clients; do
+            aws s3 sync "public/$d" "s3://${R2_BUCKET}/${R2_PREFIX}/$d" --endpoint-url "$EP" --no-progress
+          done
+
+      - name: Verify files are publicly reachable
+        run: |
+          fail=0; n=0
+          for d in desc-images clients; do
+            for f in public/$d/*; do
+              b=$(basename "$f")
+              code=$(curl -s -o /dev/null -w '%{http_code}' "${PUBLIC_BASE}/${R2_PREFIX}/$d/$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$b")")
+              n=$((n+1))
+              if [ "$code" != "200" ]; then echo "FAIL $code $d/$b"; fail=1; fi
+            done
+          done
+          echo "checked $n files"
+          exit $fail

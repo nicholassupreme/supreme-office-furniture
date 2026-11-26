@@ -24,6 +24,7 @@ export const SEAT_GROUPS: { key: string; seats: number; label: string; blurb: st
 
 const OTHER_PODS: [prefix: string, seats: number][] = [
   ["satu-", 1],
+  ["ace-pebble-", 1],
   ["movable-silence", 1],
   ["quattro-", 4],
 ];

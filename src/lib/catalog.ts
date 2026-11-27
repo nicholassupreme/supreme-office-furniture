@@ -27,6 +27,11 @@ const bySlug = new Map(catalog.map((p) => [p.slug, p]));
 const counts = countsJson as { dept: Record<string, number>; sub: Record<string, number> };
 
 export const allProducts = () => catalog;
+
+/** The price the product page shows on first load (first variant). Google requires feed and markup to match it. */
+export const defaultPrice = (p: Product): number | null => (p.variants.length ? (p.variants[0].price ?? null) : p.price);
+/** The site states "All items are made to order", so every product is a backorder (never claim stock the page denies). */
+export const availabilityOf = (_p: Product): "backorder" => "backorder";
 // On Vercel, slugs with accents or symbols (e.g. "café", "120°") reach the page percent-encoded.
 const safeDecode = (s: string) => {
   try {

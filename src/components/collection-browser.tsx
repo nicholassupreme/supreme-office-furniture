@@ -22,23 +22,36 @@ const SORTS = [
 ];
 const PAGE = 24;
 
+/** Main length / diameter in mm from names like "1800W x 900D", "900dia mm" or "2400W x 1200D / 3000W x 1200D". */
+export function tableLengthMm(name: string): number | null {
+  const m = name.match(/(\d{3,4})\s*(?:W\b|dia)/i);
+  return m ? Number(m[1]) : null;
+}
+const mmToFt = (mm: number) => {
+  const ft = mm / 304.8;
+  return `${Number.isInteger(Math.round(ft * 10) / 10) ? Math.round(ft) : (Math.round(ft * 10) / 10).toFixed(1)}ft`;
+};
+
 export function CollectionBrowser({
   items,
   facets,
   facetKey,
   aceFirst = false,
   seatChips = false,
+  sizeGroups = false,
 }: {
   items: Item[];
   facets: Facet[]; // sub-categories (or departments on /collections/all)
   facetKey: "subs" | "dept";
   aceFirst?: boolean; // Ace pods first, by seater count
   seatChips?: boolean; // Office Pods: filter chips + sections by seat count
+  sizeGroups?: boolean; // Meeting tables: sections by length in mm (default view)
 }) {
   const [facet, setFacet] = useState<string>("all");
   const [seatKey, setSeatKey] = useState<string>("all");
   const [price, setPrice] = useState("all");
-  const [sort, setSort] = useState(aceFirst ? "featured" : "price-asc");
+  const [sort, setSort] = useState(sizeGroups ? "size" : aceFirst ? "featured" : "price-asc");
+  const sorts = sizeGroups ? [{ id: "size", label: "Size: small to large" }, ...SORTS.filter((s) => s.id !== "featured")] : SORTS;
   const [shown, setShown] = useState(PAGE);
 
   const facetCounts = useMemo(() => {
@@ -64,6 +77,9 @@ export function CollectionBrowser({
         return sa - sb || (a.price ?? 1e9) - (b.price ?? 1e9);
       });
     }
+    if (sort === "size") {
+      out.sort((a, b) => (tableLengthMm(a.name) ?? 1e9) - (tableLengthMm(b.name) ?? 1e9) || (a.price ?? 1e9) - (b.price ?? 1e9));
+    }
     if (sort === "price-asc") out.sort((a, b) => (a.price ?? 1e9) - (b.price ?? 1e9));
     if (sort === "price-desc") out.sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
     if (sort === "name") out.sort((a, b) => a.name.localeCompare(b.name));
@@ -79,6 +95,16 @@ export function CollectionBrowser({
     return c;
   }, [items]);
   const grouped = seatChips && seatKey === "all" && sort === "featured";
+  const sizeGrouped = sizeGroups && sort === "size";
+  const bySize = useMemo(() => {
+    if (!sizeGrouped) return [];
+    const m = new Map<number | null, Item[]>();
+    for (const it of list) {
+      const k = tableLengthMm(it.name);
+      m.set(k, [...(m.get(k) ?? []), it]);
+    }
+    return [...m.entries()].sort((a, b) => (a[0] ?? 1e9) - (b[0] ?? 1e9));
+  }, [list, sizeGrouped]);
 
   const visibleFacets = facets.filter((f) => facetCounts[f.slug]);
   const reset = (fn: () => void) => {
@@ -123,7 +149,7 @@ export function CollectionBrowser({
         </p>
         <div className="flex gap-2">
           <Select label="Price" value={price} onChange={(v) => reset(() => setPrice(v))} options={PRICE.map((p) => [p.id, p.label])} />
-          <Select label="Sort" value={sort} onChange={(v) => reset(() => setSort(v))} options={SORTS.map((s) => [s.id, s.label])} />
+          <Select label="Sort" value={sort} onChange={(v) => reset(() => setSort(v))} options={sorts.map((s) => [s.id, s.label])} />
         </div>
       </div>
 
@@ -133,6 +159,27 @@ export function CollectionBrowser({
           <button className="mt-3 text-sm font-medium text-brand underline" onClick={() => reset(() => { setFacet("all"); setPrice("all"); setSeatKey("all"); })}>
             Clear filters
           </button>
+        </div>
+      ) : sizeGrouped ? (
+        <div className="mt-8 flex flex-col gap-12">
+          {bySize.map(([mm, rows], gi) => (
+            <section key={mm ?? "other"} aria-labelledby={`size-${mm ?? "other"}`}>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h2 id={`size-${mm ?? "other"}`} className="tabular text-2xl font-semibold tracking-[-0.02em]">
+                  {mm ? `${mm}mm` : "Other sizes"}
+                </h2>
+                <p className="tabular text-sm text-muted">
+                  {mm ? `${mmToFt(mm)} · ` : "Combination & modular sets · "}
+                  {rows.length} {rows.length === 1 ? "table" : "tables"}
+                </p>
+              </div>
+              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6">
+                {rows.map((p, i) => (
+                  <ProductCard key={p.slug} p={p} priority={gi === 0 && i < 4} />
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       ) : grouped ? (
         <div className="mt-8 flex flex-col gap-12">
@@ -162,7 +209,7 @@ export function CollectionBrowser({
         </div>
       )}
 
-      {!grouped && shown < list.length && (
+      {!grouped && !sizeGrouped && shown < list.length && (
         <div className="mt-12 flex flex-col items-center gap-3">
           <p className="tabular text-sm text-muted">
             Showing {shown} of {list.length}

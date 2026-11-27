@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
     "@context": "https://schema.org",
     "@type": "Product",
     name: cleanName(p.name),
-    image: p.images,
+    image: p.images.map((u) => (u.startsWith("http") ? u : site.url + u)),
     description: p.summary,
     brand: { "@type": "Brand", name: "Supreme Office" },
     url: `${site.url}/products/${p.slug}`,

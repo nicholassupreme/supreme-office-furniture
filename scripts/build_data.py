@@ -104,7 +104,8 @@ def desc_images(h):
     return out
 
 # Duplicate listings on the old store; their URLs redirect to the kept copy (see next.config.ts)
-REMOVED = {"steel-mobile-book-trolley-for-library-school", "mobile-book-trolley-for-library-school-1"}
+REMOVED = {"steel-mobile-book-trolley-for-library-school", "mobile-book-trolley-for-library-school-1",
+           "rn-mobile-foldable-training-office-table"}  # RN foldable table: no longer sold (Nov 2026)
 
 # Old store slugs that misdescribe the product; the site uses the new slug (no redirect kept)
 RENAMED = {"4-seater-workstation-with-acrylic-partition-g-": "2-seater-workstation-with-acrylic-partition-g",

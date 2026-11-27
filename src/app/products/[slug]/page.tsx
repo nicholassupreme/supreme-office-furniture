@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getProduct, menuBooths, menuStars, related, toCard } from "@/lib/catalog";
+import { availabilityOf, defaultPrice, getProduct, menuBooths, menuStars, related, toCard } from "@/lib/catalog";
 import { deptName, subName } from "@/lib/taxonomy";
 import { ProductBuy } from "@/components/product-buy";
 import { PodPage } from "@/components/pod-page";
@@ -62,13 +62,15 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
     description: p.summary,
     brand: { "@type": "Brand", name: "Supreme Office" },
     url: `${site.url}/products/${p.slug}`,
-    ...(p.price != null && {
+    sku: p.slug,
+    ...(defaultPrice(p) != null && {
       offers: {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
+        url: `${site.url}/products/${p.slug}`,
         priceCurrency: "MYR",
-        lowPrice: p.price,
-        highPrice: p.priceMax ?? p.price,
-        availability: "https://schema.org/PreOrder",
+        price: defaultPrice(p),
+        itemCondition: "https://schema.org/NewCondition",
+        availability: availabilityOf(p) === "backorder" ? "https://schema.org/BackOrder" : "https://schema.org/InStock",
         seller: { "@type": "Organization", name: site.legal },
       },
     }),

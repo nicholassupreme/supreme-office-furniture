@@ -14,8 +14,11 @@ const text = (html: string) =>
 
 const abs = (u: string) => (u.startsWith("http") ? u : site.url + u);
 
-/** Merchant Center ids are capped at 50 characters. */
-const idOf = (slug: string) => (slug.length <= 50 ? slug : `${slug.slice(0, 40)}-${createHash("sha1").update(slug).digest("hex").slice(0, 9)}`);
+/** Merchant Center ids are capped at 50 characters and must be plain ASCII (accents count extra). */
+const idOf = (slug: string) =>
+  slug.length <= 50 && /^[\x20-\x7E]+$/.test(slug)
+    ? slug
+    : `${slug.replace(/[^\x20-\x7E]/g, "").slice(0, 40)}-${createHash("sha1").update(slug).digest("hex").slice(0, 9)}`;
 
 export function GET() {
   const items = allProducts().flatMap((p) => {

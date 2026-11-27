@@ -45,6 +45,16 @@ const moved: [string, string][] = [
   // Product whose old store slug was just "v".
   ["/products/v", "/products/io2-wooden-low-back-office-chair-1"],
   ["/collections/:c/products/v", "/products/io2-wooden-low-back-office-chair-1"],
+  // Old products and pages that were renamed or dropped in the rebuild.
+  ["/products/espress-high-back-office-chair-1", "/products/espress-high-back-office-chair"],
+  ["/products/galla-high-back-office-chair-k-", "/products/galla2-high-back-office-chair-k-"],
+  ["/products/4-seater-workstation-with-acrylic-partition-g-", "/products/4-seater-workstation-with-fabric-partition-g-"],
+  ["/collections/cafe-banquet-chairs-malaysia", "/collections/cafe-banquet-chairs"],
+  ["/collections/office-projectors", "/collections/projector-screens-presentation-tools"],
+  ["/collections/feature-on-homepage", "/"],
+  ["/pages/refund-policy", "/pages/refund-return-policy"],
+  ["/pages/smes-corporates", "/portfolio"],
+  ["/pages/office-relocation-or-office-furniture-disposal-service", "/services#relocation"],
   ["/cart", "/quote"],
   ["/account/:path*", "/quote"],
 ];

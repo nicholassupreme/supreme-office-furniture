@@ -27,7 +27,15 @@ const bySlug = new Map(catalog.map((p) => [p.slug, p]));
 const counts = countsJson as { dept: Record<string, number>; sub: Record<string, number> };
 
 export const allProducts = () => catalog;
-export const getProduct = (slug: string) => bySlug.get(slug);
+// On Vercel, slugs with accents or symbols (e.g. "café", "120°") reach the page percent-encoded.
+const safeDecode = (s: string) => {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return s;
+  }
+};
+export const getProduct = (slug: string) => bySlug.get(slug) ?? bySlug.get(safeDecode(slug)) ?? bySlug.get(safeDecode(slug).normalize("NFC"));
 export const toCard = (p: Product): Card => ({
   slug: p.slug, name: p.name, dept: p.dept, subs: p.subs, price: p.price, priceMax: p.priceMax, image: p.images[0] ?? null,
 });

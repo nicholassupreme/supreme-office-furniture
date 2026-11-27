@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuote } from "./quote-store";
+import { authClient } from "@/lib/auth-client";
 import { IconWhatsApp } from "./icons";
 import { rm, site, waLink } from "@/lib/site";
 
@@ -10,6 +11,34 @@ export function QuoteView() {
   const { items, ready, setQty, remove, clear } = useQuote();
   const [form, setForm] = useState({ name: "", company: "", phone: "", email: "", location: "", notes: "" });
   const [contact, setContact] = useState(site.contacts[0].phone);
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+  const prefilled = useRef(false);
+
+  // Logged in: fill the contact form from the saved account details (once, without overwriting what they typed).
+  useEffect(() => {
+    if (!user || prefilled.current) return;
+    prefilled.current = true;
+    setForm((f) => ({
+      ...f,
+      name: f.name || user.name || "",
+      email: f.email || user.email || "",
+      company: f.company || user.company || "",
+      phone: f.phone || user.phone || "",
+      location: f.location || user.location || "",
+    }));
+  }, [user]);
+
+  // Logged in: keep a record of the quote in their history when they send it.
+  function record(channel: "whatsapp" | "email") {
+    if (!user) return;
+    fetch("/api/quotes", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ items, channel, ...form }),
+      keepalive: true,
+    }).catch(() => {});
+  }
 
   if (!ready) return <div className="h-40" />;
 
@@ -132,6 +161,19 @@ export function QuoteView() {
             {items.some((i) => i.slug.startsWith("ace-")) && " Ace pods: delivery is RM400 per trip within Klang Valley."}
           </p>
 
+          {!isPending && !user && (
+            <p className="mt-5 rounded-xl bg-brand-soft px-3.5 py-3 text-xs leading-relaxed text-ink-2">
+              <Link href="/login?mode=signup&next=/quote" className="font-semibold text-brand underline-offset-4 hover:underline">
+                Create a free account
+              </Link>{" "}
+              or{" "}
+              <Link href="/login?next=/quote" className="font-semibold text-brand underline-offset-4 hover:underline">
+                sign in
+              </Link>{" "}
+              to save this quote, keep your history and pre-fill your details. Or just send it as a guest below.
+            </p>
+          )}
+
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {field("name", "Your name")}
             {field("company", "Company")}
@@ -158,13 +200,14 @@ export function QuoteView() {
 
           <a
             href={waLink(message, contact)}
+            onClick={() => record("whatsapp")}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 flex h-12 items-center justify-center gap-2 rounded-full bg-wa text-sm font-semibold text-white"
           >
             <IconWhatsApp className="h-4 w-4" /> Send quote on WhatsApp
           </a>
-          <a href={mailto} className="mt-2.5 flex h-12 items-center justify-center rounded-full border border-line text-sm font-semibold hover:border-ink/30">
+          <a href={mailto} onClick={() => record("email")} className="mt-2.5 flex h-12 items-center justify-center rounded-full border border-line text-sm font-semibold hover:border-ink/30">
             Send by email instead
           </a>
         </div>

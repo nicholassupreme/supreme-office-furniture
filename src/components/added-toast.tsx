@@ -1,19 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuote } from "./quote-store";
+import { authClient } from "@/lib/auth-client";
 import { IconCheck, IconClose } from "./icons";
 import { rm } from "@/lib/site";
 
+const PROMPT_KEY = "supreme-account-prompt-hidden";
+
 export function AddedToast() {
   const { lastAdded, dismissAdded, count } = useQuote();
+  const { data: session, isPending } = authClient.useSession();
+  const [hidePrompt, setHidePrompt] = useState(false);
+
+  useEffect(() => {
+    try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- read the stored choice once on mount
+      setHidePrompt(localStorage.getItem(PROMPT_KEY) === "1");
+    } catch {}
+  }, []);
+
+  const showPrompt = !isPending && !session && !hidePrompt;
 
   useEffect(() => {
     if (!lastAdded) return;
-    const t = setTimeout(dismissAdded, 5000);
+    const t = setTimeout(dismissAdded, showPrompt ? 9000 : 5000);
     return () => clearTimeout(t);
-  }, [lastAdded, dismissAdded]);
+  }, [lastAdded, dismissAdded, showPrompt]);
 
   if (!lastAdded) return null;
   const opts = Object.values(lastAdded.opts).join(" · ");
@@ -41,6 +55,34 @@ export function AddedToast() {
           <IconClose className="h-4 w-4" />
         </button>
       </div>
+      {showPrompt && (
+        <div className="mt-3 rounded-xl bg-brand-soft px-3.5 py-3 text-xs leading-relaxed text-ink-2">
+          <p>
+            <span className="font-semibold text-ink">Create a free account</span> to save your quote on any device and
+            keep a history of what you&apos;ve requested.
+          </p>
+          <div className="mt-2.5 flex items-center gap-4 text-sm">
+            <Link
+              href="/login?mode=signup&next=/quote"
+              onClick={dismissAdded}
+              className="font-semibold text-brand underline-offset-4 hover:underline"
+            >
+              Create account
+            </Link>
+            <button
+              onClick={() => {
+                try {
+                  localStorage.setItem(PROMPT_KEY, "1");
+                } catch {}
+                setHidePrompt(true);
+              }}
+              className="text-muted hover:text-ink"
+            >
+              Not now
+            </button>
+          </div>
+        </div>
+      )}
       <div className="mt-3 flex gap-2">
         <Link
           href="/quote"

@@ -7,7 +7,8 @@ import { navTabs, taxonomy } from "@/lib/taxonomy";
 import { rm, site, waLink } from "@/lib/site";
 import { cleanName } from "./product-card";
 import { useQuote } from "./quote-store";
-import { IconBag, IconClose, IconMenu, IconSearch, IconWhatsApp } from "./icons";
+import { authClient } from "@/lib/auth-client";
+import { IconBag, IconClose, IconMenu, IconSearch, IconUser, IconWhatsApp } from "./icons";
 
 type StarCard = { slug: string; name: string; price: number | null; priceMax: number | null; image: string | null };
 
@@ -20,6 +21,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
   const [mobile, setMobile] = useState(false);
   const pathname = usePathname();
   const { count, ready } = useQuote();
+  const { data: session } = authClient.useSession();
   const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const [scrolled, setScrolled] = useState(false);
 
@@ -93,7 +95,15 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
             <Wordmark className={`h-5 transition-[height] duration-300 ${scrolled ? "md:h-6" : "md:h-[30px]"}`} />
           </Link>
 
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-end gap-1">
+            <Link
+              href={session ? "/account" : "/login"}
+              className="flex items-center gap-2 rounded-full p-3 text-sm font-semibold transition hover:text-brand md:px-3.5 md:py-2.5"
+              aria-label={session ? "My account" : "Sign in"}
+            >
+              <IconUser className="h-[18px] w-[18px]" />
+              <span className="hidden lg:inline">{session ? "Account" : "Sign in"}</span>
+            </Link>
             <Link
               href="/quote"
               className="relative -mr-1 flex items-center gap-2 rounded-full p-3 text-sm font-semibold transition md:bg-accent md:py-2.5 md:pl-4 md:pr-3 md:text-white md:hover:bg-accent-ink"

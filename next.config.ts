@@ -56,7 +56,6 @@ const moved: [string, string][] = [
   ["/pages/smes-corporates", "/portfolio"],
   ["/pages/office-relocation-or-office-furniture-disposal-service", "/services#relocation"],
   ["/cart", "/quote"],
-  ["/account/:path*", "/quote"],
 ];
 
 const nextConfig: NextConfig = {

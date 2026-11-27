@@ -130,7 +130,7 @@ export default async function CollectionPage({ params }: PageProps<"/collections
       )}
 
       <div className="mt-8">
-        <CollectionBrowser items={items} facets={facets} facetKey={facetKey} aceFirst={c.kind !== "all" && items.some((i) => i.slug.startsWith("ace-"))} seatChips={c.kind === "dept" && c.dept.slug === "office-phone-booth-open-pods"} />
+        <CollectionBrowser items={items} facets={facets} facetKey={facetKey} aceFirst={c.kind !== "all" && items.some((i) => i.slug.startsWith("ace-"))} sizeGroups={c.kind !== "all" && c.dept.slug === "meeting-conference-table"} seatChips={c.kind === "dept" && c.dept.slug === "office-phone-booth-open-pods"} />
       </div>
     </div>
   );

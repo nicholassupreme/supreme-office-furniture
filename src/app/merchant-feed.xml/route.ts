@@ -12,6 +12,8 @@ const esc = (s: string) =>
 const text = (html: string) =>
   html.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
+const abs = (u: string) => (u.startsWith("http") ? u : site.url + u);
+
 /** Merchant Center ids are capped at 50 characters. */
 const idOf = (slug: string) => (slug.length <= 50 ? slug : `${slug.slice(0, 40)}-${createHash("sha1").update(slug).digest("hex").slice(0, 9)}`);
 
@@ -30,8 +32,8 @@ export function GET() {
         `<g:title>${esc(title)}</g:title>`,
         `<g:description>${esc(desc)}</g:description>`,
         `<g:link>${esc(link)}</g:link>`,
-        `<g:image_link>${esc(p.images[0])}</g:image_link>`,
-        ...p.images.slice(1, 11).map((u) => `<g:additional_image_link>${esc(u)}</g:additional_image_link>`),
+        `<g:image_link>${esc(abs(p.images[0]))}</g:image_link>`,
+        ...p.images.slice(1, 11).map((u) => `<g:additional_image_link>${esc(abs(u))}</g:additional_image_link>`),
         `<g:availability>${availabilityOf(p)}</g:availability>`,
         `<g:price>${price.toFixed(2)} MYR</g:price>`,
         `<g:condition>new</g:condition>`,

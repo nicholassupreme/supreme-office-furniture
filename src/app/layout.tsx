@@ -6,6 +6,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { QuoteProvider } from "@/components/quote-store";
 import { AddedToast } from "@/components/added-toast";
+import { AnalyticsEvents } from "@/components/analytics-events";
+import { CookieNotice } from "@/components/cookie-notice";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { site } from "@/lib/site";
 import { deptCount, menuBooths, menuStars } from "@/lib/catalog";
@@ -36,6 +38,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
           <AddedToast />
           <FloatingWhatsApp />
+          <CookieNotice />
+          <AnalyticsEvents />
         </QuoteProvider>
       </body>
       <GoogleAnalytics gaId={gaId} />

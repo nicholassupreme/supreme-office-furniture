@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { track } from "@/lib/analytics";
 
 export type QuoteItem = {
   key: string; // slug + chosen options
@@ -102,6 +103,7 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
   }, [items, userId, ready]);
 
   const add: Ctx["add"] = useCallback((item, qty = 1) => {
+    track("add_to_quote", { item_name: item.name, qty });
     const key = item.slug + "|" + Object.entries(item.opts).map(([k, v]) => `${k}=${v}`).join("|");
     setItems((prev) => {
       const found = prev.find((i) => i.key === key);

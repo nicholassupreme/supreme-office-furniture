@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useQuote } from "./quote-store";
 import { authClient } from "@/lib/auth-client";
 import { IconWhatsApp } from "./icons";
+import { track } from "@/lib/analytics";
 import { rm, site, waLink } from "@/lib/site";
 
 export function QuoteView() {
@@ -31,6 +32,7 @@ export function QuoteView() {
 
   // Logged in: keep a record of the quote in their history when they send it.
   function record(channel: "whatsapp" | "email") {
+    track("quote_sent", { channel, items: items.length, value: items.reduce((s, i) => s + (i.price ?? 0) * i.qty, 0), currency: "MYR" });
     if (!user) return;
     fetch("/api/quotes", {
       method: "POST",

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { QuoteProvider } from "@/components/quote-store";
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
   openGraph: { siteName: site.name, locale: "en_MY", type: "website" },
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-DSETDHHJWX";
+
 export const viewport: Viewport = { themeColor: "#f5f3ee" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -35,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <FloatingWhatsApp />
         </QuoteProvider>
       </body>
+      <GoogleAnalytics gaId={gaId} />
     </html>
   );
 }

@@ -98,7 +98,7 @@ export function Header({ stars, booths, boothCount }: { stars: Record<string, St
           <div className="flex items-center justify-end gap-1">
             <Link
               href={session ? "/account" : "/login"}
-              className="flex items-center gap-2 rounded-full p-3 text-sm font-semibold transition hover:text-brand md:px-3.5 md:py-2.5"
+              className="flex items-center gap-2 rounded-full p-3 text-sm font-semibold transition duration-200 hover:bg-brand hover:text-white md:px-3.5 md:py-2.5"
               aria-label={session ? "My account" : "Sign in"}
             >
               <IconUser className="h-[18px] w-[18px]" />

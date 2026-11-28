@@ -98,7 +98,7 @@ export function AccountView() {
               <button
                 type="submit"
                 disabled={status === "saving"}
-                className="h-11 rounded-full bg-ink px-6 text-sm font-semibold text-white disabled:opacity-60"
+                className="h-11 rounded-full bg-ink px-6 text-sm font-semibold text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/25 active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
               >
                 {status === "saving" ? "Saving…" : "Save details"}
               </button>
@@ -120,7 +120,7 @@ export function AccountView() {
           <div className="mt-4 rounded-3xl border border-dashed border-line bg-surface px-6 py-14 text-center">
             <p className="font-semibold">No quotes sent yet</p>
             <p className="mt-2 text-sm text-muted">Quotes you send by WhatsApp or email will be kept here.</p>
-            <Link href="/collections/all" className="mt-5 inline-block rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white">
+            <Link href="/collections/all" className="mt-5 inline-block rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/25 active:translate-y-0">
               Browse products
             </Link>
           </div>

@@ -64,9 +64,9 @@ export function LoginForm() {
           <button
             onClick={google}
             type="button"
-            className="mt-6 flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-line text-sm font-semibold hover:border-ink/30"
+            className="group mt-6 flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-line text-sm font-semibold transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/25 active:translate-y-0 hover:border-brand"
           >
-            <span className="text-base font-bold leading-none text-brand" aria-hidden>G</span>
+            <span className="text-base font-bold leading-none text-brand transition-colors group-hover:text-white" aria-hidden>G</span>
             Continue with Google
           </button>
           <div className="my-5 flex items-center gap-3 text-xs text-muted">
@@ -121,7 +121,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={busy}
-          className="h-12 w-full rounded-full bg-ink text-sm font-semibold text-white disabled:opacity-60"
+          className="h-12 w-full rounded-full bg-ink text-sm font-semibold text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/25 active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           {busy ? "Please wait…" : mode === "signup" ? "Create account" : "Sign in"}
         </button>

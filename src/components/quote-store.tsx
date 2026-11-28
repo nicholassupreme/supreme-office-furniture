@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 export type QuoteItem = {
   key: string; // slug + chosen options
@@ -28,6 +29,16 @@ type Ctx = {
   dismissAdded: () => void;
 };
 
+/** Union by key, keeping the larger quantity, so merging the same basket twice never doubles it. */
+function mergeBaskets(a: QuoteItem[], b: QuoteItem[]): QuoteItem[] {
+  const out = new Map<string, QuoteItem>();
+  for (const i of [...a, ...b]) {
+    const have = out.get(i.key);
+    out.set(i.key, have ? { ...have, qty: Math.max(have.qty, i.qty) } : i);
+  }
+  return [...out.values()];
+}
+
 const QuoteContext = createContext<Ctx | null>(null);
 const STORAGE_KEY = "supreme-quote-v1";
 
@@ -35,6 +46,9 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<QuoteItem[]>([]);
   const [ready, setReady] = useState(false);
   const [lastAdded, setLastAdded] = useState<QuoteItem | null>(null);
+  const { data: session } = authClient.useSession();
+  const userId = session?.user?.id ?? null;
+  const syncedFor = useRef<string | null>(null);
 
   useEffect(() => {
     try {
@@ -51,6 +65,41 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch {}
   }, [items, ready]);
+
+  // Logged in: pull the saved basket from the server and merge it with whatever is on this device.
+  useEffect(() => {
+    if (!ready) return;
+    if (!userId) {
+      syncedFor.current = null;
+      return;
+    }
+    if (syncedFor.current === userId) return;
+    let cancelled = false;
+    fetch("/api/basket")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { items: QuoteItem[] } | null) => {
+        if (cancelled || !data) return;
+        setItems((local) => mergeBaskets(data.items, local));
+        syncedFor.current = userId;
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, ready]);
+
+  // Logged in and merged: save every change back to the server (debounced).
+  useEffect(() => {
+    if (!ready || !userId || syncedFor.current !== userId) return;
+    const t = setTimeout(() => {
+      fetch("/api/basket", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ items }),
+      }).catch(() => {});
+    }, 700);
+    return () => clearTimeout(t);
+  }, [items, userId, ready]);
 
   const add: Ctx["add"] = useCallback((item, qty = 1) => {
     const key = item.slug + "|" + Object.entries(item.opts).map(([k, v]) => `${k}=${v}`).join("|");

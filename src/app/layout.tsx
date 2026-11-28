@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { QuoteProvider } from "@/components/quote-store";
 import { AddedToast } from "@/components/added-toast";
+import { AnalyticsEvents } from "@/components/analytics-events";
+import { CookieNotice } from "@/components/cookie-notice";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { site } from "@/lib/site";
 import { deptCount, menuBooths, menuStars } from "@/lib/catalog";
@@ -21,6 +24,8 @@ export const metadata: Metadata = {
   openGraph: { siteName: site.name, locale: "en_MY", type: "website" },
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-DSETDHHJWX";
+
 export const viewport: Viewport = { themeColor: "#f5f3ee" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -33,8 +38,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
           <AddedToast />
           <FloatingWhatsApp />
+          <CookieNotice />
+          <AnalyticsEvents />
         </QuoteProvider>
       </body>
+      <GoogleAnalytics gaId={gaId} />
     </html>
   );
 }

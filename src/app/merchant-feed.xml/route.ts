@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import { allProducts, availabilityOf, defaultPrice } from "@/lib/catalog";
 import { cleanName } from "@/components/product-card";
 import { deptName, subName } from "@/lib/taxonomy";
-import { site } from "@/lib/site";
+import { publicImage, site } from "@/lib/site";
 
 // Google Merchant Center product feed (RSS 2.0 + g: namespace). Built per request so the availability date rolls forward.
 /** Everything is made to order; Google needs a date for backorder items. */
@@ -14,8 +14,6 @@ const esc = (s: string) =>
 
 const text = (html: string) =>
   html.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
-
-const abs = (u: string) => (u.startsWith("http") ? u : site.url + u);
 
 /** Merchant Center ids are capped at 50 characters and must be plain ASCII (accents count extra). */
 const idOf = (slug: string) =>
@@ -41,8 +39,8 @@ export async function GET() {
         `<g:title>${esc(title)}</g:title>`,
         `<g:description>${esc(desc)}</g:description>`,
         `<g:link>${esc(link)}</g:link>`,
-        `<g:image_link>${esc(abs(p.images[0]))}</g:image_link>`,
-        ...p.images.slice(1, 11).map((u) => `<g:additional_image_link>${esc(abs(u))}</g:additional_image_link>`),
+        `<g:image_link>${esc(publicImage(p.images[0]))}</g:image_link>`,
+        ...p.images.slice(1, 11).map((u) => `<g:additional_image_link>${esc(publicImage(u))}</g:additional_image_link>`),
         `<g:availability>${availabilityOf(p)}</g:availability>`,
         `<g:availability_date>${ready}</g:availability_date>`,
         `<g:price>${price.toFixed(2)} MYR</g:price>`,

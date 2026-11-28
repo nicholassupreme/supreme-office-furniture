@@ -10,7 +10,7 @@ import { AceCompare } from "@/components/ace-compare";
 import { ACE_COLUMNS } from "@/data/ace-compare";
 import { noFreeDeliveryDepts } from "@/lib/site";
 import { ProductCard, cleanName } from "@/components/product-card";
-import { site } from "@/lib/site";
+import { publicImage, site } from "@/lib/site";
 
 
 /**
@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
     "@context": "https://schema.org",
     "@type": "Product",
     name: cleanName(p.name),
-    image: p.images.map((u) => (u.startsWith("http") ? u : site.url + u)),
+    image: p.images.map(publicImage),
     description: p.summary,
     brand: { "@type": "Brand", name: "Supreme Office" },
     url: `${site.url}/products/${p.slug}`,

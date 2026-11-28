@@ -19,6 +19,13 @@ export const site = {
   ],
 };
 
+/** Image URL for search engines and feeds: product photos are served from our own domain, others made absolute. */
+export function publicImage(u: string) {
+  const r2 = "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/i/";
+  if (u.startsWith(r2)) return `${site.url}/product-images/${u.slice(r2.length)}`;
+  return u.startsWith("http") ? u : site.url + u;
+}
+
 /** Heavy / bulky departments: never part of the free-delivery offer (transport charge applies). */
 export const noFreeDeliveryDepts = ["security-safe-box", "office-phone-booth-open-pods"];
 

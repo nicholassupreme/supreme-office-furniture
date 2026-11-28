@@ -78,6 +78,15 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // Serve product images from our own domain so Google's image crawler (and shoppers) get them reliably.
+  async rewrites() {
+    return [
+      {
+        source: "/product-images/:file",
+        destination: "https://pub-0394e669f99a47be83c5487b3c89e601.r2.dev/s/1022051/i/:file",
+      },
+    ];
+  },
   async redirects() {
     return moved.map(([source, destination]) => ({
       source,
